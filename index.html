@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRVSPORTINFO</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080b12;
+  color: white;
+}
+
+header {
+  padding: 22px;
+  text-align: center;
+  background: #101622;
+  border-bottom: 1px solid #252d3a;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header span {
+  color: #55dfff;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: #121824;
+  border: 1px solid #252d3a;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #202a3a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 4px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: #2d394d;
+}
+
+.primary {
+  background: #55dfff;
+  color: #061018;
+}
+
+.primary:hover {
+  background: #75e7ff;
+}
+
+.sport-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sport-buttons button {
+  flex: 1;
+  font-size: 16px;
+}
+
+.active {
+  background: #55dfff !important;
+  color: #061018 !important;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid #303b4d;
+  background: #0b1018;
+  color: white;
+}
+
+.player-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.player {
+  background: #222c3c;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.score {
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.event {
+  padding: 10px;
+  border-bottom: 1px solid #252d3a;
+}
+
+.hidden {
+  display: none;
+}
+
+@media(max-width:600px) {
+  .controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .score {
+    font-size: 38px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>GRV<span>SPORTINFO</span></h1>
+  <p>Football & Cricket Match Manager</p>
+</header>
+
+<div class="container">
+
+<!-- SETUP -->
+<div id="setup" class="card">
+
+  <h2>Choose Sport</h2>
+
+  <div class="sport-buttons">
+    <button id="footballBtn" class="active">⚽ Football</button>
+    <button id="cricketBtn">🏏 Cricket</button>
+  </div>
+
+  <hr>
+
+  <h2>Match Setup</h2>
+
+  <input id="teamA" placeholder="Team A name" value="Team A">
+  <input id="teamB" placeholder="Team B name" value="Team B">
+
+  <div id="oversBox" class="hidden">
+    <input id="overs" type="number" min="1" value="10"
+           placeholder="Number of overs">
+  </div>
+
+  <h3>Team A Players</h3>
+
+  <input id="playerA" placeholder="Enter player name">
+
+  <button id="addPlayerA">➕ Add Player</button>
+
+  <div id="playersA" class="player-list"></div>
+
+  <h3>Team B Players</h3>
+
+  <input id="playerB" placeholder="Enter player name">
+
+  <button id="addPlayerB">➕ Add Player</button>
+
+  <div id="playersB" class="player-list"></div>
+
+  <br>
+
+  <button id="startMatch" class="primary">
+    ▶ START MATCH
+  </button>
+
+</div>
+
+
+<!-- LIVE MATCH -->
+
+<div id="match" class="hidden">
+
+  <div class="card center">
+
+    <h2 id="matchName"></h2>
+
+    <div id="score" class="score">
+      0 - 0
+    </div>
+
+    <p id="matchInfo"></p>
+
+  </div>
+
+
+  <!-- FOOTBALL -->
+
+  <div id="footballControls" class="card">
+
+    <h2>⚽ Football</h2>
+
+    <div class="controls">
+
+      <button onclick="footballEvent('Goal','A')">
+        ⚽ Goal A
+      </button>
+
+      <button onclick="footballEvent('Goal','B')">
+        ⚽ Goal B
+      </button>
+
+      <button onclick="footballEvent('Foul','A')">
+        Foul A
+      </button>
+
+      <button onclick="footballEvent('Foul','B')">
+        Foul B
+      </button>
+
+      <button onclick="footballEvent('Yellow Card','A')">
+        🟨 Yellow A
+      </button>
+
+      <button onclick="footballEvent('Yellow Card','B')">
+        🟨 Yellow B
+      </button>
+
+      <button onclick="footballEvent('Red Card','A')">
+        🟥 Red A
+      </button>
+
+      <button onclick="footballEvent('Red Card','B')">
+        🟥 Red B
+      </button>
+
+      <button onclick="footballEvent('Corner','A')">
+        Corner A
+      </button>
+
+      <button onclick="footballEvent('Corner','B')">
+        Corner B
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CRICKET -->
+
+  <div id="cricketControls" class="card hidden">
+
+    <h2>🏏 Cricket</h2>
+
+    <div class="controls">
+
+      <button onclick="cricketEvent('0')">Dot Ball</button>
+
+      <button onclick="cricketEvent('1')">+1</button>
+
+      <button onclick="cricketEvent('2')">+2</button>
+
+      <button onclick="cricketEvent('3')">+3</button>
+
+      <button onclick="cricketEvent('4')">FOUR</button>
+
+      <button onclick="cricketEvent('6')">SIX</button>
+
+      <button onclick="cricketEvent('wide')">
+        Wide
+      </button>
+
+      <button onclick="cricketEvent('no-ball')">
+        No Ball
+      </button>
+
+      <button onclick="cricketEvent('bye')">
+        Bye
+      </button>
+
+      <button onclick="cricketEvent('leg-bye')">
+        Leg Bye
+      </button>
+
+      <button onclick="cricketEvent('wicket')">
+        🏏 Wicket
+      </button>
+
+      <button onclick="cricketEvent('lbw')">
+        LBW
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- EVENTS -->
+
+  <div class="card">
+
+    <h2>📋 Match Events</h2>
+
+    <div id="events">
+      No events yet.
+    </div>
+
+  </div>
+
+
+  <!-- END -->
+
+  <div class="card center">
+
+    <button onclick="endMatch()">
+      🏁 END MATCH
+    </button>
+
+    <button onclick="location.reload()">
+      🔄 NEW MATCH
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="card">
+
+  <h2>📚 Match History</h2>
+
+  <div id="history"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let sport = "football";
+
+let playersA = [];
+let playersB = [];
+
+let game = {
+  teamA: "Team A",
+  teamB: "Team B",
+  scoreA: 0,
+  scoreB: 0,
+  runs: 0,
+  wickets: 0,
+  balls: 0,
+  events: []
+};
+
+
+// SPORT SWITCH
+
+document.getElementById("footballBtn").onclick = function() {
+
+  sport = "football";
+
+  this.classList.add("active");
+
+  document.getElementById("cricketBtn")
+    .classList.remove("active");
+
+  document.getElementById("oversBox")
+    .classList.add("hidden");
+
+};
+
+
+document.getElementById("cricketBtn").onclick = function() {
+
+  sport = "cricket";
+
+  this.classList.add("active");
+
+  document.getElementById("footballBtn")
+    .classList.remove("active");
+
+  document.getElementById("oversBox")
+    .classList.remove("hidden");
+
+};
+
+
+// ADD PLAYERS
+
+document.getElementById("addPlayerA").onclick = function() {
+
+  let input = document.getElementById("playerA");
+
+  let name = input.value.trim();
+
+  if(name === "") return;
+
+  playersA.push(name);
+
+  input.value = "";
+
+  showPlayers();
+
+};
+
+
+document.getElementById("addPlayerB").onclick = function() {
+
+  let input = document.getElementById("playerB");
+
+  let name = input.value.trim();
+
+  if(name === "") return;
+
+  playersB.push(name);
+
+  input.value = "";
+
+  showPlayers();
+
+};
+
+
+function showPlayers() {
+
+  document.getElementById("playersA").innerHTML =
+    playersA.map(name =>
+      `<div class="player">👤 ${escapeHTML(name)}</div>`
+    ).join("");
+
+  document.getElementById("playersB").innerHTML =
+    playersB.map(name =>
+      `<div class="player">👤 ${escapeHTML(name)}</div>`
+    ).join("");
+
+}
+
+
+// START MATCH
+
+document.getElementById("startMatch").onclick = function() {
+
+  game.teamA =
+    document.getElementById("teamA").value.trim()
+    || "Team A";
+
+  game.teamB =
+    document.getElementById("teamB").value.trim()
+    || "Team B";
+
+  game.scoreA = 0;
+  game.scoreB = 0;
+  game.runs = 0;
+  game.wickets = 0;
+  game.balls = 0;
+  game.events = [];
+
+  document.getElementById("setup")
+    .classList.add("hidden");
+
+  document.getElementById("match")
+    .classList.remove("hidden");
+
+  if(sport === "football") {
+
+    document.getElementById("footballControls")
+      .classList.remove("hidden");
+
+    document.getElementById("cricketControls")
+      .classList.add("hidden");
+
+  } else {
+
+    document.getElementById("footballControls")
+      .classList.add("hidden");
+
+    document.getElementById("cricketControls")
+      .classList.remove("hidden");
+
+  }
+
+  updateScreen();
+
+};
+
+
+// FOOTBALL
+
+function footballEvent(type, team) {
+
+  if(type === "Goal") {
+
+    if(team === "A")
+      game.scoreA++;
+
+    else
+      game.scoreB++;
+
+  }
+
+  let teamName =
+    team === "A" ? game.teamA : game.teamB;
+
+  game.events.unshift(
+    type + " — " + teamName
+  );
+
+  updateScreen();
+
+}
+
+
+// CRICKET
+
+function cricketEvent(type) {
+
+  let runs = 0;
+
+  let legalBall = true;
+
+  if(type === "1") runs = 1;
+
+  if(type === "2") runs = 2;
+
+  if(type === "3") runs = 3;
+
+  if(type === "4") runs = 4;
+
+  if(type === "6") runs = 6;
+
+  if(type === "wide") {
+
+    runs = 1;
+    legalBall = false;
+
+  }
+
+  if(type === "no-ball") {
+
+    runs = 1;
+    legalBall = false;
+
+  }
+
+  if(type === "bye") {
+
+    runs = 1;
+
+  }
+
+  if(type === "leg-bye") {
+
+    runs = 1;
+
+  }
+
+  if(type === "wicket" || type === "lbw") {
+
+    game.wickets++;
+
+  }
+
+  game.runs += runs;
+
+  if(legalBall)
+    game.balls++;
+
+  let text = type.toUpperCase();
+
+  if(runs > 0)
+    text += " +" + runs;
+
+  game.events.unshift(text);
+
+  updateScreen();
+
+}
+
+
+// UPDATE SCREEN
+
+function updateScreen() {
+
+  document.getElementById("matchName").innerText =
+    game.teamA + " vs " + game.teamB;
+
+
+  if(sport === "football") {
+
+    document.getElementById("score").innerText =
+      game.scoreA + " - " + game.scoreB;
+
+    document.getElementById("matchInfo").innerText =
+      "Football";
+
+  } else {
+
+    let overs =
+      Math.floor(game.balls / 6)
+      + "."
+      + (game.balls % 6);
+
+    document.getElementById("score").innerText =
+      game.runs + " / " + game.wickets;
+
+    document.getElementById("matchInfo").innerText =
+      "Overs: " + overs;
+
+  }
+
+
+  let eventBox =
+    document.getElementById("events");
+
+  if(game.events.length === 0) {
+
+    eventBox.innerHTML =
+      "No events yet.";
+
+  } else {
+
+    eventBox.innerHTML =
+      game.events.map((event,index) =>
+        `<div class="event">
+          ${index + 1}. ${escapeHTML(event)}
+        </div>`
+      ).join("");
+
+  }
+
+}
+
+
+// SAVE MATCH
+
+function endMatch() {
+
+  let history =
+    JSON.parse(
+      localStorage.getItem("grvHistory") || "[]"
+    );
+
+  let result;
+
+  if(sport === "football") {
+
+    result =
+      game.scoreA + " - " + game.scoreB;
+
+  } else {
+
+    result =
+      game.runs + "/" + game.wickets;
+
+  }
+
+  history.unshift({
+
+    sport: sport,
+
+    match:
+      game.teamA + " vs " + game.teamB,
+
+    score: result,
+
+    date:
+      new Date().toLocaleString()
+
+  });
+
+  localStorage.setItem(
+    "grvHistory",
+    JSON.stringify(history)
+  );
+
+  alert("Match saved successfully 🔥");
+
+  showHistory();
+
+}
+
+
+// HISTORY
+
+function showHistory() {
+
+  let history =
+    JSON.parse(
+      localStorage.getItem("grvHistory") || "[]"
+    );
+
+  let box =
+    document.getElementById("history");
+
+  if(history.length === 0) {
+
+    box.innerHTML =
+      "No saved matches yet.";
+
+    return;
+
+  }
+
+  box.innerHTML =
+    history.map(match =>
+
+      `<div class="event">
+
+        <b>
+          ${match.sport === "football" ? "⚽" : "🏏"}
+          ${escapeHTML(match.match)}
+        </b>
+
+        <br>
+
+        Score: ${escapeHTML(match.score)}
+
+        <br>
+
+        <small>${escapeHTML(match.date)}</small>
+
+      </div>`
+
+    ).join("");
+
+}
+
+
+function escapeHTML(text) {
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+showHistory();
+
+</script>
+
+</body>
+</html>
