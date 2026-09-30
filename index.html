@@ -6,144 +6,106 @@
 <title>GRVSPORTINFO</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#070a10;
+color:#fff;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #080b12;
-  color: white;
+header{
+background:#101722;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #263041;
 }
-
-header {
-  padding: 22px;
-  text-align: center;
-  background: #101622;
-  border-bottom: 1px solid #252d3a;
+header h1{margin:0;font-size:30px}
+header span{color:#55dfff}
+.container{max-width:1100px;margin:auto;padding:18px}
+.card{
+background:#111824;
+border:1px solid #273142;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 30px;
+button{
+border:0;
+border-radius:11px;
+padding:11px 14px;
+margin:4px;
+background:#222d3e;
+color:white;
+font-weight:bold;
+cursor:pointer;
 }
-
-header span {
-  color: #55dfff;
+button:hover{background:#304057}
+.primary{background:#55dfff;color:#061018}
+.danger{background:#7e2638}
+.green{background:#16734b}
+.tabs{display:flex;gap:8px}
+.tabs button{flex:1}
+.active{background:#55dfff!important;color:#061018!important}
+input,select{
+width:100%;
+padding:12px;
+margin:5px 0;
+border-radius:10px;
+border:1px solid #303c50;
+background:#0a1018;
+color:#fff;
 }
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
-
-.card {
-  background: #121824;
-  border: 1px solid #252d3a;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 18px;
+.players{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:8px;
 }
-
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  background: #202a3a;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 4px;
+.player{
+background:#222d3e;
+padding:7px 11px;
+border-radius:20px;
 }
-
-button:hover {
-  transform: translateY(-1px);
-  background: #2d394d;
+.score{
+font-size:48px;
+font-weight:bold;
+text-align:center;
+margin:10px;
 }
-
-.primary {
-  background: #55dfff;
-  color: #061018;
+.center{text-align:center}
+.controls{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
 }
-
-.primary:hover {
-  background: #75e7ff;
+.event{
+padding:10px;
+border-bottom:1px solid #263041;
 }
-
-.sport-buttons {
-  display: flex;
-  gap: 10px;
+.stat{
+display:flex;
+justify-content:space-between;
+padding:9px;
+border-bottom:1px solid #263041;
 }
-
-.sport-buttons button {
-  flex: 1;
-  font-size: 16px;
+.hidden{display:none!important}
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+background:#243044;
+margin:3px;
+font-size:13px;
 }
-
-.active {
-  background: #55dfff !important;
-  color: #061018 !important;
-}
-
-input {
-  width: 100%;
-  padding: 13px;
-  margin: 6px 0;
-  border-radius: 10px;
-  border: 1px solid #303b4d;
-  background: #0b1018;
-  color: white;
-}
-
-.player-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.player {
-  background: #222c3c;
-  padding: 8px 12px;
-  border-radius: 20px;
-}
-
-.score {
-  text-align: center;
-  font-size: 48px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.center {
-  text-align: center;
-}
-
-.controls {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.event {
-  padding: 10px;
-  border-bottom: 1px solid #252d3a;
-}
-
-.hidden {
-  display: none;
-}
-
-@media(max-width:600px) {
-  .controls {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .score {
-    font-size: 38px;
-  }
+@media(max-width:700px){
+.grid{grid-template-columns:1fr}
+.controls{grid-template-columns:repeat(2,1fr)}
+.score{font-size:38px}
 }
 </style>
 </head>
@@ -151,626 +113,987 @@ input {
 <body>
 
 <header>
-  <h1>GRV<span>SPORTINFO</span></h1>
-  <p>Football & Cricket Match Manager</p>
+<h1>GRV<span>SPORTINFO</span></h1>
+<p>Football & Cricket Match Manager</p>
 </header>
 
 <div class="container">
 
 <!-- SETUP -->
-<div id="setup" class="card">
 
-  <h2>Choose Sport</h2>
+<section id="setup" class="card">
 
-  <div class="sport-buttons">
-    <button id="footballBtn" class="active">⚽ Football</button>
-    <button id="cricketBtn">🏏 Cricket</button>
-  </div>
+<h2>Choose Sport</h2>
 
-  <hr>
+<div class="tabs">
+<button id="footballTab" class="active">⚽ Football</button>
+<button id="cricketTab">🏏 Cricket</button>
+</div>
 
-  <h2>Match Setup</h2>
+<h2>Match Setup</h2>
 
-  <input id="teamA" placeholder="Team A name" value="Team A">
-  <input id="teamB" placeholder="Team B name" value="Team B">
+<div class="grid">
+<div>
+<label>Team A</label>
+<input id="teamA" value="Team A">
+</div>
 
-  <div id="oversBox" class="hidden">
-    <input id="overs" type="number" min="1" value="10"
-           placeholder="Number of overs">
-  </div>
+<div>
+<label>Team B</label>
+<input id="teamB" value="Team B">
+</div>
+</div>
 
-  <h3>Team A Players</h3>
+<div id="oversSetup" class="hidden">
+<label>Overs per innings</label>
+<input id="totalOvers" type="number" min="1" value="10">
+</div>
 
-  <input id="playerA" placeholder="Enter player name">
+<div class="grid">
 
-  <button id="addPlayerA">➕ Add Player</button>
+<div>
+<h3>Team A Players</h3>
+<input id="playerAInput" placeholder="Player name">
+<button onclick="addPlayer('A')">➕ Add Player</button>
+<div id="playersA" class="players"></div>
+</div>
 
-  <div id="playersA" class="player-list"></div>
+<div>
+<h3>Team B Players</h3>
+<input id="playerBInput" placeholder="Player name">
+<button onclick="addPlayer('B')">➕ Add Player</button>
+<div id="playersB" class="players"></div>
+</div>
 
-  <h3>Team B Players</h3>
+</div>
 
-  <input id="playerB" placeholder="Enter player name">
+<br>
 
-  <button id="addPlayerB">➕ Add Player</button>
+<button class="primary" onclick="startMatch()">
+▶ START MATCH
+</button>
 
-  <div id="playersB" class="player-list"></div>
+</section>
 
-  <br>
 
-  <button id="startMatch" class="primary">
-    ▶ START MATCH
-  </button>
+<!-- MATCH -->
+
+<section id="match" class="hidden">
+
+<div class="card center">
+
+<h2 id="matchTitle"></h2>
+
+<div id="mainScore" class="score">
+0 - 0
+</div>
+
+<p id="matchStatus"></p>
 
 </div>
 
 
-<!-- LIVE MATCH -->
+<!-- FOOTBALL -->
 
-<div id="match" class="hidden">
+<div id="footballPanel">
 
-  <div class="card center">
+<div class="card">
 
-    <h2 id="matchName"></h2>
+<h2>⚽ Football Events</h2>
 
-    <div id="score" class="score">
-      0 - 0
-    </div>
+<label>Team</label>
+<select id="footballTeam"></select>
 
-    <p id="matchInfo"></p>
+<label>Player</label>
+<select id="footballPlayer"></select>
 
-  </div>
+<label>Assist (optional)</label>
+<select id="assistPlayer"></select>
 
+<div class="controls">
 
-  <!-- FOOTBALL -->
+<button onclick="footballGoal(1)">⚽ + Goal</button>
+<button onclick="footballGoal(-1)">⚽ - Goal</button>
 
-  <div id="footballControls" class="card">
+<button onclick="footballEvent('Assist')">
+🎯 Assist
+</button>
 
-    <h2>⚽ Football</h2>
+<button onclick="footballEvent('Foul')">
+🚫 Foul
+</button>
 
-    <div class="controls">
+<button onclick="footballEvent('Yellow Card')">
+🟨 Yellow
+</button>
 
-      <button onclick="footballEvent('Goal','A')">
-        ⚽ Goal A
-      </button>
+<button onclick="footballEvent('Red Card')">
+🟥 Red
+</button>
 
-      <button onclick="footballEvent('Goal','B')">
-        ⚽ Goal B
-      </button>
-
-      <button onclick="footballEvent('Foul','A')">
-        Foul A
-      </button>
-
-      <button onclick="footballEvent('Foul','B')">
-        Foul B
-      </button>
-
-      <button onclick="footballEvent('Yellow Card','A')">
-        🟨 Yellow A
-      </button>
-
-      <button onclick="footballEvent('Yellow Card','B')">
-        🟨 Yellow B
-      </button>
-
-      <button onclick="footballEvent('Red Card','A')">
-        🟥 Red A
-      </button>
-
-      <button onclick="footballEvent('Red Card','B')">
-        🟥 Red B
-      </button>
-
-      <button onclick="footballEvent('Corner','A')">
-        Corner A
-      </button>
-
-      <button onclick="footballEvent('Corner','B')">
-        Corner B
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- CRICKET -->
-
-  <div id="cricketControls" class="card hidden">
-
-    <h2>🏏 Cricket</h2>
-
-    <div class="controls">
-
-      <button onclick="cricketEvent('0')">Dot Ball</button>
-
-      <button onclick="cricketEvent('1')">+1</button>
-
-      <button onclick="cricketEvent('2')">+2</button>
-
-      <button onclick="cricketEvent('3')">+3</button>
-
-      <button onclick="cricketEvent('4')">FOUR</button>
-
-      <button onclick="cricketEvent('6')">SIX</button>
-
-      <button onclick="cricketEvent('wide')">
-        Wide
-      </button>
-
-      <button onclick="cricketEvent('no-ball')">
-        No Ball
-      </button>
-
-      <button onclick="cricketEvent('bye')">
-        Bye
-      </button>
-
-      <button onclick="cricketEvent('leg-bye')">
-        Leg Bye
-      </button>
-
-      <button onclick="cricketEvent('wicket')">
-        🏏 Wicket
-      </button>
-
-      <button onclick="cricketEvent('lbw')">
-        LBW
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- EVENTS -->
-
-  <div class="card">
-
-    <h2>📋 Match Events</h2>
-
-    <div id="events">
-      No events yet.
-    </div>
-
-  </div>
-
-
-  <!-- END -->
-
-  <div class="card center">
-
-    <button onclick="endMatch()">
-      🏁 END MATCH
-    </button>
-
-    <button onclick="location.reload()">
-      🔄 NEW MATCH
-    </button>
-
-  </div>
+<button onclick="footballEvent('Corner')">
+🚩 Corner
+</button>
 
 </div>
+
+</div>
+
+
+<div class="card">
+
+<h2>👥 Football Player Stats</h2>
+
+<div id="footballStats"></div>
+
+</div>
+
+</div>
+
+
+<!-- CRICKET -->
+
+<div id="cricketPanel" class="hidden">
+
+<div class="card center">
+
+<h2 id="inningsTitle">1st Innings</h2>
+
+<div id="cricketScore" class="score">
+0 / 0
+</div>
+
+<p id="oversDisplay">Overs: 0.0</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Current Players</h3>
+
+<div class="grid">
+
+<div>
+<label>Striker</label>
+<select id="striker"></select>
+</div>
+
+<div>
+<label>Non-Striker</label>
+<select id="nonStriker"></select>
+</div>
+
+</div>
+
+<label>Bowler</label>
+<select id="bowler"></select>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏏 Ball</h2>
+
+<div class="controls">
+
+<button onclick="cricketBall(0)">Dot</button>
+<button onclick="cricketBall(1)">+1</button>
+<button onclick="cricketBall(2)">+2</button>
+<button onclick="cricketBall(3)">+3</button>
+<button onclick="cricketBall(4)">FOUR</button>
+<button onclick="cricketBall(6)">SIX</button>
+
+<button onclick="cricketExtra('wide')">
+Wide
+</button>
+
+<button onclick="cricketExtra('no-ball')">
+No Ball
+</button>
+
+<button onclick="cricketExtra('bye')">
+Bye
+</button>
+
+<button onclick="cricketExtra('leg-bye')">
+Leg Bye
+</button>
+
+<button onclick="cricketWicket('Wicket')">
+🏏 Wicket
+</button>
+
+<button onclick="cricketWicket('LBW')">
+LBW
+</button>
+
+</div>
+
+<br>
+
+<button onclick="changeRuns(-1)">➖ Decrease Run</button>
+<button onclick="changeRuns(1)">➕ Increase Run</button>
+
+<br>
+
+<button onclick="changeWicket(-1)">
+➖ Decrease Wicket
+</button>
+
+<button onclick="changeWicket(1)">
+➕ Increase Wicket
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Current Batting</h2>
+<div id="battingStats"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎯 Bowling</h2>
+<div id="bowlingStats"></div>
+
+</div>
+
+
+<div class="card center">
+
+<button class="green" onclick="endInnings()">
+🏁 END INNINGS
+</button>
+
+</div>
+
+</div>
+
+
+<!-- EVENTS -->
+
+<div class="card">
+
+<h2>📋 Match Timeline</h2>
+
+<div id="events">
+No events yet.
+</div>
+
+</div>
+
+
+<div class="card center">
+
+<button class="danger" onclick="finishMatch()">
+🏆 FINISH MATCH
+</button>
+
+<button onclick="location.reload()">
+🔄 NEW MATCH
+</button>
+
+</div>
+
+</section>
 
 
 <!-- HISTORY -->
 
-<div class="card">
+<section class="card">
 
-  <h2>📚 Match History</h2>
+<h2>📚 Match History</h2>
 
-  <div id="history"></div>
+<div id="history"></div>
 
-</div>
+</section>
 
 </div>
 
 
 <script>
 
-let sport = "football";
+let sport="football";
 
-let playersA = [];
-let playersB = [];
+let players={
+A:[],
+B:[]
+};
 
-let game = {
-  teamA: "Team A",
-  teamB: "Team B",
-  scoreA: 0,
-  scoreB: 0,
-  runs: 0,
-  wickets: 0,
-  balls: 0,
-  events: []
+let game=null;
+
+let history=
+JSON.parse(localStorage.getItem("grvHistory")||"[]");
+
+
+/* SPORT */
+
+document.getElementById("footballTab").onclick=()=>{
+sport="football";
+
+footballTab.classList.add("active");
+cricketTab.classList.remove("active");
+
+oversSetup.classList.add("hidden");
+};
+
+document.getElementById("cricketTab").onclick=()=>{
+sport="cricket";
+
+cricketTab.classList.add("active");
+footballTab.classList.remove("active");
+
+oversSetup.classList.remove("hidden");
 };
 
 
-// SPORT SWITCH
+/* PLAYERS */
 
-document.getElementById("footballBtn").onclick = function() {
+function addPlayer(team){
 
-  sport = "football";
+let input=document.getElementById(
+team==="A"?"playerAInput":"playerBInput"
+);
 
-  this.classList.add("active");
+let name=input.value.trim();
 
-  document.getElementById("cricketBtn")
-    .classList.remove("active");
+if(!name)return;
 
-  document.getElementById("oversBox")
-    .classList.add("hidden");
+players[team].push({
+name:name,
+goals:0,
+assists:0,
+fouls:0,
+yellow:0,
+red:0,
+corners:0,
+runs:0,
+balls:0,
+fours:0,
+sixes:0,
+wickets:0
+});
 
+input.value="";
+
+renderPlayers();
+
+}
+
+function renderPlayers(){
+
+playersA.innerHTML=
+players.A.map(p=>
+`<span class="player">👤 ${escape(p.name)}</span>`
+).join("");
+
+playersB.innerHTML=
+players.B.map(p=>
+`<span class="player">👤 ${escape(p.name)}</span>`
+).join("");
+
+}
+
+
+/* START */
+
+function startMatch(){
+
+game={
+teamA:teamA.value.trim()||"Team A",
+teamB:teamB.value.trim()||"Team B",
+
+scoreA:0,
+scoreB:0,
+
+innings:1,
+
+runs:[0,0],
+wickets:[0,0],
+balls:[0,0],
+
+events:[],
+
+totalOvers:+totalOvers.value||10
 };
 
+setup.classList.add("hidden");
+match.classList.remove("hidden");
 
-document.getElementById("cricketBtn").onclick = function() {
+if(sport==="football"){
 
-  sport = "cricket";
+footballPanel.classList.remove("hidden");
+cricketPanel.classList.add("hidden");
 
-  this.classList.add("active");
+}
 
-  document.getElementById("footballBtn")
-    .classList.remove("active");
+else{
 
-  document.getElementById("oversBox")
-    .classList.remove("hidden");
+footballPanel.classList.add("hidden");
+cricketPanel.classList.remove("hidden");
 
-};
+prepareCricket();
 
+}
 
-// ADD PLAYERS
-
-document.getElementById("addPlayerA").onclick = function() {
-
-  let input = document.getElementById("playerA");
-
-  let name = input.value.trim();
-
-  if(name === "") return;
-
-  playersA.push(name);
-
-  input.value = "";
-
-  showPlayers();
-
-};
-
-
-document.getElementById("addPlayerB").onclick = function() {
-
-  let input = document.getElementById("playerB");
-
-  let name = input.value.trim();
-
-  if(name === "") return;
-
-  playersB.push(name);
-
-  input.value = "";
-
-  showPlayers();
-
-};
-
-
-function showPlayers() {
-
-  document.getElementById("playersA").innerHTML =
-    playersA.map(name =>
-      `<div class="player">👤 ${escapeHTML(name)}</div>`
-    ).join("");
-
-  document.getElementById("playersB").innerHTML =
-    playersB.map(name =>
-      `<div class="player">👤 ${escapeHTML(name)}</div>`
-    ).join("");
+update();
 
 }
 
 
-// START MATCH
+/* FOOTBALL */
 
-document.getElementById("startMatch").onclick = function() {
+function footballGoal(change){
 
-  game.teamA =
-    document.getElementById("teamA").value.trim()
-    || "Team A";
+let team=
+document.getElementById("footballTeam").value;
 
-  game.teamB =
-    document.getElementById("teamB").value.trim()
-    || "Team B";
+let index=team==="A"?0:1;
 
-  game.scoreA = 0;
-  game.scoreB = 0;
-  game.runs = 0;
-  game.wickets = 0;
-  game.balls = 0;
-  game.events = [];
+if(change===1){
 
-  document.getElementById("setup")
-    .classList.add("hidden");
+game["score"+team]++;
 
-  document.getElementById("match")
-    .classList.remove("hidden");
+let player=getFootballPlayer();
 
-  if(sport === "football") {
+if(player)player.goals++;
 
-    document.getElementById("footballControls")
-      .classList.remove("hidden");
+let assist=getAssistPlayer();
 
-    document.getElementById("cricketControls")
-      .classList.add("hidden");
+if(assist)assist.assists++;
 
-  } else {
+game.events.unshift(
+"⚽ GOAL — "+
+player?.name+
+(assist?" 🎯 Assist: "+assist.name:"")
+);
 
-    document.getElementById("footballControls")
-      .classList.add("hidden");
+}
 
-    document.getElementById("cricketControls")
-      .classList.remove("hidden");
+else{
 
-  }
+if(game["score"+team]>0)
+game["score"+team]--;
 
-  updateScreen();
+let player=getFootballPlayer();
 
-};
+if(player && player.goals>0)
+player.goals--;
 
+game.events.unshift(
+"➖ Goal removed — "+(player?.name||"")
+);
 
-// FOOTBALL
+}
 
-function footballEvent(type, team) {
+update();
 
-  if(type === "Goal") {
+}
 
-    if(team === "A")
-      game.scoreA++;
+function footballEvent(type){
 
-    else
-      game.scoreB++;
+let player=getFootballPlayer();
 
-  }
+if(!player)return;
 
-  let teamName =
-    team === "A" ? game.teamA : game.teamB;
+if(type==="Assist")player.assists++;
+if(type==="Foul")player.fouls++;
+if(type==="Yellow Card")player.yellow++;
+if(type==="Red Card")player.red++;
+if(type==="Corner")player.corners++;
 
-  game.events.unshift(
-    type + " — " + teamName
-  );
+game.events.unshift(
+type+" — "+player.name
+);
 
-  updateScreen();
+update();
+
+}
+
+function getFootballPlayer(){
+
+let team=document.getElementById("footballTeam").value;
+
+let id=document.getElementById("footballPlayer").value;
+
+return players[team][id];
+
+}
+
+function getAssistPlayer(){
+
+let team=document.getElementById("footballTeam").value;
+
+let id=document.getElementById("assistPlayer").value;
+
+return players[team][id];
 
 }
 
 
-// CRICKET
+/* CRICKET */
 
-function cricketEvent(type) {
+function prepareCricket(){
 
-  let runs = 0;
+let batting=game.innings===1?"A":"B";
+let bowling=game.innings===1?"B":"A";
 
-  let legalBall = true;
+striker.innerHTML=
+players[batting].map((p,i)=>
+`<option value="${i}">${escape(p.name)}</option>`
+).join("");
 
-  if(type === "1") runs = 1;
+nonStriker.innerHTML=
+striker.innerHTML;
 
-  if(type === "2") runs = 2;
+bowler.innerHTML=
+players[bowling].map((p,i)=>
+`<option value="${i}">${escape(p.name)}</option>`
+).join("");
 
-  if(type === "3") runs = 3;
+}
 
-  if(type === "4") runs = 4;
+function currentBatter(){
 
-  if(type === "6") runs = 6;
+let batting=game.innings===1?"A":"B";
 
-  if(type === "wide") {
+return players[batting][
+document.getElementById("striker").value
+];
 
-    runs = 1;
-    legalBall = false;
+}
 
-  }
+function currentBowler(){
 
-  if(type === "no-ball") {
+let bowling=game.innings===1?"B":"A";
 
-    runs = 1;
-    legalBall = false;
-
-  }
-
-  if(type === "bye") {
-
-    runs = 1;
-
-  }
-
-  if(type === "leg-bye") {
-
-    runs = 1;
-
-  }
-
-  if(type === "wicket" || type === "lbw") {
-
-    game.wickets++;
-
-  }
-
-  game.runs += runs;
-
-  if(legalBall)
-    game.balls++;
-
-  let text = type.toUpperCase();
-
-  if(runs > 0)
-    text += " +" + runs;
-
-  game.events.unshift(text);
-
-  updateScreen();
+return players[bowling][
+document.getElementById("bowler").value
+];
 
 }
 
 
-// UPDATE SCREEN
+function cricketBall(runs){
 
-function updateScreen() {
+let batter=currentBatter();
+let bowler=currentBowler();
 
-  document.getElementById("matchName").innerText =
-    game.teamA + " vs " + game.teamB;
+if(!batter)return;
 
+game.runs[game.innings-1]+=runs;
+game.balls[game.innings-1]++;
 
-  if(sport === "football") {
+batter.runs+=runs;
+batter.balls++;
 
-    document.getElementById("score").innerText =
-      game.scoreA + " - " + game.scoreB;
+if(runs===4)batter.fours++;
+if(runs===6)batter.sixes++;
 
-    document.getElementById("matchInfo").innerText =
-      "Football";
+if(bowler){
+bowler.runs+=runs;
+}
 
-  } else {
+game.events.unshift(
+`${runs===0?"•":runs} run — ${batter.name}`
+);
 
-    let overs =
-      Math.floor(game.balls / 6)
-      + "."
-      + (game.balls % 6);
-
-    document.getElementById("score").innerText =
-      game.runs + " / " + game.wickets;
-
-    document.getElementById("matchInfo").innerText =
-      "Overs: " + overs;
-
-  }
-
-
-  let eventBox =
-    document.getElementById("events");
-
-  if(game.events.length === 0) {
-
-    eventBox.innerHTML =
-      "No events yet.";
-
-  } else {
-
-    eventBox.innerHTML =
-      game.events.map((event,index) =>
-        `<div class="event">
-          ${index + 1}. ${escapeHTML(event)}
-        </div>`
-      ).join("");
-
-  }
+update();
 
 }
 
 
-// SAVE MATCH
+function cricketExtra(type){
 
-function endMatch() {
+let batter=currentBatter();
+let bowler=currentBowler();
 
-  let history =
-    JSON.parse(
-      localStorage.getItem("grvHistory") || "[]"
-    );
+game.runs[game.innings-1]++;
+game.events.unshift(
+type.toUpperCase()+" — "+(batter?.name||"")
+);
 
-  let result;
+if(type==="wide"||type==="no-ball"){
 
-  if(sport === "football") {
+if(bowler)bowler.runs++;
 
-    result =
-      game.scoreA + " - " + game.scoreB;
+}
 
-  } else {
+else{
 
-    result =
-      game.runs + "/" + game.wickets;
+game.balls[game.innings-1]++;
 
-  }
+}
 
-  history.unshift({
-
-    sport: sport,
-
-    match:
-      game.teamA + " vs " + game.teamB,
-
-    score: result,
-
-    date:
-      new Date().toLocaleString()
-
-  });
-
-  localStorage.setItem(
-    "grvHistory",
-    JSON.stringify(history)
-  );
-
-  alert("Match saved successfully 🔥");
-
-  showHistory();
+update();
 
 }
 
 
-// HISTORY
+function cricketWicket(type){
 
-function showHistory() {
+let batter=currentBatter();
+let bowler=currentBowler();
 
-  let history =
-    JSON.parse(
-      localStorage.getItem("grvHistory") || "[]"
-    );
+game.wickets[game.innings-1]++;
 
-  let box =
-    document.getElementById("history");
+game.balls[game.innings-1]++;
 
-  if(history.length === 0) {
+if(batter)batter.balls++;
 
-    box.innerHTML =
-      "No saved matches yet.";
+if(bowler)bowler.wickets++;
 
-    return;
+game.events.unshift(
+"❌ "+type+" — "+(batter?.name||"")
+);
 
-  }
-
-  box.innerHTML =
-    history.map(match =>
-
-      `<div class="event">
-
-        <b>
-          ${match.sport === "football" ? "⚽" : "🏏"}
-          ${escapeHTML(match.match)}
-        </b>
-
-        <br>
-
-        Score: ${escapeHTML(match.score)}
-
-        <br>
-
-        <small>${escapeHTML(match.date)}</small>
-
-      </div>`
-
-    ).join("");
+update();
 
 }
 
 
-function escapeHTML(text) {
+/* DECREASE / INCREASE */
 
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function changeRuns(amount){
+
+let i=game.innings-1;
+
+if(amount<0 && game.runs[i]<=0)return;
+
+game.runs[i]+=amount;
+
+if(game.runs[i]<0)
+game.runs[i]=0;
+
+game.events.unshift(
+amount>0?"➕ Run added":"➖ Run removed"
+);
+
+update();
 
 }
 
 
-showHistory();
+function changeWicket(amount){
+
+let i=game.innings-1;
+
+if(amount<0 && game.wickets[i]<=0)return;
+
+game.wickets[i]+=amount;
+
+if(game.wickets[i]<0)
+game.wickets[i]=0;
+
+game.events.unshift(
+amount>0?"➕ Wicket added":"➖ Wicket removed"
+);
+
+update();
+
+}
+
+
+/* INNINGS */
+
+function endInnings(){
+
+if(game.innings===1){
+
+game.innings=2;
+
+prepareCricket();
+
+game.events.unshift(
+"🏁 1st innings ended"
+);
+
+update();
+
+}
+
+else{
+
+alert("Both innings are complete.");
+
+}
+
+}
+
+
+/* UPDATE */
+
+function update(){
+
+matchTitle.innerText=
+game.teamA+" vs "+game.teamB;
+
+if(sport==="football"){
+
+mainScore.innerText=
+game.scoreA+" - "+game.scoreB;
+
+matchStatus.innerText="Football";
+
+renderFootball();
+
+}
+
+else{
+
+let i=game.innings-1;
+
+let overs=
+Math.floor(game.balls[i]/6)+
+"."+
+(game.balls[i]%6);
+
+inningsTitle.innerText=
+game.innings===1?
+"1st Innings — "+game.teamA:
+"2nd Innings — "+game.teamB;
+
+cricketScore.innerText=
+game.runs[i]+" / "+game.wickets[i];
+
+oversDisplay.innerText=
+"Overs: "+overs+" / "+game.totalOvers;
+
+renderBatting();
+renderBowling();
+
+}
+
+renderEvents();
+
+}
+
+
+/* FOOTBALL UI */
+
+function renderFootball(){
+
+let team=
+footballTeam.value;
+
+footballPlayer.innerHTML=
+players[team].map((p,i)=>
+`<option value="${i}">
+${escape(p.name)}
+</option>`
+).join("");
+
+assistPlayer.innerHTML=
+`<option value="">No assist</option>`+
+players[team].map((p,i)=>
+`<option value="${i}">
+${escape(p.name)}
+</option>`
+).join("");
+
+footballTeam.innerHTML=`
+<option value="A">${escape(game.teamA)}</option>
+<option value="B">${escape(game.teamB)}</option>
+`;
+
+}
+
+function renderFootballStats(){
+
+let html="";
+
+["A","B"].forEach(team=>{
+
+html+=`<h3>${escape(
+team==="A"?game.teamA:game.teamB
+)}</h3>`;
+
+players[team].forEach(p=>{
+
+html+=`
+<div class="stat">
+<span>${escape(p.name)}</span>
+<span>
+⚽ ${p.goals}
+🎯 ${p.assists}
+🚫 ${p.fouls}
+🟨 ${p.yellow}
+🟥 ${p.red}
+</span>
+</div>`;
+
+});
+
+});
+
+footballStats.innerHTML=html;
+
+}
+
+
+/* CRICKET STATS */
+
+function renderBatting(){
+
+let team=
+game.innings===1?"A":"B";
+
+let html="";
+
+players[team].forEach(p=>{
+
+html+=`
+<div class="stat">
+<span>${escape(p.name)}</span>
+<span>
+${p.runs} runs |
+${p.balls} balls |
+4s: ${p.fours} |
+6s: ${p.sixes}
+</span>
+</div>`;
+
+});
+
+battingStats.innerHTML=html;
+
+}
+
+
+function renderBowling(){
+
+let team=
+game.innings===1?"B":"A";
+
+let html="";
+
+players[team].forEach(p=>{
+
+html+=`
+<div class="stat">
+<span>${escape(p.name)}</span>
+<span>
+Wickets: ${p.wickets} |
+Runs: ${p.runs}
+</span>
+</div>`;
+
+});
+
+bowlingStats.innerHTML=html;
+
+}
+
+
+/* EVENTS */
+
+function renderEvents(){
+
+events.innerHTML=
+game.events.length?
+
+game.events.map((e,i)=>
+`<div class="event">
+${i+1}. ${escape(e)}
+</div>`
+).join("")
+
+:"No events yet.";
+
+}
+
+
+/* FINISH */
+
+function finishMatch(){
+
+let result;
+
+if(sport==="football"){
+
+result=
+game.teamA+" "+game.scoreA+
+" - "+
+game.scoreB+" "+game.teamB;
+
+}
+
+else{
+
+result=
+game.teamA+" "+game.runs[0]+"/"+
+game.wickets[0]+
+" | "+
+game.teamB+" "+game.runs[1]+"/"+
+game.wickets[1];
+
+}
+
+history.unshift({
+
+sport:sport,
+match:game.teamA+" vs "+game.teamB,
+score:result,
+date:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+"grvHistory",
+JSON.stringify(history)
+);
+
+alert("Match saved successfully 🔥");
+
+renderHistory();
+
+}
+
+
+function renderHistory(){
+
+historyBox.innerHTML=
+history.length?
+
+history.map(x=>
+`<div class="event">
+<b>${x.sport==="football"?"⚽":"🏏"}
+${escape(x.match)}</b><br>
+${escape(x.score)}<br>
+<small>${escape(x.date)}</small>
+</div>`
+).join("")
+
+:"No saved matches.";
+
+}
+
+
+/* ESCAPE */
+
+function escape(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* HISTORY */
+
+let historyBox=document.getElementById("history");
+
+renderHistory();
 
 </script>
 
