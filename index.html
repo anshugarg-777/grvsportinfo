@@ -2,276 +2,389 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GRVSPORTINFO</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 :root{
- --bg:#06080d;
- --panel:#0e131d;
- --panel2:#151c29;
- --line:#263144;
- --text:#f5f7fb;
- --muted:#8995a8;
- --cyan:#57e6ff;
- --green:#45e09a;
- --red:#ff5570;
- --yellow:#ffd45a;
+  --green:#18d66b;
+  --dark:#07110c;
+  --dark2:#0d1912;
+  --card:#101f16;
+  --white:#f5fff8;
+  --muted:#91a99a;
+  --red:#ff5252;
+  --yellow:#ffd43b;
 }
 
 body{
- margin:0;
- background:
- radial-gradient(circle at 20% 0%,#12313c55,transparent 30%),
- radial-gradient(circle at 90% 10%,#26385b55,transparent 30%),
- var(--bg);
- color:var(--text);
- font-family:Inter,system-ui,Arial,sans-serif;
- min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(145deg,#031008,#07180e 55%,#0b2114);
+  color:var(--white);
+  min-height:100vh;
 }
 
 header{
- position:sticky;
- top:0;
- z-index:10;
- background:#080b12dd;
- backdrop-filter:blur(18px);
- border-bottom:1px solid var(--line);
- padding:18px 20px;
-}
-
-.header{
- max-width:1100px;
- margin:auto;
- display:flex;
- justify-content:space-between;
- align-items:center;
+  padding:20px;
+  background:rgba(5,15,9,.92);
+  border-bottom:1px solid #173c25;
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(15px);
 }
 
 .logo{
- font-size:25px;
- font-weight:950;
- letter-spacing:1px;
+  color:var(--green);
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
-.logo span{color:var(--cyan)}
-
-.status{
- color:var(--green);
- font-size:13px;
- font-weight:700;
+.logo span{
+  color:white;
 }
 
 .container{
- max-width:1100px;
- margin:auto;
- padding:22px 16px 60px;
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.tab{
+  flex:1;
+  border:1px solid #214a30;
+  background:#0b1910;
+  color:#b7cdbd;
+  padding:13px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:var(--green);
+  color:#031008;
+  border-color:var(--green);
 }
 
 .card{
- background:linear-gradient(145deg,#111824,#0c111a);
- border:1px solid var(--line);
- border-radius:22px;
- padding:20px;
- margin-bottom:16px;
- box-shadow:0 15px 50px #0008;
+  background:linear-gradient(145deg,#0d1d13,#101f16);
+  border:1px solid #1d3d28;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
 }
 
-.hero{
- padding:28px 20px;
- text-align:center;
+h2{
+  margin-bottom:14px;
 }
 
-h1,h2,h3,p{margin-top:0}
-
-.muted{color:var(--muted)}
-
-.tabs{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-bottom:22px;
-}
-
-button{
- border:1px solid var(--line);
- background:var(--panel2);
- color:white;
- padding:12px 15px;
- border-radius:13px;
- font-weight:800;
- cursor:pointer;
- transition:.15s;
-}
-
-button:hover{
- transform:translateY(-2px);
- border-color:#40516b;
-}
-
-button:active{transform:scale(.97)}
-
-.primary{
- background:var(--cyan);
- color:#031018;
- border-color:var(--cyan);
-}
-
-.green{
- background:var(--green);
- color:#04150e;
-}
-
-.red{
- background:#421827;
- color:#ff9aae;
-}
-
-.active{
- background:var(--cyan)!important;
- color:#031018!important;
- border-color:var(--cyan)!important;
+h3{
+  margin-bottom:10px;
 }
 
 .grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:14px;
-}
-
-label{
- display:block;
- font-size:13px;
- color:var(--muted);
- margin:9px 0 5px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 input,select{
- width:100%;
- border:1px solid var(--line);
- background:#080d15;
- color:white;
- padding:13px;
- border-radius:12px;
- outline:none;
- font-size:15px;
+  width:100%;
+  padding:13px;
+  background:#07130c;
+  color:white;
+  border:1px solid #285338;
+  border-radius:11px;
+  outline:none;
+  font-size:15px;
+}
+
+input:focus,select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 2px rgba(24,214,107,.12);
 }
 
 select{
- cursor:pointer;
+  cursor:pointer;
+  appearance:auto;
 }
 
-select:focus,input:focus{
- border-color:var(--cyan);
- box-shadow:0 0 0 3px #57e6ff15;
+button{
+  border:0;
+  border-radius:11px;
+  padding:12px 15px;
+  background:var(--green);
+  color:#031008;
+  font-weight:900;
+  cursor:pointer;
+  transition:.15s;
 }
 
-.player-row{
- display:flex;
- gap:8px;
- margin-top:7px;
+button:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
 }
 
-.player-row input{flex:1}
+button.secondary{
+  background:#183522;
+  color:white;
+}
+
+button.red{
+  background:var(--red);
+  color:white;
+}
+
+button.yellow{
+  background:var(--yellow);
+  color:#111;
+}
 
 .player-list{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
- margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
 }
 
 .player-chip{
- background:#1a2433;
- border:1px solid #2a374b;
- border-radius:999px;
- padding:7px 11px;
- font-size:13px;
+  background:#14291b;
+  border:1px solid #285338;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+.scoreboard{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+}
+
+.team-score{
+  font-size:18px;
+  font-weight:900;
 }
 
 .score{
- font-size:52px;
- font-weight:950;
- letter-spacing:2px;
- margin:12px 0;
+  font-size:45px;
+  font-weight:1000;
+  color:var(--green);
 }
 
-.score small{
- font-size:17px;
- color:var(--muted);
- letter-spacing:0;
+.event-controls{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
-.controls{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:8px;
+.event-controls button{
+  min-height:48px;
 }
 
-.controls button{min-height:48px}
+/* FOOTBALL PITCH */
 
-.section-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
+.pitch-wrap{
+  margin-top:18px;
 }
 
-.badge{
- padding:6px 10px;
- border-radius:999px;
- background:#172233;
- color:var(--cyan);
- font-size:12px;
- font-weight:800;
+.pitch{
+  position:relative;
+  width:100%;
+  max-width:650px;
+  height:520px;
+  margin:auto;
+  border-radius:18px;
+  overflow:hidden;
+  border:3px solid rgba(255,255,255,.85);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #08783b 0px,
+      #08783b 65px,
+      #096e38 65px,
+      #096e38 130px
+    );
+}
+
+.pitch-line{
+  position:absolute;
+  border:2px solid rgba(255,255,255,.8);
+  pointer-events:none;
+}
+
+.half-line{
+  width:100%;
+  top:50%;
+  left:0;
+  border-top:2px solid rgba(255,255,255,.8);
+}
+
+.center-circle{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  top:calc(50% - 52px);
+  left:calc(50% - 52px);
+}
+
+.penalty-top{
+  width:220px;
+  height:90px;
+  left:calc(50% - 110px);
+  top:0;
+  border-top:0;
+}
+
+.penalty-bottom{
+  width:220px;
+  height:90px;
+  left:calc(50% - 110px);
+  bottom:0;
+  border-bottom:0;
+}
+
+.player-dot{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:white;
+  color:#063c1d;
+  border:3px solid #063c1d;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+  z-index:5;
+  text-align:center;
+}
+
+.player-dot:hover{
+  transform:translate(-50%,-50%) scale(1.08);
+}
+
+.player-dot.selected{
+  background:var(--green);
+  border-color:white;
+  box-shadow:0 0 0 4px rgba(24,214,107,.3),0 5px 20px rgba(0,0,0,.4);
+}
+
+.position{
+  font-size:9px;
+  opacity:.7;
+}
+
+/* EVENTS */
+
+.timeline{
+  margin-top:10px;
+}
+
+.event{
+  padding:11px;
+  margin-bottom:7px;
+  background:#0a170e;
+  border-left:3px solid var(--green);
+  border-radius:8px;
+  font-size:14px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
 }
 
 .stat{
- display:grid;
- grid-template-columns:1fr auto;
- gap:10px;
- padding:12px 4px;
- border-bottom:1px solid var(--line);
+  background:#0a170e;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
 }
 
-.stat:last-child{border-bottom:0}
-
-.event{
- padding:11px 4px;
- border-bottom:1px solid var(--line);
+.stat b{
+  display:block;
+  font-size:20px;
+  color:var(--green);
 }
 
-.event:last-child{border-bottom:0}
-
-.hidden{display:none!important}
-
-.center{text-align:center}
-
-.innings{
- display:flex;
- gap:8px;
- overflow:auto;
- margin-bottom:15px;
+.hidden{
+  display:none!important;
 }
 
-.innings button{
- white-space:nowrap;
+.small{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:10px;
 }
 
-.big-action{
- width:100%;
- padding:15px;
- font-size:16px;
- margin-top:12px;
+.formation-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
-@media(max-width:700px){
- .grid{grid-template-columns:1fr}
- .controls{grid-template-columns:repeat(2,1fr)}
- .score{font-size:40px}
- .header{gap:10px}
+.formation-buttons button.active{
+  outline:3px solid rgba(24,214,107,.25);
+  background:white;
+  color:#073719;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .scoreboard{
+    grid-template-columns:1fr;
+  }
+
+  .score{
+    font-size:38px;
+  }
+
+  .event-controls{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .pitch{
+    height:500px;
+  }
+
+  .player-dot{
+    width:50px;
+    height:50px;
+    font-size:9px;
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 </style>
 </head>
@@ -279,935 +392,877 @@ select:focus,input:focus{
 <body>
 
 <header>
-<div class="header">
-<div class="logo">GRV<span>SPORTINFO</span></div>
-<div class="status">● LIVE SYSTEM</div>
-</div>
+  <div class="logo">GRV<span>SPORTINFO</span></div>
 </header>
 
-<main class="container">
+<div class="container">
 
-<!-- SETUP -->
+  <div class="tabs">
+    <button class="tab active" id="footballTab">⚽ FOOTBALL</button>
+    <button class="tab" id="cricketTab">🏏 CRICKET</button>
+  </div>
 
-<section id="setup" class="card">
+  <!-- FOOTBALL -->
 
-<div class="hero">
-<h1>Match Manager</h1>
-<p class="muted">Track every football and cricket match in one place.</p>
-</div>
+  <section id="football">
 
-<div class="tabs">
-<button id="footballTab" class="active">⚽ FOOTBALL</button>
-<button id="cricketTab">🏏 CRICKET</button>
-</div>
+    <div class="card">
+      <h2>⚽ Football Match Setup</h2>
 
-<h2>Match Setup</h2>
+      <div class="grid">
+        <input id="teamA" placeholder="Team A">
+        <input id="teamB" placeholder="Team B">
+      </div>
 
-<div class="grid">
-<div>
-<label>Team A</label>
-<input id="teamA" value="Team A">
-</div>
+      <br>
 
-<div>
-<label>Team B</label>
-<input id="teamB" value="Team B">
-</div>
-</div>
+      <div class="grid">
+        <input id="playerName" placeholder="Player name">
 
-<div id="oversBox" class="hidden">
-<label>Overs per innings</label>
-<input id="totalOvers" type="number" min="1" value="10">
-</div>
+        <select id="playerTeam">
+          <option value="A">Team A</option>
+          <option value="B">Team B</option>
+        </select>
+      </div>
 
-<div class="grid">
+      <br>
 
-<div class="card">
-<h3>Team A Players</h3>
+      <button id="addPlayer">＋ Add Player</button>
 
-<div class="player-row">
-<input id="playerAInput" placeholder="Player name">
-<button id="addA">＋</button>
-</div>
+      <div id="playerList" class="player-list"></div>
+    </div>
 
-<div id="playersA" class="player-list"></div>
-</div>
+    <div class="card">
+      <h2>📋 Formation</h2>
 
-<div class="card">
-<h3>Team B Players</h3>
+      <div class="small">
+        Choose the number of players and formation. Players will automatically be placed on the pitch.
+      </div>
 
-<div class="player-row">
-<input id="playerBInput" placeholder="Player name">
-<button id="addB">＋</button>
-</div>
+      <div class="formation-buttons">
+        <button data-formation="4-3-3">4-3-3</button>
+        <button data-formation="4-2-4">4-2-4</button>
+        <button data-formation="2-1-2">2-1-2</button>
+        <button data-formation="2-2-1">2-2-1</button>
+      </div>
 
-<div id="playersB" class="player-list"></div>
-</div>
+      <br>
 
-</div>
+      <div class="small">
+        11 players → 4-3-3 / 4-2-4<br>
+        5 players → 2-1-2 / 2-2-1
+      </div>
 
-<button id="start" class="primary big-action">
-▶ START MATCH
-</button>
+      <div class="pitch-wrap">
+        <div class="pitch" id="pitch">
 
-</section>
+          <div class="pitch-line half-line"></div>
+          <div class="pitch-line center-circle"></div>
+          <div class="pitch-line penalty-top"></div>
+          <div class="pitch-line penalty-bottom"></div>
 
+        </div>
+      </div>
+    </div>
 
-<!-- MATCH -->
+    <div class="card">
 
-<section id="match" class="hidden">
+      <div class="scoreboard">
 
-<div class="card hero">
-<div id="sportBadge" class="badge"></div>
-<h2 id="matchTitle"></h2>
-<div id="mainScore" class="score">0 - 0</div>
-<p id="matchStatus" class="muted"></p>
-</div>
+        <div class="team-score">
+          <span id="scoreTeamA">Team A</span>
+          <div class="score" id="scoreA">0</div>
+        </div>
 
+        <div>VS</div>
 
-<!-- FOOTBALL -->
+        <div class="team-score">
+          <span id="scoreTeamB">Team B</span>
+          <div class="score" id="scoreB">0</div>
+        </div>
 
-<section id="footballPanel">
+      </div>
 
-<div class="card">
+    </div>
 
-<div class="section-title">
-<h2>⚽ Match Controls</h2>
-<span class="badge">PLAYER TRACKING</span>
-</div>
+    <div class="card">
 
-<div class="grid">
+      <h2>🎯 Match Event</h2>
 
-<div>
-<label>Team</label>
-<select id="footballTeam"></select>
-</div>
+      <div class="grid">
 
-<div>
-<label>Player</label>
-<select id="footballPlayer"></select>
-</div>
+        <select id="eventTeam">
+          <option value="A">Team A</option>
+          <option value="B">Team B</option>
+        </select>
 
-</div>
+        <select id="eventPlayer">
+          <option value="">Select player</option>
+        </select>
 
-<label>Assist</label>
-<select id="assistPlayer"></select>
+        <select id="eventAssist">
+          <option value="">No assist</option>
+        </select>
 
-<div class="controls" style="margin-top:12px">
+      </div>
 
-<button onclick="footballEvent('goal',1)">⚽ + Goal</button>
-<button onclick="footballEvent('goal',-1)">➖ Goal</button>
-<button onclick="footballEvent('foul',1)">🚫 Foul</button>
-<button onclick="footballEvent('yellow',1)">🟨 Yellow</button>
-<button onclick="footballEvent('red',1)">🟥 Red</button>
-<button onclick="footballEvent('corner',1)">🚩 Corner</button>
+      <br>
 
-</div>
+      <div class="event-controls">
+        <button id="goalBtn">⚽ GOAL</button>
+        <button id="assistBtn" class="secondary">🎯 ASSIST</button>
+        <button id="foulBtn" class="yellow">🟨 FOUL</button>
+        <button id="redBtn" class="red">🟥 RED CARD</button>
+      </div>
 
-</div>
+    </div>
 
-<div class="card">
-<h2>📊 Player Statistics</h2>
-<div id="footballStats"></div>
-</div>
+    <div class="card">
 
-</section>
+      <h2>📊 Player Stats</h2>
 
+      <div id="stats" class="stats-grid"></div>
 
-<!-- CRICKET -->
+    </div>
 
-<section id="cricketPanel" class="hidden">
+    <div class="card">
 
-<div class="card">
+      <h2>📝 Match Timeline</h2>
 
-<div class="innings">
-<button id="inning1Btn" class="active">1st Innings</button>
-<button id="inning2Btn">2nd Innings</button>
-</div>
+      <div id="timeline" class="timeline"></div>
 
-<div class="center">
-<h2 id="inningsTitle"></h2>
-<div id="cricketScore" class="score">0 / 0</div>
-<p id="oversDisplay" class="muted">Overs: 0.0</p>
-</div>
+    </div>
 
-</div>
+  </section>
 
 
-<div class="card">
+  <!-- CRICKET -->
 
-<h2>🎯 Current Players</h2>
+  <section id="cricket" class="hidden">
 
-<div class="grid">
+    <div class="card">
 
-<div>
-<label>Striker</label>
-<select id="striker"></select>
-</div>
+      <h2>🏏 Cricket Match</h2>
 
-<div>
-<label>Non-Striker</label>
-<select id="nonStriker"></select>
-</div>
+      <div class="grid">
+        <input id="cricketA" placeholder="Team A">
+        <input id="cricketB" placeholder="Team B">
+      </div>
 
-</div>
+      <br>
 
-<label>Bowler</label>
-<select id="bowler"></select>
+      <button id="cricketStart">Start Cricket Match</button>
 
-</div>
+    </div>
 
+    <div class="card">
 
-<div class="card">
+      <div class="scoreboard">
 
-<h2>🏏 Ball Controls</h2>
+        <div>
+          <b id="cTeamA">Team A</b>
+          <div class="score" id="runsA">0</div>
+          <small>runs</small>
+        </div>
 
-<div class="controls">
+        <div>
+          <b>WICKETS</b>
+          <div class="score" id="wickets">0</div>
+        </div>
 
-<button onclick="ball(0)">DOT</button>
-<button onclick="ball(1)">+1</button>
-<button onclick="ball(2)">+2</button>
-<button onclick="ball(3)">+3</button>
-<button onclick="ball(4)">FOUR</button>
-<button onclick="ball(6)">SIX</button>
-<button onclick="extra('wide')">WIDE</button>
-<button onclick="extra('no-ball')">NO BALL</button>
-<button onclick="extra('bye')">BYE</button>
-<button onclick="extra('leg-bye')">LEG-BYE</button>
-<button onclick="wicket('Wicket')">❌ WICKET</button>
-<button onclick="wicket('LBW')">LBW</button>
+        <div>
+          <b id="cTeamB">Team B</b>
+          <div class="score" id="runsB">0</div>
+          <small>runs</small>
+        </div>
 
-</div>
+      </div>
 
-<div class="controls" style="margin-top:12px">
+    </div>
 
-<button onclick="changeRuns(1)">➕ RUN</button>
-<button onclick="changeRuns(-1)">➖ RUN</button>
-<button onclick="changeWicket(1)">➕ WICKET</button>
-<button onclick="changeWicket(-1)">➖ WICKET</button>
+    <div class="card">
 
-</div>
+      <h2>🏏 Ball Control</h2>
 
-</div>
+      <div class="event-controls">
+        <button onclick="cricketRuns(0)">0</button>
+        <button onclick="cricketRuns(1)">1 Run</button>
+        <button onclick="cricketRuns(2)">2 Runs</button>
+        <button onclick="cricketRuns(3)">3 Runs</button>
+        <button onclick="cricketRuns(4)">4 Runs</button>
+        <button onclick="cricketRuns(6)">6 Runs</button>
+        <button onclick="cricketWide()">Wide</button>
+        <button onclick="cricketNoBall()">No Ball</button>
+        <button class="red" onclick="cricketWicket()">Wicket</button>
+      </div>
 
+    </div>
 
-<div class="grid">
+    <div class="card">
 
-<div class="card">
-<h2>🏏 Batting</h2>
-<div id="battingStats"></div>
-</div>
+      <h2>📝 Cricket Timeline</h2>
+      <div id="cricketTimeline"></div>
 
-<div class="card">
-<h2>🎯 Bowling</h2>
-<div id="bowlingStats"></div>
-</div>
+    </div>
+
+  </section>
 
 </div>
-
-
-<div class="card">
-<button id="endInnings" class="green big-action">
-🏁 END INNINGS
-</button>
-</div>
-
-</section>
-
-
-<!-- EVENTS -->
-
-<div class="card">
-
-<div class="section-title">
-<h2>📋 Timeline</h2>
-<span class="badge">LIVE</span>
-</div>
-
-<div id="events">No events yet.</div>
-
-</div>
-
-
-<div class="card">
-<button id="finish" class="green big-action">🏆 FINISH MATCH</button>
-<button onclick="location.reload()" class="big-action">🔄 NEW MATCH</button>
-</div>
-
-</section>
-
-
-<!-- HISTORY -->
-
-<section class="card">
-<h2>📚 Match History</h2>
-<div id="history"></div>
-</section>
-
-</main>
 
 
 <script>
 
-let sport="football";
+/* =========================
+   DOM
+========================= */
 
-let players={
- A:[],
- B:[]
+const footballTab =
+document.getElementById("footballTab");
+
+const cricketTab =
+document.getElementById("cricketTab");
+
+const football =
+document.getElementById("football");
+
+const cricket =
+document.getElementById("cricket");
+
+const teamA =
+document.getElementById("teamA");
+
+const teamB =
+document.getElementById("teamB");
+
+const playerName =
+document.getElementById("playerName");
+
+const playerTeam =
+document.getElementById("playerTeam");
+
+const addPlayer =
+document.getElementById("addPlayer");
+
+const playerList =
+document.getElementById("playerList");
+
+const eventTeam =
+document.getElementById("eventTeam");
+
+const eventPlayer =
+document.getElementById("eventPlayer");
+
+const eventAssist =
+document.getElementById("eventAssist");
+
+const pitch =
+document.getElementById("pitch");
+
+const scoreA =
+document.getElementById("scoreA");
+
+const scoreB =
+document.getElementById("scoreB");
+
+const timeline =
+document.getElementById("timeline");
+
+const stats =
+document.getElementById("stats");
+
+
+/* =========================
+   DATA
+========================= */
+
+let players = [];
+
+let match = {
+  scoreA:0,
+  scoreB:0,
+  events:[]
 };
 
-let game=null;
+let formation = "4-3-3";
 
-let saved=
-JSON.parse(localStorage.getItem("grvHistory")||"[]");
+let selectedPitchPlayer = null;
 
 
-/* ---------- SPORT ---------- */
+/* =========================
+   TABS
+========================= */
 
-footballTab.onclick=()=>{
- sport="football";
- footballTab.classList.add("active");
- cricketTab.classList.remove("active");
- oversBox.classList.add("hidden");
+footballTab.onclick = () => {
+
+  footballTab.classList.add("active");
+  cricketTab.classList.remove("active");
+
+  football.classList.remove("hidden");
+  cricket.classList.add("hidden");
+
 };
 
-cricketTab.onclick=()=>{
- sport="cricket";
- cricketTab.classList.add("active");
- footballTab.classList.remove("active");
- oversBox.classList.remove("hidden");
+cricketTab.onclick = () => {
+
+  cricketTab.classList.add("active");
+  footballTab.classList.remove("active");
+
+  cricket.classList.remove("hidden");
+  football.classList.add("hidden");
+
 };
 
 
-/* ---------- PLAYERS ---------- */
+/* =========================
+   PLAYERS
+========================= */
 
-function addPlayer(team){
+addPlayer.onclick = () => {
 
- let input=team==="A"
-  ?playerAInput
-  :playerBInput;
+  const name =
+    playerName.value.trim();
 
- let name=input.value.trim();
+  if(!name){
+    alert("Enter player name");
+    return;
+  }
 
- if(!name)return;
+  players.push({
+    id:Date.now()+Math.random(),
+    name:name,
+    team:playerTeam.value,
+    goals:0,
+    assists:0,
+    fouls:0,
+    red:0
+  });
 
- players[team].push({
-  name,
-  goals:0,
-  assists:0,
-  fouls:0,
-  yellow:0,
-  red:0,
-  corners:0,
-  runs:0,
-  balls:0,
-  fours:0,
-  sixes:0,
-  wickets:0
- });
+  playerName.value="";
 
- input.value="";
- renderPlayers();
-}
+  renderPlayers();
+  updateEventPlayers();
+  renderPitch();
+  renderStats();
+
+};
 
 
 function renderPlayers(){
 
- playersA.innerHTML=players.A.map(p=>
- `<span class="player-chip">👤 ${safe(p.name)}</span>`
- ).join("");
+  playerList.innerHTML="";
 
- playersB.innerHTML=players.B.map(p=>
- `<span class="player-chip">👤 ${safe(p.name)}</span>`
- ).join("");
+  players.forEach(p=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="player-chip";
+
+    div.textContent =
+      `${p.name} • Team ${p.team}`;
+
+    playerList.appendChild(div);
+
+  });
+
 }
 
 
-addA.onclick=()=>addPlayer("A");
-addB.onclick=()=>addPlayer("B");
+/* =========================
+   DROPDOWNS
+========================= */
 
-playerAInput.onkeydown=e=>{
- if(e.key==="Enter")addPlayer("A");
-};
+function updateEventPlayers(){
 
-playerBInput.onkeydown=e=>{
- if(e.key==="Enter")addPlayer("B");
-};
+  const team =
+    eventTeam.value;
 
+  const selectedPlayer =
+    eventPlayer.value;
 
-/* ---------- START ---------- */
+  const selectedAssist =
+    eventAssist.value;
 
-start.onclick=()=>{
+  eventPlayer.innerHTML =
+    '<option value="">Select player</option>';
 
- game={
-  teamA:teamA.value.trim()||"Team A",
-  teamB:teamB.value.trim()||"Team B",
+  eventAssist.innerHTML =
+    '<option value="">No assist</option>';
 
-  scoreA:0,
-  scoreB:0,
+  players
+    .filter(p=>p.team===team)
+    .forEach(p=>{
 
-  runs:[0,0],
-  wickets:[0,0],
-  balls:[0,0],
+      const option =
+        document.createElement("option");
 
-  innings:1,
-  totalOvers:+totalOvers.value||10,
+      option.value=p.id;
+      option.textContent=p.name;
 
-  events:[]
- };
+      eventPlayer.appendChild(option);
 
- setup.classList.add("hidden");
- match.classList.remove("hidden");
+      const assistOption =
+        document.createElement("option");
 
- if(sport==="football"){
-  footballPanel.classList.remove("hidden");
-  cricketPanel.classList.add("hidden");
- }else{
-  footballPanel.classList.add("hidden");
-  cricketPanel.classList.remove("hidden");
-  prepareCricket();
- }
+      assistOption.value=p.id;
+      assistOption.textContent=p.name;
 
- update();
-};
+      eventAssist.appendChild(assistOption);
 
+    });
 
-/* ---------- FOOTBALL SELECTORS ---------- */
-
-footballTeam.onchange=()=>{
- updateFootballPlayers();
-};
-
-
-function updateFootballPlayers(){
-
- let team=footballTeam.value;
-
- footballPlayer.innerHTML=
- players[team].map((p,i)=>
- `<option value="${i}">${safe(p.name)}</option>`
- ).join("");
-
- assistPlayer.innerHTML=
- `<option value="">No assist</option>`+
- players[team].map((p,i)=>
- `<option value="${i}">${safe(p.name)}</option>`
- ).join("");
-}
-
-
-function setupFootballSelectors(){
-
- footballTeam.innerHTML=
- `<option value="A">${safe(game.teamA)}</option>
-  <option value="B">${safe(game.teamB)}</option>`;
-
- updateFootballPlayers();
-}
-
-
-function selectedFootballPlayer(){
-
- let team=footballTeam.value;
- let index=Number(footballPlayer.value);
-
- return players[team][index];
-}
-
-
-function selectedAssist(){
-
- let team=footballTeam.value;
-
- if(assistPlayer.value==="")return null;
-
- return players[team][Number(assistPlayer.value)];
-}
-
-
-/* ---------- FOOTBALL EVENTS ---------- */
-
-function footballEvent(type,change){
-
- let team=footballTeam.value;
- let player=selectedFootballPlayer();
-
- if(!player)return;
-
- if(type==="goal"){
-
-  if(change===1){
-
-   if(team==="A")game.scoreA++;
-   else game.scoreB++;
-
-   player.goals++;
-
-   let assist=selectedAssist();
-
-   if(assist && assist!==player){
-    assist.assists++;
-   }
-
-   game.events.unshift(
-    `⚽ GOAL — ${player.name}`+
-    (assist&&assist!==player
-     ?` 🎯 Assist: ${assist.name}`:"")
-   );
-
-  }else{
-
-   if(team==="A" && game.scoreA>0)game.scoreA--;
-   if(team==="B" && game.scoreB>0)game.scoreB--;
-
-   if(player.goals>0)player.goals--;
-
-   game.events.unshift(
-    `➖ Goal removed — ${player.name}`
-   );
+  if(
+    [...eventPlayer.options]
+      .some(o=>o.value===selectedPlayer)
+  ){
+    eventPlayer.value=selectedPlayer;
   }
 
- }else{
+  if(
+    [...eventAssist.options]
+      .some(o=>o.value===selectedAssist)
+  ){
+    eventAssist.value=selectedAssist;
+  }
 
-  if(type==="foul")player.fouls++;
-  if(type==="yellow")player.yellow++;
-  if(type==="red")player.red++;
-  if(type==="corner")player.corners++;
+}
 
-  let names={
-   foul:"🚫 FOUL",
-   yellow:"🟨 YELLOW CARD",
-   red:"🟥 RED CARD",
-   corner:"🚩 CORNER"
+
+eventTeam.onchange = () => {
+
+  updateEventPlayers();
+
+};
+
+
+/* =========================
+   GOAL
+========================= */
+
+document.getElementById("goalBtn").onclick = () => {
+
+  const player =
+    players.find(
+      p=>String(p.id)===String(eventPlayer.value)
+    );
+
+  if(!player){
+    alert("Select the goal scorer first");
+    return;
+  }
+
+  const assist =
+    players.find(
+      p=>String(p.id)===String(eventAssist.value)
+    );
+
+  if(player.team==="A"){
+    match.scoreA++;
+  }else{
+    match.scoreB++;
+  }
+
+  player.goals++;
+
+  if(assist){
+    assist.assists++;
+  }
+
+  let text =
+    `⚽ ${player.name} scored for Team ${player.team}`;
+
+  if(assist){
+    text += ` — Assist: ${assist.name}`;
+  }
+
+  match.events.unshift(text);
+
+  updateScore();
+  renderTimeline();
+  renderStats();
+  renderPitch();
+
+};
+
+
+/* =========================
+   ASSIST
+========================= */
+
+document.getElementById("assistBtn").onclick = () => {
+
+  const player =
+    players.find(
+      p=>String(p.id)===String(eventPlayer.value)
+    );
+
+  if(!player){
+    alert("Select a player");
+    return;
+  }
+
+  player.assists++;
+
+  match.events.unshift(
+    `🎯 ${player.name} — assist`
+  );
+
+  renderTimeline();
+  renderStats();
+
+};
+
+
+/* =========================
+   FOUL
+========================= */
+
+document.getElementById("foulBtn").onclick = () => {
+
+  const player =
+    players.find(
+      p=>String(p.id)===String(eventPlayer.value)
+    );
+
+  if(!player){
+    alert("Select player");
+    return;
+  }
+
+  player.fouls++;
+
+  match.events.unshift(
+    `🟨 ${player.name} committed a foul`
+  );
+
+  renderTimeline();
+  renderStats();
+
+};
+
+
+/* =========================
+   RED CARD
+========================= */
+
+document.getElementById("redBtn").onclick = () => {
+
+  const player =
+    players.find(
+      p=>String(p.id)===String(eventPlayer.value)
+    );
+
+  if(!player){
+    alert("Select player");
+    return;
+  }
+
+  player.red++;
+
+  match.events.unshift(
+    `🟥 ${player.name} received a red card`
+  );
+
+  renderTimeline();
+  renderStats();
+
+};
+
+
+/* =========================
+   SCORE
+========================= */
+
+function updateScore(){
+
+  scoreA.textContent =
+    match.scoreA;
+
+  scoreB.textContent =
+    match.scoreB;
+
+  document.getElementById("scoreTeamA")
+    .textContent =
+    teamA.value || "Team A";
+
+  document.getElementById("scoreTeamB")
+    .textContent =
+    teamB.value || "Team B";
+
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+function renderTimeline(){
+
+  timeline.innerHTML="";
+
+  if(!match.events.length){
+
+    timeline.innerHTML =
+      '<div class="small">No events yet.</div>';
+
+    return;
+  }
+
+  match.events.forEach(e=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="event";
+
+    div.textContent=e;
+
+    timeline.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function renderStats(){
+
+  stats.innerHTML="";
+
+  players.forEach(p=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="stat";
+
+    div.innerHTML=`
+      <b>${p.name}</b>
+      ⚽ ${p.goals}
+      <br>
+      🎯 ${p.assists}
+      <br>
+      🟨 ${p.fouls}
+      <br>
+      🟥 ${p.red}
+    `;
+
+    stats.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   FORMATIONS
+========================= */
+
+const formationPositions = {
+
+  "4-3-3":[
+    ["GK",50,93],
+
+    ["DEF",18,75],
+    ["DEF",39,78],
+    ["DEF",61,78],
+    ["DEF",82,75],
+
+    ["MID",28,57],
+    ["MID",50,62],
+    ["MID",72,57],
+
+    ["ATT",25,27],
+    ["ATT",50,20],
+    ["ATT",75,27]
+  ],
+
+  "4-2-4":[
+    ["GK",50,93],
+
+    ["DEF",18,75],
+    ["DEF",39,78],
+    ["DEF",61,78],
+    ["DEF",82,75],
+
+    ["MID",35,58],
+    ["MID",65,58],
+
+    ["ATT",15,28],
+    ["ATT",38,22],
+    ["ATT",62,22],
+    ["ATT",85,28]
+  ],
+
+  "2-1-2":[
+    ["GK",50,93],
+
+    ["DEF",30,70],
+    ["DEF",70,70],
+
+    ["MID",50,52],
+
+    ["ATT",30,27],
+    ["ATT",70,27]
+  ],
+
+  "2-2-1":[
+    ["GK",50,93],
+
+    ["DEF",30,70],
+    ["DEF",70,70],
+
+    ["MID",30,48],
+    ["MID",70,48],
+
+    ["ATT",50,23]
+  ]
+
+};
+
+
+document.querySelectorAll(
+  ".formation-buttons button"
+).forEach(button=>{
+
+  button.onclick=()=>{
+
+    formation =
+      button.dataset.formation;
+
+    document.querySelectorAll(
+      ".formation-buttons button"
+    ).forEach(b=>
+      b.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    renderPitch();
+
   };
 
-  game.events.unshift(
-   `${names[type]} — ${player.name}`
-  );
- }
+});
 
- update();
-}
 
+/* =========================
+   PITCH
+========================= */
 
-/* ---------- CRICKET ---------- */
+function renderPitch(){
 
-function battingTeam(){
- return game.innings===1?"A":"B";
-}
+  pitch
+    .querySelectorAll(".player-dot")
+    .forEach(e=>e.remove());
 
-function bowlingTeam(){
- return game.innings===1?"B":"A";
-}
+  const positions =
+    formationPositions[formation];
 
+  if(!positions) return;
 
-function prepareCricket(){
+  /*
+    We use the first 11 players for 11-player
+    formations and first 5 for 5-player formations.
+  */
 
- let bat=battingTeam();
- let bowl=bowlingTeam();
+  const required =
+    positions.length;
 
- striker.innerHTML=players[bat].map((p,i)=>
- `<option value="${i}">${safe(p.name)}</option>`
- ).join("");
+  const pitchPlayers =
+    players.slice(0,required);
 
- nonStriker.innerHTML=players[bat].map((p,i)=>
- `<option value="${i}">${safe(p.name)}</option>`
- ).join("");
+  pitchPlayers.forEach((p,index)=>{
 
- bowler.innerHTML=players[bowl].map((p,i)=>
- `<option value="${i}">${safe(p.name)}</option>`
- ).join("");
-}
+    const pos =
+      positions[index];
 
+    if(!pos) return;
 
-function batter(){
- return players[battingTeam()][Number(striker.value)];
-}
+    const dot =
+      document.createElement("div");
 
-function currentBowler(){
- return players[bowlingTeam()][Number(bowler.value)];
-}
+    dot.className="player-dot";
 
+    if(
+      String(selectedPitchPlayer)===
+      String(p.id)
+    ){
+      dot.classList.add("selected");
+    }
 
-/* BALL */
+    dot.style.left =
+      pos[1]+"%";
 
-function ball(runs){
+    dot.style.top =
+      pos[2]+"%";
 
- let b=batter();
- let bw=currentBowler();
+    dot.innerHTML=`
+      <strong>${p.name}</strong>
+      <span class="position">${pos[0]}</span>
+    `;
 
- if(!b)return;
+    dot.onclick=()=>{
 
- let i=game.innings-1;
+      selectedPitchPlayer=p.id;
 
- game.runs[i]+=runs;
- game.balls[i]++;
+      eventTeam.value=p.team;
 
- b.runs+=runs;
- b.balls++;
+      updateEventPlayers();
 
- if(runs===4)b.fours++;
- if(runs===6)b.sixes++;
+      eventPlayer.value=p.id;
 
- if(bw)bw.runs+=runs;
+      eventAssist.value="";
 
- game.events.unshift(
-  `${runs===0?"• DOT":`+${runs}`} — ${b.name}`
- );
+      renderPitch();
 
- update();
-}
+    };
 
+    pitch.appendChild(dot);
 
-/* EXTRAS */
-
-function extra(type){
-
- let i=game.innings-1;
- let b=batter();
- let bw=currentBowler();
-
- game.runs[i]++;
-
- if(type!=="wide"&&type!=="no-ball"){
-  game.balls[i]++;
- }
-
- if(bw)bw.runs++;
-
- game.events.unshift(
-  `${type.toUpperCase()} — ${b?.name||"Team"}`
- );
-
- update();
-}
-
-
-/* WICKET */
-
-function wicket(type){
-
- let i=game.innings-1;
-
- let b=batter();
- let bw=currentBowler();
-
- game.wickets[i]++;
- game.balls[i]++;
-
- if(b)b.balls++;
-
- if(bw)bw.wickets++;
-
- game.events.unshift(
-  `❌ ${type} — ${b?.name||"Batter"}`
- );
-
- update();
-}
-
-
-/* MANUAL CORRECTION */
-
-function changeRuns(amount){
-
- let i=game.innings-1;
-
- if(amount<0 && game.runs[i]===0)return;
-
- game.runs[i]+=amount;
-
- if(game.runs[i]<0)game.runs[i]=0;
-
- game.events.unshift(
-  amount>0?"➕ Manual run":"➖ Run corrected"
- );
-
- update();
-}
-
-
-function changeWicket(amount){
-
- let i=game.innings-1;
-
- if(amount<0 && game.wickets[i]===0)return;
-
- game.wickets[i]+=amount;
-
- if(game.wickets[i]<0)game.wickets[i]=0;
-
- game.events.unshift(
-  amount>0?"➕ Wicket added":"➖ Wicket corrected"
- );
-
- update();
-}
-
-
-/* ---------- INNINGS ---------- */
-
-endInnings.onclick=()=>{
-
- if(game.innings===1){
-
-  game.innings=2;
-
-  inning2Btn.classList.add("active");
-  inning1Btn.classList.remove("active");
-
-  prepareCricket();
-
-  game.events.unshift(
-   `🏁 ${game.teamA} innings ended`
-  );
-
-  update();
-
- }else{
-
-  alert("Both innings are already complete.");
-
- }
-};
-
-
-inning1Btn.onclick=()=>{
-
- if(!game)return;
-
- game.innings=1;
-
- inning1Btn.classList.add("active");
- inning2Btn.classList.remove("active");
-
- prepareCricket();
- update();
-};
-
-
-inning2Btn.onclick=()=>{
-
- if(!game)return;
-
- game.innings=2;
-
- inning2Btn.classList.add("active");
- inning1Btn.classList.remove("active");
-
- prepareCricket();
- update();
-};
-
-
-/* ---------- UPDATE ---------- */
-
-function update(){
-
- matchTitle.textContent=
- `${game.teamA} vs ${game.teamB}`;
-
- sportBadge.textContent=
- sport==="football"?"⚽ FOOTBALL":"🏏 CRICKET";
-
- if(sport==="football"){
-
-  mainScore.textContent=
-   `${game.scoreA} - ${game.scoreB}`;
-
-  matchStatus.textContent=
-   "Live football match";
-
-  setupFootballSelectors();
-  renderFootballStats();
-
- }else{
-
-  let i=game.innings-1;
-
-  let overs=
-   Math.floor(game.balls[i]/6)+
-   "."+
-   game.balls[i]%6;
-
-  mainScore.textContent=
-   `${game.runs[i]} / ${game.wickets[i]}`;
-
-  matchStatus.textContent=
-   `Innings ${game.innings} • ${battingTeam()==="A"?game.teamA:game.teamB}`;
-
-  inningsTitle.textContent=
-   game.innings===1
-   ?`1st Innings — ${game.teamA}`
-   :`2nd Innings — ${game.teamB}`;
-
-  cricketScore.textContent=
-   `${game.runs[i]} / ${game.wickets[i]}`;
-
-  oversDisplay.textContent=
-   `Overs: ${overs} / ${game.totalOvers}`;
-
-  renderBatting();
-  renderBowling();
- }
-
- renderEvents();
-}
-
-
-/* ---------- FOOTBALL STATS ---------- */
-
-function renderFootballStats(){
-
- let html="";
-
- ["A","B"].forEach(t=>{
-
-  html+=`<h3>${safe(t==="A"?game.teamA:game.teamB)}</h3>`;
-
-  players[t].forEach(p=>{
-
-   html+=`
-   <div class="stat">
-    <span><b>${safe(p.name)}</b></span>
-    <span>
-     ⚽ ${p.goals}
-     🎯 ${p.assists}
-     🚫 ${p.fouls}
-     🟨 ${p.yellow}
-     🟥 ${p.red}
-     🚩 ${p.corners}
-    </span>
-   </div>`;
   });
- });
 
- footballStats.innerHTML=
- html||`<p class="muted">Add players before starting a match.</p>`;
 }
 
 
-/* ---------- CRICKET STATS ---------- */
+/* =========================
+   TEAM NAMES
+========================= */
 
-function renderBatting(){
+teamA.oninput =
+teamB.oninput = () => {
 
- let team=battingTeam();
+  updateScore();
 
- battingStats.innerHTML=
- players[team].map(p=>
- `<div class="stat">
-  <span><b>${safe(p.name)}</b></span>
-  <span>
-   ${p.runs} R •
-   ${p.balls} B •
-   ${p.fours} 4s •
-   ${p.sixes} 6s
-  </span>
- </div>`
- ).join("");
-}
-
-
-function renderBowling(){
-
- let team=bowlingTeam();
-
- bowlingStats.innerHTML=
- players[team].map(p=>
- `<div class="stat">
-  <span><b>${safe(p.name)}</b></span>
-  <span>
-   ${p.wickets} W •
-   ${p.runs} R
-  </span>
- </div>`
- ).join("");
-}
-
-
-/* ---------- EVENTS ---------- */
-
-function renderEvents(){
-
- events.innerHTML=
- game.events.length
- ?game.events.map((e,i)=>
- `<div class="event">${i+1}. ${safe(e)}</div>`
- ).join("")
- :`<p class="muted">No events yet.</p>`;
-}
-
-
-/* ---------- FINISH ---------- */
-
-finish.onclick=()=>{
-
- let result;
-
- if(sport==="football"){
-
-  result=
-   `${game.teamA} ${game.scoreA} - ${game.scoreB} ${game.teamB}`;
-
- }else{
-
-  result=
-   `${game.teamA} ${game.runs[0]}/${game.wickets[0]} • `+
-   `${game.teamB} ${game.runs[1]}/${game.wickets[1]}`;
- }
-
- saved.unshift({
-  sport,
-  match:`${game.teamA} vs ${game.teamB}`,
-  score:result,
-  date:new Date().toLocaleString()
- });
-
- localStorage.setItem(
-  "grvHistory",
-  JSON.stringify(saved)
- );
-
- alert("Match saved successfully 🔥");
-
- renderHistory();
 };
 
 
-function renderHistory(){
+/* =========================
+   CRICKET
+========================= */
 
- history.innerHTML=
- saved.length
- ?saved.map(x=>
- `<div class="event">
-  <b>${x.sport==="football"?"⚽":"🏏"} ${safe(x.match)}</b>
-  <br>${safe(x.score)}
-  <br><small class="muted">${safe(x.date)}</small>
- </div>`
- ).join("")
- :`<p class="muted">No saved matches yet.</p>`;
-}
+let cricketState={
+  team:"A",
+  runsA:0,
+  runsB:0,
+  wickets:0,
+  events:[]
+};
 
+document.getElementById(
+  "cricketStart"
+).onclick=()=>{
 
-/* ---------- SECURITY ---------- */
+  cricketState={
+    team:"A",
+    runsA:0,
+    runsB:0,
+    wickets:0,
+    events:[]
+  };
 
-function safe(value){
-
- return String(value)
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
-}
-
-
-/* INITIAL */
-
-renderPlayers();
-renderHistory();
-
-</script>
-
-</body>
-</html>
+  document.getElementById("cTeamA")
+    .textContent =
+    document.getElementById("cricketA"
