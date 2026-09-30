@@ -3,1319 +3,1365 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111111">
 
 <title>GRVSPORTINFO</title>
 
 <style>
+
+/* =========================
+   BASIC
+========================= */
+
 *{
-  box-sizing:border-box;
-  -webkit-user-select:none;
-  user-select:none;
-  -webkit-touch-callout:none;
+    box-sizing:border-box;
+    -webkit-user-select:none;
+    user-select:none;
+    -webkit-touch-callout:none;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#111;
-  color:#f5f5f5;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  overflow-x:hidden;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0f1115;
+    color:#ffffff;
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
 input,
-textarea,
-select{
-  -webkit-user-select:text;
-  user-select:text;
+select,
+textarea{
+    -webkit-user-select:text;
+    user-select:text;
 }
 
 button,
-a,
-select{
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
+select,
+a{
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
 }
 
 button{
-  font:inherit;
-  cursor:pointer;
+    font-family:inherit;
+    cursor:pointer;
 }
 
 button:active{
-  transform:scale(.97);
+    transform:scale(.97);
 }
 
-.hidden{
-  display:none!important;
-}
 
-/* WELCOME */
+/* =========================
+   WELCOME
+========================= */
 
 #welcome{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:25px;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    background:#0f1115;
 }
 
 .welcome-box{
-  width:100%;
-  max-width:500px;
+    width:100%;
+    max-width:500px;
 }
 
-.welcome-title{
-  font-size:42px;
-  font-weight:900;
-  margin-bottom:10px;
-  letter-spacing:1px;
+.welcome-box h1{
+    font-size:42px;
+    margin:0 0 10px;
 }
 
-.welcome-sub{
-  color:#aaa;
-  margin-bottom:30px;
+.welcome-box p{
+    color:#9da3ad;
+    margin-bottom:30px;
 }
 
-.open-btn{
-  width:100%;
-  padding:17px;
-  border:1px solid #555;
-  border-radius:14px;
-  background:#eee;
-  color:#111;
-  font-weight:800;
+.open-button{
+    width:100%;
+    padding:16px;
+    border:1px solid #444;
+    border-radius:14px;
+    background:#ffffff;
+    color:#111;
+    font-weight:800;
+    font-size:16px;
 }
 
-/* HEADER */
 
-#app{
-  min-height:100vh;
+/* =========================
+   APP
+========================= */
+
+.hidden{
+    display:none !important;
 }
 
 header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#151515;
-  border-bottom:1px solid #292929;
-  padding:15px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#15181e;
+    border-bottom:1px solid #292d34;
+    padding:15px;
 }
 
 .header-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .logo{
-  font-size:20px;
-  font-weight:900;
+    font-size:21px;
+    font-weight:900;
 }
 
-.logo span{
-  color:#999;
-}
 
-/* NAV */
+/* =========================
+   NAVIGATION
+========================= */
 
 nav{
-  max-width:1200px;
-  margin:auto;
-  padding:10px;
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  background:#111;
-  border-bottom:1px solid #242424;
+    position:sticky;
+    top:57px;
+    z-index:90;
+    display:flex;
+    gap:8px;
+    padding:10px;
+    overflow-x:auto;
+    background:#0f1115;
+    border-bottom:1px solid #292d34;
 }
 
-.nav-btn{
-  flex:0 0 auto;
-  border:1px solid #333;
-  background:#191919;
-  color:#ddd;
-  padding:10px 15px;
-  border-radius:10px;
-  font-weight:700;
+.nav-button{
+    flex:0 0 auto;
+    border:1px solid #343941;
+    border-radius:10px;
+    padding:10px 15px;
+    background:#171a20;
+    color:#d7dbe1;
+    font-weight:700;
 }
 
-.nav-btn.active{
-  background:#eee;
-  color:#111;
+.nav-button.active{
+    background:#ffffff;
+    color:#111111;
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 main{
-  max-width:1200px;
-  margin:auto;
-  padding:20px 15px 80px;
+    max-width:1200px;
+    margin:auto;
+    padding:22px 15px 80px;
 }
 
 .page{
-  display:none;
+    display:none;
 }
 
 .page.active{
-  display:block;
+    display:block;
 }
 
 h1{
-  margin-top:0;
-  font-size:30px;
+    font-size:30px;
+    margin-top:0;
 }
 
 h2{
-  font-size:22px;
+    font-size:21px;
 }
 
 .muted{
-  color:#999;
+    color:#969da8;
 }
 
-/* CARDS */
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
-  background:#181818;
-  border:1px solid #2d2d2d;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:15px;
+    background:#171a20;
+    border:1px solid #2c3038;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:16px;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
 }
 
-/* BUTTONS */
 
-.btn{
-  border:1px solid #444;
-  background:#222;
-  color:#fff;
-  padding:12px 15px;
-  border-radius:11px;
-  font-weight:700;
-  margin:4px;
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    border:1px solid #3b4049;
+    border-radius:11px;
+    padding:12px 15px;
+    background:#20242b;
+    color:#ffffff;
+    font-weight:700;
+    margin:4px;
 }
 
-.btn.primary{
-  background:#eee;
-  color:#111;
+.button.primary{
+    background:#ffffff;
+    color:#111111;
 }
 
-.btn.danger{
-  background:#291919;
-  border-color:#633333;
+.button.danger{
+    background:#24191b;
+    border-color:#5b3034;
 }
 
-.btn.big{
-  width:100%;
-  padding:15px;
-  font-size:16px;
+.button.big{
+    width:100%;
+    padding:15px;
 }
 
-/* INPUTS */
+
+/* =========================
+   INPUTS
+========================= */
 
 input,
 select{
-  width:100%;
-  padding:13px;
-  margin:6px 0 12px;
-  border-radius:10px;
-  border:1px solid #3a3a3a;
-  background:#101010;
-  color:#fff;
-  outline:none;
+    width:100%;
+    padding:13px;
+    margin:6px 0 12px;
+    border-radius:10px;
+    border:1px solid #383d46;
+    background:#0e1014;
+    color:#ffffff;
+    outline:none;
 }
 
 input:focus,
 select:focus{
-  border-color:#888;
+    border-color:#777f8c;
 }
 
-/* STATS */
 
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:10px;
-  margin-top:15px;
-}
-
-.stat{
-  background:#111;
-  border:1px solid #292929;
-  border-radius:12px;
-  padding:15px;
-  text-align:center;
-}
-
-.stat-number{
-  font-size:25px;
-  font-weight:900;
-}
-
-.stat-name{
-  color:#999;
-  font-size:12px;
-  margin-top:5px;
-}
-
-/* PLAYER */
-
-.player-card{
-  background:#181818;
-  border:1px solid #303030;
-  border-radius:15px;
-  padding:17px;
-  margin-bottom:12px;
-}
-
-.player-name{
-  font-size:20px;
-  font-weight:900;
-}
-
-.player-buttons{
-  margin-top:12px;
-  display:flex;
-  flex-wrap:wrap;
-}
-
-/* SCOREBOARD */
+/* =========================
+   SCOREBOARD
+========================= */
 
 .scoreboard{
-  text-align:center;
-  background:#0c0c0c;
-  border:1px solid #333;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:15px;
+    text-align:center;
+    background:#0c0e12;
+    border:1px solid #30343c;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:16px;
 }
 
 .score{
-  font-size:52px;
-  font-weight:900;
+    font-size:52px;
+    font-weight:900;
 }
 
 .score-label{
-  color:#999;
+    color:#9299a4;
 }
 
-/* EVENT BUTTONS */
+
+/* =========================
+   EVENT BUTTONS
+========================= */
 
 .event-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:9px;
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(120px,1fr));
+    gap:9px;
 }
 
-.event-btn{
-  border:1px solid #3b3b3b;
-  background:#202020;
-  color:#fff;
-  border-radius:12px;
-  padding:14px 8px;
-  font-weight:800;
-  min-height:52px;
+.event-button{
+    min-height:54px;
+    border:1px solid #3b4049;
+    border-radius:12px;
+    background:#20242b;
+    color:#ffffff;
+    font-weight:800;
 }
 
-.event-btn:active{
-  background:#eee;
-  color:#111;
+.event-button:active{
+    background:#ffffff;
+    color:#111111;
 }
 
-/* HISTORY */
+
+/* =========================
+   PLAYER CARDS
+========================= */
+
+.player-card{
+    background:#171a20;
+    border:1px solid #2c3038;
+    border-radius:15px;
+    padding:17px;
+    margin-bottom:12px;
+}
+
+.player-name{
+    font-size:20px;
+    font-weight:900;
+}
+
+.player-actions{
+    display:flex;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(110px,1fr));
+    gap:10px;
+    margin-top:15px;
+}
+
+.stat{
+    background:#0f1115;
+    border:1px solid #292e36;
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:25px;
+    font-weight:900;
+}
+
+.stat-title{
+    margin-top:5px;
+    font-size:12px;
+    color:#969da8;
+}
+
+
+/* =========================
+   HISTORY
+========================= */
 
 .history-item{
-  border-left:3px solid #777;
-  padding:12px;
-  margin-bottom:10px;
-  background:#181818;
-  border-radius:8px;
+    background:#171a20;
+    border:1px solid #2c3038;
+    border-left:3px solid #777;
+    border-radius:9px;
+    padding:13px;
+    margin-bottom:10px;
 }
 
-/* MODAL */
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-  position:fixed;
-  inset:0;
-  z-index:5000;
-  background:rgba(0,0,0,.8);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.82);
 }
 
 .modal.active{
-  display:flex;
+    display:flex;
 }
 
 .modal-box{
-  width:100%;
-  max-width:500px;
-  max-height:90vh;
-  overflow:auto;
-  background:#181818;
-  border:1px solid #444;
-  border-radius:18px;
-  padding:20px;
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow:auto;
+    background:#171a20;
+    border:1px solid #3a3f48;
+    border-radius:18px;
+    padding:20px;
 }
 
-/* RESPONSIVE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
-  .welcome-title{
-    font-size:32px;
-  }
 
-  h1{
-    font-size:26px;
-  }
+    .welcome-box h1{
+        font-size:32px;
+    }
 
-  .score{
-    font-size:42px;
-  }
+    h1{
+        font-size:26px;
+    }
 
-  main{
-    padding:15px 12px 70px;
-  }
+    .score{
+        font-size:42px;
+    }
+
+    main{
+        padding:16px 12px 70px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- WELCOME -->
+
+<!-- =========================
+     WELCOME
+========================= -->
+
 <div id="welcome">
-  <div class="welcome-box">
-    <div class="welcome-title">HELLO PLAYER 👋</div>
-    <div class="welcome-sub">
-      Welcome to GRVSPORTINFO
+
+    <div class="welcome-box">
+
+        <h1>HELLO PLAYER 👋</h1>
+
+        <p>
+            Welcome to GRVSPORTINFO
+        </p>
+
+        <button
+            type="button"
+            class="open-button"
+            data-action="open-app">
+
+            OPEN GRVSPORTINFO
+
+        </button>
+
     </div>
 
-    <button
-      type="button"
-      class="open-btn"
-      data-action="open-app">
-      OPEN GRVSPORTINFO
-    </button>
-  </div>
 </div>
+
+
+<!-- =========================
+     APP
+========================= -->
 
 <div id="app" class="hidden">
 
+
 <header>
-  <div class="header-inner">
-    <div class="logo">
-      GRV<span>SPORTINFO</span>
+
+    <div class="header-inner">
+
+        <div class="logo">
+            GRVSPORTINFO
+        </div>
+
     </div>
-  </div>
+
 </header>
 
+
 <nav>
-  <button type="button" class="nav-btn active" data-page="home">Home</button>
-  <button type="button" class="nav-btn" data-page="players">Players</button>
-  <button type="button" class="nav-btn" data-page="football">Football</button>
-  <button type="button" class="nav-btn" data-page="cricket">Cricket</button>
-  <button type="button" class="nav-btn" data-page="history">History</button>
+
+    <button
+        type="button"
+        class="nav-button active"
+        data-page="home">
+
+        Home
+
+    </button>
+
+    <button
+        type="button"
+        class="nav-button"
+        data-page="players">
+
+        Players
+
+    </button>
+
+    <button
+        type="button"
+        class="nav-button"
+        data-page="football">
+
+        Football
+
+    </button>
+
+    <button
+        type="button"
+        class="nav-button"
+        data-page="cricket">
+
+        Cricket
+
+    </button>
+
+    <button
+        type="button"
+        class="nav-button"
+        data-page="history">
+
+        History
+
+    </button>
+
 </nav>
+
 
 <main>
 
-<!-- HOME -->
 
-<section id="home" class="page active">
+<!-- =========================
+     HOME
+========================= -->
 
-  <h1>Dashboard</h1>
+<section
+    id="home"
+    class="page active">
 
-  <div class="grid">
+    <h1>Dashboard</h1>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <h2>Players</h2>
+
+            <div
+                class="stat-number"
+                id="homePlayers">
+
+                0
+
+            </div>
+
+            <p class="muted">
+                Registered players
+            </p>
+
+            <button
+                type="button"
+                class="button primary"
+                data-page="players">
+
+                Manage Players
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Football</h2>
+
+            <p class="muted">
+                Goals, assists, fouls and cards.
+            </p>
+
+            <button
+                type="button"
+                class="button primary"
+                data-page="football">
+
+                Open Football
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Cricket</h2>
+
+            <p class="muted">
+                Runs, wickets, boundaries and extras.
+            </p>
+
+            <button
+                type="button"
+                class="button primary"
+                data-page="cricket">
+
+                Open Cricket
+
+            </button>
+
+        </div>
+
+
+    </div>
+
 
     <div class="card">
-      <h2>Players</h2>
-      <div class="stat-number" id="homePlayers">0</div>
-      <p class="muted">Registered players</p>
 
-      <button
-        type="button"
-        class="btn primary"
-        data-page="players">
-        Manage Players
-      </button>
+        <h2>Quick Access</h2>
+
+        <button
+            type="button"
+            class="button"
+            data-action="new-player">
+
+            + Add Player
+
+        </button>
+
+
+        <button
+            type="button"
+            class="button"
+            data-page="history">
+
+            Match History
+
+        </button>
+
     </div>
+
+</section>
+
+
+<!-- =========================
+     PLAYERS
+========================= -->
+
+<section
+    id="players"
+    class="page">
+
+    <h1>Player Center</h1>
+
 
     <div class="card">
-      <h2>Football</h2>
-      <p class="muted">
-        Track goals, assists, fouls and cards.
-      </p>
 
-      <button
-        type="button"
-        class="btn primary"
-        data-page="football">
-        Open Football
-      </button>
+        <h2>Add Player</h2>
+
+        <input
+            id="playerName"
+            type="text"
+            placeholder="Enter player name"
+            autocomplete="off">
+
+
+        <button
+            type="button"
+            class="button primary big"
+            data-action="add-player">
+
+            + ADD PLAYER
+
+        </button>
+
     </div>
+
+
+    <div id="playersList"></div>
+
+</section>
+
+
+<!-- =========================
+     FOOTBALL
+========================= -->
+
+<section
+    id="football"
+    class="page">
+
+    <h1>Football</h1>
+
 
     <div class="card">
-      <h2>Cricket</h2>
-      <p class="muted">
-        Track runs, wickets, boundaries and extras.
-      </p>
 
-      <button
-        type="button"
-        class="btn primary"
-        data-page="cricket">
-        Open Cricket
-      </button>
+        <h2>Match Score</h2>
+
+
+        <div class="scoreboard">
+
+            <div
+                id="footballScore"
+                class="score">
+
+                0 - 0
+
+            </div>
+
+            <div class="score-label">
+                Team A vs Team B
+            </div>
+
+        </div>
+
+
+        <div class="event-grid">
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-goal"
+                data-team="A">
+
+                ⚽ Goal A
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-goal"
+                data-team="B">
+
+                ⚽ Goal B
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-reset">
+
+                🔄 Reset
+
+            </button>
+
+        </div>
+
     </div>
 
-  </div>
 
-  <div class="card">
-    <h2>Quick Access</h2>
+    <div class="card">
 
-    <button
-      type="button"
-      class="btn"
-      data-action="new-player">
-      + Add Player
-    </button>
+        <h2>Player Event</h2>
 
-    <button
-      type="button"
-      class="btn"
-      data-page="history">
-      Match History
-    </button>
-  </div>
+
+        <select id="footballPlayer">
+
+            <option value="">
+                Select player
+            </option>
+
+        </select>
+
+
+        <div class="event-grid">
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-player"
+                data-event="goal">
+
+                ⚽ Goal
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-player"
+                data-event="assist">
+
+                🎯 Assist
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-player"
+                data-event="foul">
+
+                🚫 Foul
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-player"
+                data-event="yellow">
+
+                🟨 Yellow
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="football-player"
+                data-event="red">
+
+                🟥 Red
+
+            </button>
+
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- PLAYERS -->
+<!-- =========================
+     CRICKET
+========================= -->
 
-<section id="players" class="page">
+<section
+    id="cricket"
+    class="page">
 
-  <h1>Player Center</h1>
+    <h1>Cricket</h1>
 
-  <div class="card">
 
-    <h2>Add Player</h2>
+    <div class="card">
 
-    <input
-      id="playerNameInput"
-      type="text"
-      placeholder="Enter player name"
-      autocomplete="off">
 
-    <button
-      type="button"
-      class="btn primary big"
-      data-action="add-player">
-      + ADD PLAYER
-    </button>
+        <div class="scoreboard">
 
-  </div>
+            <div
+                id="cricketScore"
+                class="score">
 
-  <div id="playersList"></div>
+                0 / 0
+
+            </div>
+
+
+            <div class="score-label">
+                Runs / Wickets
+            </div>
+
+
+            <p
+                id="cricketBalls"
+                class="muted">
+
+                Balls: 0
+
+            </p>
+
+        </div>
+
+
+        <div class="event-grid">
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="0">
+
+                Dot
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="1">
+
+                +1
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="2">
+
+                +2
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="3">
+
+                +3
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="4">
+
+                +4
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-run"
+                data-runs="6">
+
+                +6
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-wide">
+
+                Wide
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-noball">
+
+                No Ball
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-wicket">
+
+                Wicket
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-reset">
+
+                🔄 Reset
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Player Event</h2>
+
+
+        <select id="cricketPlayer">
+
+            <option value="">
+                Select player
+            </option>
+
+        </select>
+
+
+        <div class="event-grid">
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-player"
+                data-event="run">
+
+                +1 Run
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-player"
+                data-event="four">
+
+                +4 Runs
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-player"
+                data-event="six">
+
+                +6 Runs
+
+            </button>
+
+
+            <button
+                type="button"
+                class="event-button"
+                data-action="cricket-player"
+                data-event="wicket">
+
+                Wicket
+
+            </button>
+
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- FOOTBALL -->
+<!-- =========================
+     HISTORY
+========================= -->
 
-<section id="football" class="page">
+<section
+    id="history"
+    class="page">
 
-  <h1>Football</h1>
+    <h1>Match History</h1>
 
-  <div class="card">
 
-    <h2>Match Score</h2>
+    <div class="card">
 
-    <div class="scoreboard">
+        <button
+            type="button"
+            class="button danger"
+            data-action="clear-history">
 
-      <div class="score" id="footballScore">
-        0 - 0
-      </div>
+            Clear History
 
-      <div class="score-label">
-        Team A vs Team B
-      </div>
-
-    </div>
-
-    <div class="event-grid">
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-goal"
-              data-team="A">
-        ⚽ Goal A
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-goal"
-              data-team="B">
-        ⚽ Goal B
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-reset">
-        🔄 Reset
-      </button>
+        </button>
 
     </div>
 
-  </div>
 
-
-  <div class="card">
-
-    <h2>Player Event</h2>
-
-    <label>Player</label>
-
-    <select id="footballPlayerSelect">
-      <option value="">Select player</option>
-    </select>
-
-    <div class="event-grid">
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-player"
-              data-event="goal">
-        ⚽ Goal
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-player"
-              data-event="assist">
-        🎯 Assist
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-player"
-              data-event="foul">
-        🚫 Foul
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-player"
-              data-event="yellow">
-        🟨 Yellow
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="football-player"
-              data-event="red">
-        🟥 Red
-      </button>
-
-    </div>
-
-  </div>
+    <div id="historyList"></div>
 
 </section>
 
-
-<!-- CRICKET -->
-
-<section id="cricket" class="page">
-
-  <h1>Cricket</h1>
-
-  <div class="card">
-
-    <div class="scoreboard">
-
-      <div class="score" id="cricketScore">
-        0 / 0
-      </div>
-
-      <div class="score-label">
-        Runs / Wickets
-      </div>
-
-      <p id="cricketBalls">
-        Balls: 0
-      </p>
-
-    </div>
-
-    <div class="event-grid">
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="0">
-        Dot
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="1">
-        +1
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="2">
-        +2
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="3">
-        +3
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="4">
-        +4
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-run"
-              data-runs="6">
-        +6
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-wide">
-        Wide
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-noball">
-        No Ball
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-wicket">
-        Wicket
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-reset">
-        Reset
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h2>Player Event</h2>
-
-    <label>Player</label>
-
-    <select id="cricketPlayerSelect">
-      <option value="">Select player</option>
-    </select>
-
-    <div class="event-grid">
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-player"
-              data-event="run">
-        +1 Run
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-player"
-              data-event="four">
-        +4 Runs
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-player"
-              data-event="six">
-        +6 Runs
-      </button>
-
-      <button type="button"
-              class="event-btn"
-              data-action="cricket-player"
-              data-event="wicket">
-        Wicket
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- HISTORY -->
-
-<section id="history" class="page">
-
-  <h1>Match History</h1>
-
-  <div class="card">
-
-    <button
-      type="button"
-      class="btn danger"
-      data-action="clear-history">
-      Clear History
-    </button>
-
-  </div>
-
-  <div id="historyList"></div>
-
-</section>
 
 </main>
 
 </div>
 
 
-<!-- PLAYER PROFILE MODAL -->
+<!-- =========================
+     PLAYER MODAL
+========================= -->
 
-<div id="playerModal" class="modal">
+<div
+    id="playerModal"
+    class="modal">
 
-  <div class="modal-box">
 
-    <h1 id="modalPlayerName">
-      Player
-    </h1>
+    <div class="modal-box">
 
-    <div id="modalPlayerStats"></div>
+        <h1 id="modalName">
+            Player
+        </h1>
 
-    <button
-      type="button"
-      class="btn primary big"
-      data-action="close-modal">
-      Close
-    </button>
 
-  </div>
+        <div id="modalStats"></div>
+
+
+        <button
+            type="button"
+            class="button primary big"
+            data-action="close-modal">
+
+            Close
+
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
+
 "use strict";
 
-/* =========================================
-   DATA
-========================================= */
 
-const STORAGE_KEY = "GRVSPORTINFO_FINAL_V1";
+/* =========================
+   STORAGE
+========================= */
+
+const STORAGE_KEY =
+    "GRVSPORTINFO_APP_V1";
+
 
 let data = {
-  players: [],
-  football: {
-    teamA: 0,
-    teamB: 0
-  },
-  cricket: {
-    runs: 0,
-    wickets: 0,
-    balls: 0
-  },
-  history: []
-};
 
-
-/* =========================================
-   BASIC HELPERS
-========================================= */
-
-function $(id){
-  return document.getElementById(id);
-}
-
-function save(){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
-}
-
-function load(){
-
-  try{
-
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
-
-    if(!saved) return;
-
-    const parsed = JSON.parse(saved);
-
-    if(parsed && typeof parsed === "object"){
-
-      data.players =
-        Array.isArray(parsed.players)
-        ? parsed.players
-        : [];
-
-      data.football =
-        parsed.football || {
-          teamA:0,
-          teamB:0
-        };
-
-      data.cricket =
-        parsed.cricket || {
-          runs:0,
-          wickets:0,
-          balls:0
-        };
-
-      data.history =
-        Array.isArray(parsed.history)
-        ? parsed.history
-        : [];
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "Could not load saved data:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   PAGE NAVIGATION
-========================================= */
-
-function showPage(page){
-
-  document.querySelectorAll(".page")
-    .forEach(section => {
-
-      section.classList.remove("active");
-
-    });
-
-  const target = $(page);
-
-  if(target){
-    target.classList.add("active");
-  }
-
-  document.querySelectorAll(".nav-btn")
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.page === page
-      );
-
-    });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  render();
-}
-
-
-/* =========================================
-   PLAYER FUNCTIONS
-========================================= */
-
-function createPlayer(name){
-
-  return {
-
-    id:
-      Date.now().toString()
-      +
-      "_"
-      +
-      Math.random()
-        .toString(36)
-        .slice(2),
-
-    name:name,
+    players: [],
 
     football:{
-      goals:0,
-      assists:0,
-      fouls:0,
-      yellow:0,
-      red:0
+        teamA:0,
+        teamB:0
     },
 
     cricket:{
-      runs:0,
-      wickets:0,
-      fours:0,
-      sixes:0
+        runs:0,
+        wickets:0,
+        balls:0
+    },
+
+    history:[]
+
+};
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function get(id){
+
+    return document.getElementById(id);
+
+}
+
+
+function save(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+    );
+
+}
+
+
+function load(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+
+        if(!saved){
+            return;
+        }
+
+
+        const parsed =
+            JSON.parse(saved);
+
+
+        if(
+            parsed &&
+            typeof parsed === "object"
+        ){
+
+            data.players =
+                Array.isArray(parsed.players)
+                ? parsed.players
+                : [];
+
+
+            data.football =
+                parsed.football || {
+                    teamA:0,
+                    teamB:0
+                };
+
+
+            data.cricket =
+                parsed.cricket || {
+                    runs:0,
+                    wickets:0,
+                    balls:0
+                };
+
+
+            data.history =
+                Array.isArray(parsed.history)
+                ? parsed.history
+                : [];
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
     }
 
-  };
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+function showPage(page){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(section => {
+
+            section.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const target =
+        get(page);
+
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.page === page
+            );
+
+        });
+
+
+    render();
+
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+function newPlayer(name){
+
+    return {
+
+        id:
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .substring(2),
+
+        name:name,
+
+        football:{
+            goals:0,
+            assists:0,
+            fouls:0,
+            yellow:0,
+            red:0
+        },
+
+        cricket:{
+            runs:0,
+            wickets:0,
+            fours:0,
+            sixes:0
+        }
+
+    };
 
 }
 
 
 function addPlayer(){
 
-  const input = $("playerNameInput");
+    const input =
+        get("playerName");
 
-  if(!input) return;
 
-  const name =
-    input.value.trim();
+    const name =
+        input.value.trim();
 
-  if(!name){
 
-    alert("Enter a player name.");
+    if(!name){
 
-    input.focus();
+        alert(
+            "Enter a player name."
+        );
 
-    return;
+        input.focus();
 
-  }
+        return;
 
-  const player =
-    createPlayer(name);
+    }
 
-  data.players.push(player);
 
-  save();
-
-  input.value = "";
-
-  render();
-
-  alert(
-    player.name + " added successfully!"
-  );
-
-}
-
-
-function deletePlayer(id){
-
-  const player =
-    data.players.find(
-      p => p.id === id
-    );
-
-  if(!player) return;
-
-  const okay =
-    confirm(
-      "Delete " +
-      player.name +
-      "?"
-    );
-
-  if(!okay) return;
-
-  data.players =
-    data.players.filter(
-      p => p.id !== id
-    );
-
-  save();
-
-  render();
-
-}
-
-
-function getPlayer(id){
-
-  return data.players.find(
-    p => p.id === id
-  );
-
-}
-
-
-/* =========================================
-   PLAYER PROFILE
-========================================= */
-
-function openPlayer(id){
-
-  const player =
-    getPlayer(id);
-
-  if(!player) return;
-
-  $("modalPlayerName")
-    .textContent =
-    player.name;
-
-  $("modalPlayerStats")
-    .innerHTML = `
-
-      <div class="card">
-
-        <h2>Football</h2>
-
-        <div class="stat-grid">
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.football.goals}
-            </div>
-            <div class="stat-name">
-              Goals
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.football.assists}
-            </div>
-            <div class="stat-name">
-              Assists
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.football.fouls}
-            </div>
-            <div class="stat-name">
-              Fouls
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.football.yellow}
-            </div>
-            <div class="stat-name">
-              Yellow
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.football.red}
-            </div>
-            <div class="stat-name">
-              Red
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <h2>Cricket</h2>
-
-        <div class="stat-grid">
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.cricket.runs}
-            </div>
-            <div class="stat-name">
-              Runs
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.cricket.wickets}
-            </div>
-            <div class="stat-name">
-              Wickets
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.cricket.fours}
-            </div>
-            <div class="stat-name">
-              Fours
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">
-              ${player.cricket.sixes}
-            </div>
-            <div class="stat-name">
-              Sixes
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    `;
-
-  $("playerModal")
-    .classList.add("active");
-
-}
-
-
-function closeModal(){
-
-  $("playerModal")
-    .classList.remove("active");
-
-}
-
-
-/* =========================================
-   FOOTBALL
-========================================= */
-
-function footballGoal(team){
-
-  if(team === "A"){
-    data.football.teamA++;
-  }
-
-  if(team === "B"){
-    data.football.teamB++;
-  }
-
-  addHistory(
-    "Football",
-    "Goal for Team " + team
-  );
-
-  save();
-
-  render();
-
-}
-
-
-function footballPlayerEvent(eventType){
-
-  const select =
-    $("footballPlayerSelect");
-
-  if(!select) return;
-
-  const id =
-    select.value;
-
-  if(!id){
-
-    alert(
-      "Select a player first."
-    );
-
-    return;
-
-  }
-
-  const player =
-    getPlayer(id);
-
-  if(!player) return;
-
-  if(eventType === "goal"){
-    player.football.goals++;
-  }
-
-  if(eventType === "assist"){
-    player.football.assists++;
-  }
-
-  if(eventType === "foul"){
-    player.football.fouls++;
-  }
-
-  if(eventType === "yellow"){
-    player.football.yellow++;
-  }
-
-  if(eventType === "red"){
-    player.football.red++;
-  }
-
-  addHistory(
-    "Football",
-    player.name +
-    " — " +
-    eventType
-  );
-
-  save();
-
-  render();
-
-}
-
-
-function resetFootball(){
-
-  const okay =
-    confirm(
-      "Reset the football score?"
-    );
-
-  if(!okay) return;
-
-  data.football = {
-    teamA:0,
-    teamB:0
- *{
-  -webkit-user-select:none;
-  user-select:none;
-  -webkit-touch-callout:none;
-}
+    data.players.push(
+   
