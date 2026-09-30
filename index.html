@@ -2,110 +2,276 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GRVSPORTINFO</title>
 
 <style>
 *{box-sizing:border-box}
+
+:root{
+ --bg:#06080d;
+ --panel:#0e131d;
+ --panel2:#151c29;
+ --line:#263144;
+ --text:#f5f7fb;
+ --muted:#8995a8;
+ --cyan:#57e6ff;
+ --green:#45e09a;
+ --red:#ff5570;
+ --yellow:#ffd45a;
+}
+
 body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#070a10;
-color:#fff;
+ margin:0;
+ background:
+ radial-gradient(circle at 20% 0%,#12313c55,transparent 30%),
+ radial-gradient(circle at 90% 10%,#26385b55,transparent 30%),
+ var(--bg);
+ color:var(--text);
+ font-family:Inter,system-ui,Arial,sans-serif;
+ min-height:100vh;
 }
+
 header{
-background:#101722;
-padding:20px;
-text-align:center;
-border-bottom:1px solid #263041;
+ position:sticky;
+ top:0;
+ z-index:10;
+ background:#080b12dd;
+ backdrop-filter:blur(18px);
+ border-bottom:1px solid var(--line);
+ padding:18px 20px;
 }
-header h1{margin:0;font-size:30px}
-header span{color:#55dfff}
-.container{max-width:1100px;margin:auto;padding:18px}
+
+.header{
+ max-width:1100px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:950;
+ letter-spacing:1px;
+}
+
+.logo span{color:var(--cyan)}
+
+.status{
+ color:var(--green);
+ font-size:13px;
+ font-weight:700;
+}
+
+.container{
+ max-width:1100px;
+ margin:auto;
+ padding:22px 16px 60px;
+}
+
 .card{
-background:#111824;
-border:1px solid #273142;
-border-radius:18px;
-padding:18px;
-margin-bottom:16px;
+ background:linear-gradient(145deg,#111824,#0c111a);
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:20px;
+ margin-bottom:16px;
+ box-shadow:0 15px 50px #0008;
 }
+
+.hero{
+ padding:28px 20px;
+ text-align:center;
+}
+
+h1,h2,h3,p{margin-top:0}
+
+.muted{color:var(--muted)}
+
+.tabs{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-bottom:22px;
+}
+
 button{
-border:0;
-border-radius:11px;
-padding:11px 14px;
-margin:4px;
-background:#222d3e;
-color:white;
-font-weight:bold;
-cursor:pointer;
+ border:1px solid var(--line);
+ background:var(--panel2);
+ color:white;
+ padding:12px 15px;
+ border-radius:13px;
+ font-weight:800;
+ cursor:pointer;
+ transition:.15s;
 }
-button:hover{background:#304057}
-.primary{background:#55dfff;color:#061018}
-.danger{background:#7e2638}
-.green{background:#16734b}
-.tabs{display:flex;gap:8px}
-.tabs button{flex:1}
-.active{background:#55dfff!important;color:#061018!important}
-input,select{
-width:100%;
-padding:12px;
-margin:5px 0;
-border-radius:10px;
-border:1px solid #303c50;
-background:#0a1018;
-color:#fff;
+
+button:hover{
+ transform:translateY(-2px);
+ border-color:#40516b;
 }
+
+button:active{transform:scale(.97)}
+
+.primary{
+ background:var(--cyan);
+ color:#031018;
+ border-color:var(--cyan);
+}
+
+.green{
+ background:var(--green);
+ color:#04150e;
+}
+
+.red{
+ background:#421827;
+ color:#ff9aae;
+}
+
+.active{
+ background:var(--cyan)!important;
+ color:#031018!important;
+ border-color:var(--cyan)!important;
+}
+
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
 }
-.players{
-display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-top:8px;
+
+label{
+ display:block;
+ font-size:13px;
+ color:var(--muted);
+ margin:9px 0 5px;
 }
-.player{
-background:#222d3e;
-padding:7px 11px;
-border-radius:20px;
+
+input,select{
+ width:100%;
+ border:1px solid var(--line);
+ background:#080d15;
+ color:white;
+ padding:13px;
+ border-radius:12px;
+ outline:none;
+ font-size:15px;
 }
+
+select{
+ cursor:pointer;
+}
+
+select:focus,input:focus{
+ border-color:var(--cyan);
+ box-shadow:0 0 0 3px #57e6ff15;
+}
+
+.player-row{
+ display:flex;
+ gap:8px;
+ margin-top:7px;
+}
+
+.player-row input{flex:1}
+
+.player-list{
+ display:flex;
+ flex-wrap:wrap;
+ gap:7px;
+ margin-top:10px;
+}
+
+.player-chip{
+ background:#1a2433;
+ border:1px solid #2a374b;
+ border-radius:999px;
+ padding:7px 11px;
+ font-size:13px;
+}
+
 .score{
-font-size:48px;
-font-weight:bold;
-text-align:center;
-margin:10px;
+ font-size:52px;
+ font-weight:950;
+ letter-spacing:2px;
+ margin:12px 0;
 }
-.center{text-align:center}
+
+.score small{
+ font-size:17px;
+ color:var(--muted);
+ letter-spacing:0;
+}
+
 .controls{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:7px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
 }
-.event{
-padding:10px;
-border-bottom:1px solid #263041;
+
+.controls button{min-height:48px}
+
+.section-title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
 }
-.stat{
-display:flex;
-justify-content:space-between;
-padding:9px;
-border-bottom:1px solid #263041;
-}
-.hidden{display:none!important}
+
 .badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-background:#243044;
-margin:3px;
-font-size:13px;
+ padding:6px 10px;
+ border-radius:999px;
+ background:#172233;
+ color:var(--cyan);
+ font-size:12px;
+ font-weight:800;
 }
+
+.stat{
+ display:grid;
+ grid-template-columns:1fr auto;
+ gap:10px;
+ padding:12px 4px;
+ border-bottom:1px solid var(--line);
+}
+
+.stat:last-child{border-bottom:0}
+
+.event{
+ padding:11px 4px;
+ border-bottom:1px solid var(--line);
+}
+
+.event:last-child{border-bottom:0}
+
+.hidden{display:none!important}
+
+.center{text-align:center}
+
+.innings{
+ display:flex;
+ gap:8px;
+ overflow:auto;
+ margin-bottom:15px;
+}
+
+.innings button{
+ white-space:nowrap;
+}
+
+.big-action{
+ width:100%;
+ padding:15px;
+ font-size:16px;
+ margin-top:12px;
+}
+
 @media(max-width:700px){
-.grid{grid-template-columns:1fr}
-.controls{grid-template-columns:repeat(2,1fr)}
-.score{font-size:38px}
+ .grid{grid-template-columns:1fr}
+ .controls{grid-template-columns:repeat(2,1fr)}
+ .score{font-size:40px}
+ .header{gap:10px}
 }
 </style>
 </head>
@@ -113,21 +279,26 @@ font-size:13px;
 <body>
 
 <header>
-<h1>GRV<span>SPORTINFO</span></h1>
-<p>Football & Cricket Match Manager</p>
+<div class="header">
+<div class="logo">GRV<span>SPORTINFO</span></div>
+<div class="status">● LIVE SYSTEM</div>
+</div>
 </header>
 
-<div class="container">
+<main class="container">
 
 <!-- SETUP -->
 
 <section id="setup" class="card">
 
-<h2>Choose Sport</h2>
+<div class="hero">
+<h1>Match Manager</h1>
+<p class="muted">Track every football and cricket match in one place.</p>
+</div>
 
 <div class="tabs">
-<button id="footballTab" class="active">⚽ Football</button>
-<button id="cricketTab">🏏 Cricket</button>
+<button id="footballTab" class="active">⚽ FOOTBALL</button>
+<button id="cricketTab">🏏 CRICKET</button>
 </div>
 
 <h2>Match Setup</h2>
@@ -144,32 +315,38 @@ font-size:13px;
 </div>
 </div>
 
-<div id="oversSetup" class="hidden">
+<div id="oversBox" class="hidden">
 <label>Overs per innings</label>
 <input id="totalOvers" type="number" min="1" value="10">
 </div>
 
 <div class="grid">
 
-<div>
+<div class="card">
 <h3>Team A Players</h3>
+
+<div class="player-row">
 <input id="playerAInput" placeholder="Player name">
-<button onclick="addPlayer('A')">➕ Add Player</button>
-<div id="playersA" class="players"></div>
+<button id="addA">＋</button>
 </div>
 
-<div>
+<div id="playersA" class="player-list"></div>
+</div>
+
+<div class="card">
 <h3>Team B Players</h3>
+
+<div class="player-row">
 <input id="playerBInput" placeholder="Player name">
-<button onclick="addPlayer('B')">➕ Add Player</button>
-<div id="playersB" class="players"></div>
+<button id="addB">＋</button>
+</div>
+
+<div id="playersB" class="player-list"></div>
 </div>
 
 </div>
 
-<br>
-
-<button class="primary" onclick="startMatch()">
+<button id="start" class="primary big-action">
 ▶ START MATCH
 </button>
 
@@ -180,97 +357,86 @@ font-size:13px;
 
 <section id="match" class="hidden">
 
-<div class="card center">
-
+<div class="card hero">
+<div id="sportBadge" class="badge"></div>
 <h2 id="matchTitle"></h2>
-
-<div id="mainScore" class="score">
-0 - 0
-</div>
-
-<p id="matchStatus"></p>
-
+<div id="mainScore" class="score">0 - 0</div>
+<p id="matchStatus" class="muted"></p>
 </div>
 
 
 <!-- FOOTBALL -->
 
-<div id="footballPanel">
+<section id="footballPanel">
 
 <div class="card">
 
-<h2>⚽ Football Events</h2>
+<div class="section-title">
+<h2>⚽ Match Controls</h2>
+<span class="badge">PLAYER TRACKING</span>
+</div>
 
+<div class="grid">
+
+<div>
 <label>Team</label>
 <select id="footballTeam"></select>
+</div>
 
+<div>
 <label>Player</label>
 <select id="footballPlayer"></select>
+</div>
 
-<label>Assist (optional)</label>
+</div>
+
+<label>Assist</label>
 <select id="assistPlayer"></select>
 
-<div class="controls">
+<div class="controls" style="margin-top:12px">
 
-<button onclick="footballGoal(1)">⚽ + Goal</button>
-<button onclick="footballGoal(-1)">⚽ - Goal</button>
-
-<button onclick="footballEvent('Assist')">
-🎯 Assist
-</button>
-
-<button onclick="footballEvent('Foul')">
-🚫 Foul
-</button>
-
-<button onclick="footballEvent('Yellow Card')">
-🟨 Yellow
-</button>
-
-<button onclick="footballEvent('Red Card')">
-🟥 Red
-</button>
-
-<button onclick="footballEvent('Corner')">
-🚩 Corner
-</button>
+<button onclick="footballEvent('goal',1)">⚽ + Goal</button>
+<button onclick="footballEvent('goal',-1)">➖ Goal</button>
+<button onclick="footballEvent('foul',1)">🚫 Foul</button>
+<button onclick="footballEvent('yellow',1)">🟨 Yellow</button>
+<button onclick="footballEvent('red',1)">🟥 Red</button>
+<button onclick="footballEvent('corner',1)">🚩 Corner</button>
 
 </div>
 
 </div>
-
 
 <div class="card">
-
-<h2>👥 Football Player Stats</h2>
-
+<h2>📊 Player Statistics</h2>
 <div id="footballStats"></div>
-
 </div>
 
-</div>
+</section>
 
 
 <!-- CRICKET -->
 
-<div id="cricketPanel" class="hidden">
+<section id="cricketPanel" class="hidden">
 
-<div class="card center">
+<div class="card">
 
-<h2 id="inningsTitle">1st Innings</h2>
-
-<div id="cricketScore" class="score">
-0 / 0
+<div class="innings">
+<button id="inning1Btn" class="active">1st Innings</button>
+<button id="inning2Btn">2nd Innings</button>
 </div>
 
-<p id="oversDisplay">Overs: 0.0</p>
+<div class="center">
+<h2 id="inningsTitle"></h2>
+<div id="cricketScore" class="score">0 / 0</div>
+<p id="oversDisplay" class="muted">Overs: 0.0</p>
+</div>
 
 </div>
 
 
 <div class="card">
 
-<h3>Current Players</h3>
+<h2>🎯 Current Players</h2>
 
 <div class="grid">
 
@@ -294,111 +460,78 @@ font-size:13px;
 
 <div class="card">
 
-<h2>🏏 Ball</h2>
+<h2>🏏 Ball Controls</h2>
 
 <div class="controls">
 
-<button onclick="cricketBall(0)">Dot</button>
-<button onclick="cricketBall(1)">+1</button>
-<button onclick="cricketBall(2)">+2</button>
-<button onclick="cricketBall(3)">+3</button>
-<button onclick="cricketBall(4)">FOUR</button>
-<button onclick="cricketBall(6)">SIX</button>
-
-<button onclick="cricketExtra('wide')">
-Wide
-</button>
-
-<button onclick="cricketExtra('no-ball')">
-No Ball
-</button>
-
-<button onclick="cricketExtra('bye')">
-Bye
-</button>
-
-<button onclick="cricketExtra('leg-bye')">
-Leg Bye
-</button>
-
-<button onclick="cricketWicket('Wicket')">
-🏏 Wicket
-</button>
-
-<button onclick="cricketWicket('LBW')">
-LBW
-</button>
+<button onclick="ball(0)">DOT</button>
+<button onclick="ball(1)">+1</button>
+<button onclick="ball(2)">+2</button>
+<button onclick="ball(3)">+3</button>
+<button onclick="ball(4)">FOUR</button>
+<button onclick="ball(6)">SIX</button>
+<button onclick="extra('wide')">WIDE</button>
+<button onclick="extra('no-ball')">NO BALL</button>
+<button onclick="extra('bye')">BYE</button>
+<button onclick="extra('leg-bye')">LEG-BYE</button>
+<button onclick="wicket('Wicket')">❌ WICKET</button>
+<button onclick="wicket('LBW')">LBW</button>
 
 </div>
 
-<br>
+<div class="controls" style="margin-top:12px">
 
-<button onclick="changeRuns(-1)">➖ Decrease Run</button>
-<button onclick="changeRuns(1)">➕ Increase Run</button>
-
-<br>
-
-<button onclick="changeWicket(-1)">
-➖ Decrease Wicket
-</button>
-
-<button onclick="changeWicket(1)">
-➕ Increase Wicket
-</button>
+<button onclick="changeRuns(1)">➕ RUN</button>
+<button onclick="changeRuns(-1)">➖ RUN</button>
+<button onclick="changeWicket(1)">➕ WICKET</button>
+<button onclick="changeWicket(-1)">➖ WICKET</button>
 
 </div>
 
+</div>
+
+
+<div class="grid">
 
 <div class="card">
-
-<h2>📊 Current Batting</h2>
+<h2>🏏 Batting</h2>
 <div id="battingStats"></div>
-
 </div>
 
-
 <div class="card">
-
 <h2>🎯 Bowling</h2>
 <div id="bowlingStats"></div>
+</div>
 
 </div>
 
 
-<div class="card center">
-
-<button class="green" onclick="endInnings()">
+<div class="card">
+<button id="endInnings" class="green big-action">
 🏁 END INNINGS
 </button>
-
 </div>
 
-</div>
+</section>
 
 
 <!-- EVENTS -->
 
 <div class="card">
 
-<h2>📋 Match Timeline</h2>
-
-<div id="events">
-No events yet.
+<div class="section-title">
+<h2>📋 Timeline</h2>
+<span class="badge">LIVE</span>
 </div>
 
+<div id="events">No events yet.</div>
+
 </div>
 
 
-<div class="card center">
-
-<button class="danger" onclick="finishMatch()">
-🏆 FINISH MATCH
-</button>
-
-<button onclick="location.reload()">
-🔄 NEW MATCH
-</button>
-
+<div class="card">
+<button id="finish" class="green big-action">🏆 FINISH MATCH</button>
+<button onclick="location.reload()" class="big-action">🔄 NEW MATCH</button>
 </div>
 
 </section>
@@ -407,14 +540,11 @@ No events yet.
 <!-- HISTORY -->
 
 <section class="card">
-
 <h2>📚 Match History</h2>
-
 <div id="history"></div>
-
 </section>
 
-</div>
+</main>
 
 
 <script>
@@ -422,677 +552,659 @@ No events yet.
 let sport="football";
 
 let players={
-A:[],
-B:[]
+ A:[],
+ B:[]
 };
 
 let game=null;
 
-let history=
+let saved=
 JSON.parse(localStorage.getItem("grvHistory")||"[]");
 
 
-/* SPORT */
+/* ---------- SPORT ---------- */
 
-document.getElementById("footballTab").onclick=()=>{
-sport="football";
-
-footballTab.classList.add("active");
-cricketTab.classList.remove("active");
-
-oversSetup.classList.add("hidden");
+footballTab.onclick=()=>{
+ sport="football";
+ footballTab.classList.add("active");
+ cricketTab.classList.remove("active");
+ oversBox.classList.add("hidden");
 };
 
-document.getElementById("cricketTab").onclick=()=>{
-sport="cricket";
-
-cricketTab.classList.add("active");
-footballTab.classList.remove("active");
-
-oversSetup.classList.remove("hidden");
+cricketTab.onclick=()=>{
+ sport="cricket";
+ cricketTab.classList.add("active");
+ footballTab.classList.remove("active");
+ oversBox.classList.remove("hidden");
 };
 
 
-/* PLAYERS */
+/* ---------- PLAYERS ---------- */
 
 function addPlayer(team){
 
-let input=document.getElementById(
-team==="A"?"playerAInput":"playerBInput"
-);
+ let input=team==="A"
+  ?playerAInput
+  :playerBInput;
 
-let name=input.value.trim();
+ let name=input.value.trim();
 
-if(!name)return;
+ if(!name)return;
 
-players[team].push({
-name:name,
-goals:0,
-assists:0,
-fouls:0,
-yellow:0,
-red:0,
-corners:0,
-runs:0,
-balls:0,
-fours:0,
-sixes:0,
-wickets:0
-});
+ players[team].push({
+  name,
+  goals:0,
+  assists:0,
+  fouls:0,
+  yellow:0,
+  red:0,
+  corners:0,
+  runs:0,
+  balls:0,
+  fours:0,
+  sixes:0,
+  wickets:0
+ });
 
-input.value="";
-
-renderPlayers();
-
+ input.value="";
+ renderPlayers();
 }
+
 
 function renderPlayers(){
 
-playersA.innerHTML=
-players.A.map(p=>
-`<span class="player">👤 ${escape(p.name)}</span>`
-).join("");
+ playersA.innerHTML=players.A.map(p=>
+ `<span class="player-chip">👤 ${safe(p.name)}</span>`
+ ).join("");
 
-playersB.innerHTML=
-players.B.map(p=>
-`<span class="player">👤 ${escape(p.name)}</span>`
-).join("");
-
+ playersB.innerHTML=players.B.map(p=>
+ `<span class="player-chip">👤 ${safe(p.name)}</span>`
+ ).join("");
 }
 
 
-/* START */
+addA.onclick=()=>addPlayer("A");
+addB.onclick=()=>addPlayer("B");
 
-function startMatch(){
-
-game={
-teamA:teamA.value.trim()||"Team A",
-teamB:teamB.value.trim()||"Team B",
-
-scoreA:0,
-scoreB:0,
-
-innings:1,
-
-runs:[0,0],
-wickets:[0,0],
-balls:[0,0],
-
-events:[],
-
-totalOvers:+totalOvers.value||10
+playerAInput.onkeydown=e=>{
+ if(e.key==="Enter")addPlayer("A");
 };
 
-setup.classList.add("hidden");
-match.classList.remove("hidden");
-
-if(sport==="football"){
-
-footballPanel.classList.remove("hidden");
-cricketPanel.classList.add("hidden");
-
-}
-
-else{
-
-footballPanel.classList.add("hidden");
-cricketPanel.classList.remove("hidden");
-
-prepareCricket();
-
-}
-
-update();
-
-}
+playerBInput.onkeydown=e=>{
+ if(e.key==="Enter")addPlayer("B");
+};
 
 
-/* FOOTBALL */
+/* ---------- START ---------- */
 
-function footballGoal(change){
+start.onclick=()=>{
 
-let team=
-document.getElementById("footballTeam").value;
+ game={
+  teamA:teamA.value.trim()||"Team A",
+  teamB:teamB.value.trim()||"Team B",
 
-let index=team==="A"?0:1;
+  scoreA:0,
+  scoreB:0,
 
-if(change===1){
+  runs:[0,0],
+  wickets:[0,0],
+  balls:[0,0],
 
-game["score"+team]++;
+  innings:1,
+  totalOvers:+totalOvers.value||10,
 
-let player=getFootballPlayer();
+  events:[]
+ };
 
-if(player)player.goals++;
+ setup.classList.add("hidden");
+ match.classList.remove("hidden");
 
-let assist=getAssistPlayer();
+ if(sport==="football"){
+  footballPanel.classList.remove("hidden");
+  cricketPanel.classList.add("hidden");
+ }else{
+  footballPanel.classList.add("hidden");
+  cricketPanel.classList.remove("hidden");
+  prepareCricket();
+ }
 
-if(assist)assist.assists++;
+ update();
+};
 
-game.events.unshift(
-"⚽ GOAL — "+
-player?.name+
-(assist?" 🎯 Assist: "+assist.name:"")
-);
 
-}
+/* ---------- FOOTBALL SELECTORS ---------- */
 
-else{
+footballTeam.onchange=()=>{
+ updateFootballPlayers();
+};
 
-if(game["score"+team]>0)
-game["score"+team]--;
 
-let player=getFootballPlayer();
+function updateFootballPlayers(){
 
-if(player && player.goals>0)
-player.goals--;
+ let team=footballTeam.value;
 
-game.events.unshift(
-"➖ Goal removed — "+(player?.name||"")
-);
+ footballPlayer.innerHTML=
+ players[team].map((p,i)=>
+ `<option value="${i}">${safe(p.name)}</option>`
+ ).join("");
 
-}
-
-update();
-
-}
-
-function footballEvent(type){
-
-let player=getFootballPlayer();
-
-if(!player)return;
-
-if(type==="Assist")player.assists++;
-if(type==="Foul")player.fouls++;
-if(type==="Yellow Card")player.yellow++;
-if(type==="Red Card")player.red++;
-if(type==="Corner")player.corners++;
-
-game.events.unshift(
-type+" — "+player.name
-);
-
-update();
-
-}
-
-function getFootballPlayer(){
-
-let team=document.getElementById("footballTeam").value;
-
-let id=document.getElementById("footballPlayer").value;
-
-return players[team][id];
-
-}
-
-function getAssistPlayer(){
-
-let team=document.getElementById("footballTeam").value;
-
-let id=document.getElementById("assistPlayer").value;
-
-return players[team][id];
-
+ assistPlayer.innerHTML=
+ `<option value="">No assist</option>`+
+ players[team].map((p,i)=>
+ `<option value="${i}">${safe(p.name)}</option>`
+ ).join("");
 }
 
 
-/* CRICKET */
+function setupFootballSelectors(){
+
+ footballTeam.innerHTML=
+ `<option value="A">${safe(game.teamA)}</option>
+  <option value="B">${safe(game.teamB)}</option>`;
+
+ updateFootballPlayers();
+}
+
+
+function selectedFootballPlayer(){
+
+ let team=footballTeam.value;
+ let index=Number(footballPlayer.value);
+
+ return players[team][index];
+}
+
+
+function selectedAssist(){
+
+ let team=footballTeam.value;
+
+ if(assistPlayer.value==="")return null;
+
+ return players[team][Number(assistPlayer.value)];
+}
+
+
+/* ---------- FOOTBALL EVENTS ---------- */
+
+function footballEvent(type,change){
+
+ let team=footballTeam.value;
+ let player=selectedFootballPlayer();
+
+ if(!player)return;
+
+ if(type==="goal"){
+
+  if(change===1){
+
+   if(team==="A")game.scoreA++;
+   else game.scoreB++;
+
+   player.goals++;
+
+   let assist=selectedAssist();
+
+   if(assist && assist!==player){
+    assist.assists++;
+   }
+
+   game.events.unshift(
+    `⚽ GOAL — ${player.name}`+
+    (assist&&assist!==player
+     ?` 🎯 Assist: ${assist.name}`:"")
+   );
+
+  }else{
+
+   if(team==="A" && game.scoreA>0)game.scoreA--;
+   if(team==="B" && game.scoreB>0)game.scoreB--;
+
+   if(player.goals>0)player.goals--;
+
+   game.events.unshift(
+    `➖ Goal removed — ${player.name}`
+   );
+  }
+
+ }else{
+
+  if(type==="foul")player.fouls++;
+  if(type==="yellow")player.yellow++;
+  if(type==="red")player.red++;
+  if(type==="corner")player.corners++;
+
+  let names={
+   foul:"🚫 FOUL",
+   yellow:"🟨 YELLOW CARD",
+   red:"🟥 RED CARD",
+   corner:"🚩 CORNER"
+  };
+
+  game.events.unshift(
+   `${names[type]} — ${player.name}`
+  );
+ }
+
+ update();
+}
+
+
+/* ---------- CRICKET ---------- */
+
+function battingTeam(){
+ return game.innings===1?"A":"B";
+}
+
+function bowlingTeam(){
+ return game.innings===1?"B":"A";
+}
+
 
 function prepareCricket(){
 
-let batting=game.innings===1?"A":"B";
-let bowling=game.innings===1?"B":"A";
+ let bat=battingTeam();
+ let bowl=bowlingTeam();
 
-striker.innerHTML=
-players[batting].map((p,i)=>
-`<option value="${i}">${escape(p.name)}</option>`
-).join("");
+ striker.innerHTML=players[bat].map((p,i)=>
+ `<option value="${i}">${safe(p.name)}</option>`
+ ).join("");
 
-nonStriker.innerHTML=
-striker.innerHTML;
+ nonStriker.innerHTML=players[bat].map((p,i)=>
+ `<option value="${i}">${safe(p.name)}</option>`
+ ).join("");
 
-bowler.innerHTML=
-players[bowling].map((p,i)=>
-`<option value="${i}">${escape(p.name)}</option>`
-).join("");
-
+ bowler.innerHTML=players[bowl].map((p,i)=>
+ `<option value="${i}">${safe(p.name)}</option>`
+ ).join("");
 }
 
-function currentBatter(){
 
-let batting=game.innings===1?"A":"B";
-
-return players[batting][
-document.getElementById("striker").value
-];
-
+function batter(){
+ return players[battingTeam()][Number(striker.value)];
 }
 
 function currentBowler(){
-
-let bowling=game.innings===1?"B":"A";
-
-return players[bowling][
-document.getElementById("bowler").value
-];
-
+ return players[bowlingTeam()][Number(bowler.value)];
 }
 
 
-function cricketBall(runs){
+/* BALL */
 
-let batter=currentBatter();
-let bowler=currentBowler();
+function ball(runs){
 
-if(!batter)return;
+ let b=batter();
+ let bw=currentBowler();
 
-game.runs[game.innings-1]+=runs;
-game.balls[game.innings-1]++;
+ if(!b)return;
 
-batter.runs+=runs;
-batter.balls++;
+ let i=game.innings-1;
 
-if(runs===4)batter.fours++;
-if(runs===6)batter.sixes++;
+ game.runs[i]+=runs;
+ game.balls[i]++;
 
-if(bowler){
-bowler.runs+=runs;
-}
+ b.runs+=runs;
+ b.balls++;
 
-game.events.unshift(
-`${runs===0?"•":runs} run — ${batter.name}`
-);
+ if(runs===4)b.fours++;
+ if(runs===6)b.sixes++;
 
-update();
+ if(bw)bw.runs+=runs;
 
-}
+ game.events.unshift(
+  `${runs===0?"• DOT":`+${runs}`} — ${b.name}`
+ );
 
-
-function cricketExtra(type){
-
-let batter=currentBatter();
-let bowler=currentBowler();
-
-game.runs[game.innings-1]++;
-game.events.unshift(
-type.toUpperCase()+" — "+(batter?.name||"")
-);
-
-if(type==="wide"||type==="no-ball"){
-
-if(bowler)bowler.runs++;
-
-}
-
-else{
-
-game.balls[game.innings-1]++;
-
-}
-
-update();
-
+ update();
 }
 
 
-function cricketWicket(type){
+/* EXTRAS */
 
-let batter=currentBatter();
-let bowler=currentBowler();
+function extra(type){
 
-game.wickets[game.innings-1]++;
+ let i=game.innings-1;
+ let b=batter();
+ let bw=currentBowler();
 
-game.balls[game.innings-1]++;
+ game.runs[i]++;
 
-if(batter)batter.balls++;
+ if(type!=="wide"&&type!=="no-ball"){
+  game.balls[i]++;
+ }
 
-if(bowler)bowler.wickets++;
+ if(bw)bw.runs++;
 
-game.events.unshift(
-"❌ "+type+" — "+(batter?.name||"")
-);
+ game.events.unshift(
+  `${type.toUpperCase()} — ${b?.name||"Team"}`
+ );
 
-update();
-
+ update();
 }
 
 
-/* DECREASE / INCREASE */
+/* WICKET */
+
+function wicket(type){
+
+ let i=game.innings-1;
+
+ let b=batter();
+ let bw=currentBowler();
+
+ game.wickets[i]++;
+ game.balls[i]++;
+
+ if(b)b.balls++;
+
+ if(bw)bw.wickets++;
+
+ game.events.unshift(
+  `❌ ${type} — ${b?.name||"Batter"}`
+ );
+
+ update();
+}
+
+
+/* MANUAL CORRECTION */
 
 function changeRuns(amount){
 
-let i=game.innings-1;
+ let i=game.innings-1;
 
-if(amount<0 && game.runs[i]<=0)return;
+ if(amount<0 && game.runs[i]===0)return;
 
-game.runs[i]+=amount;
+ game.runs[i]+=amount;
 
-if(game.runs[i]<0)
-game.runs[i]=0;
+ if(game.runs[i]<0)game.runs[i]=0;
 
-game.events.unshift(
-amount>0?"➕ Run added":"➖ Run removed"
-);
+ game.events.unshift(
+  amount>0?"➕ Manual run":"➖ Run corrected"
+ );
 
-update();
-
+ update();
 }
 
 
 function changeWicket(amount){
 
-let i=game.innings-1;
+ let i=game.innings-1;
 
-if(amount<0 && game.wickets[i]<=0)return;
+ if(amount<0 && game.wickets[i]===0)return;
 
-game.wickets[i]+=amount;
+ game.wickets[i]+=amount;
 
-if(game.wickets[i]<0)
-game.wickets[i]=0;
+ if(game.wickets[i]<0)game.wickets[i]=0;
 
-game.events.unshift(
-amount>0?"➕ Wicket added":"➖ Wicket removed"
-);
+ game.events.unshift(
+  amount>0?"➕ Wicket added":"➖ Wicket corrected"
+ );
 
-update();
-
+ update();
 }
 
 
-/* INNINGS */
+/* ---------- INNINGS ---------- */
 
-function endInnings(){
+endInnings.onclick=()=>{
 
-if(game.innings===1){
+ if(game.innings===1){
 
-game.innings=2;
+  game.innings=2;
 
-prepareCricket();
+  inning2Btn.classList.add("active");
+  inning1Btn.classList.remove("active");
 
-game.events.unshift(
-"🏁 1st innings ended"
-);
+  prepareCricket();
 
-update();
+  game.events.unshift(
+   `🏁 ${game.teamA} innings ended`
+  );
 
-}
+  update();
 
-else{
+ }else{
 
-alert("Both innings are complete.");
+  alert("Both innings are already complete.");
 
-}
+ }
+};
 
-}
+
+inning1Btn.onclick=()=>{
+
+ if(!game)return;
+
+ game.innings=1;
+
+ inning1Btn.classList.add("active");
+ inning2Btn.classList.remove("active");
+
+ prepareCricket();
+ update();
+};
 
 
-/* UPDATE */
+inning2Btn.onclick=()=>{
+
+ if(!game)return;
+
+ game.innings=2;
+
+ inning2Btn.classList.add("active");
+ inning1Btn.classList.remove("active");
+
+ prepareCricket();
+ update();
+};
+
+
+/* ---------- UPDATE ---------- */
 
 function update(){
 
-matchTitle.innerText=
-game.teamA+" vs "+game.teamB;
+ matchTitle.textContent=
+ `${game.teamA} vs ${game.teamB}`;
 
-if(sport==="football"){
+ sportBadge.textContent=
+ sport==="football"?"⚽ FOOTBALL":"🏏 CRICKET";
 
-mainScore.innerText=
-game.scoreA+" - "+game.scoreB;
+ if(sport==="football"){
 
-matchStatus.innerText="Football";
+  mainScore.textContent=
+   `${game.scoreA} - ${game.scoreB}`;
 
-renderFootball();
+  matchStatus.textContent=
+   "Live football match";
 
+  setupFootballSelectors();
+  renderFootballStats();
+
+ }else{
+
+  let i=game.innings-1;
+
+  let overs=
+   Math.floor(game.balls[i]/6)+
+   "."+
+   game.balls[i]%6;
+
+  mainScore.textContent=
+   `${game.runs[i]} / ${game.wickets[i]}`;
+
+  matchStatus.textContent=
+   `Innings ${game.innings} • ${battingTeam()==="A"?game.teamA:game.teamB}`;
+
+  inningsTitle.textContent=
+   game.innings===1
+   ?`1st Innings — ${game.teamA}`
+   :`2nd Innings — ${game.teamB}`;
+
+  cricketScore.textContent=
+   `${game.runs[i]} / ${game.wickets[i]}`;
+
+  oversDisplay.textContent=
+   `Overs: ${overs} / ${game.totalOvers}`;
+
+  renderBatting();
+  renderBowling();
+ }
+
+ renderEvents();
 }
 
-else{
 
-let i=game.innings-1;
-
-let overs=
-Math.floor(game.balls[i]/6)+
-"."+
-(game.balls[i]%6);
-
-inningsTitle.innerText=
-game.innings===1?
-"1st Innings — "+game.teamA:
-"2nd Innings — "+game.teamB;
-
-cricketScore.innerText=
-game.runs[i]+" / "+game.wickets[i];
-
-oversDisplay.innerText=
-"Overs: "+overs+" / "+game.totalOvers;
-
-renderBatting();
-renderBowling();
-
-}
-
-renderEvents();
-
-}
-
-
-/* FOOTBALL UI */
-
-function renderFootball(){
-
-let team=
-footballTeam.value;
-
-footballPlayer.innerHTML=
-players[team].map((p,i)=>
-`<option value="${i}">
-${escape(p.name)}
-</option>`
-).join("");
-
-assistPlayer.innerHTML=
-`<option value="">No assist</option>`+
-players[team].map((p,i)=>
-`<option value="${i}">
-${escape(p.name)}
-</option>`
-).join("");
-
-footballTeam.innerHTML=`
-<option value="A">${escape(game.teamA)}</option>
-<option value="B">${escape(game.teamB)}</option>
-`;
-
-}
+/* ---------- FOOTBALL STATS ---------- */
 
 function renderFootballStats(){
 
-let html="";
+ let html="";
 
-["A","B"].forEach(team=>{
+ ["A","B"].forEach(t=>{
 
-html+=`<h3>${escape(
-team==="A"?game.teamA:game.teamB
-)}</h3>`;
+  html+=`<h3>${safe(t==="A"?game.teamA:game.teamB)}</h3>`;
 
-players[team].forEach(p=>{
+  players[t].forEach(p=>{
 
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-⚽ ${p.goals}
-🎯 ${p.assists}
-🚫 ${p.fouls}
-🟨 ${p.yellow}
-🟥 ${p.red}
-</span>
-</div>`;
+   html+=`
+   <div class="stat">
+    <span><b>${safe(p.name)}</b></span>
+    <span>
+     ⚽ ${p.goals}
+     🎯 ${p.assists}
+     🚫 ${p.fouls}
+     🟨 ${p.yellow}
+     🟥 ${p.red}
+     🚩 ${p.corners}
+    </span>
+   </div>`;
+  });
+ });
 
-});
-
-});
-
-footballStats.innerHTML=html;
-
+ footballStats.innerHTML=
+ html||`<p class="muted">Add players before starting a match.</p>`;
 }
 
 
-/* CRICKET STATS */
+/* ---------- CRICKET STATS ---------- */
 
 function renderBatting(){
 
-let team=
-game.innings===1?"A":"B";
+ let team=battingTeam();
 
-let html="";
-
-players[team].forEach(p=>{
-
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-${p.runs} runs |
-${p.balls} balls |
-4s: ${p.fours} |
-6s: ${p.sixes}
-</span>
-</div>`;
-
-});
-
-battingStats.innerHTML=html;
-
+ battingStats.innerHTML=
+ players[team].map(p=>
+ `<div class="stat">
+  <span><b>${safe(p.name)}</b></span>
+  <span>
+   ${p.runs} R •
+   ${p.balls} B •
+   ${p.fours} 4s •
+   ${p.sixes} 6s
+  </span>
+ </div>`
+ ).join("");
 }
 
 
 function renderBowling(){
 
-let team=
-game.innings===1?"B":"A";
+ let team=bowlingTeam();
 
-let html="";
-
-players[team].forEach(p=>{
-
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-Wickets: ${p.wickets} |
-Runs: ${p.runs}
-</span>
-</div>`;
-
-});
-
-bowlingStats.innerHTML=html;
-
+ bowlingStats.innerHTML=
+ players[team].map(p=>
+ `<div class="stat">
+  <span><b>${safe(p.name)}</b></span>
+  <span>
+   ${p.wickets} W •
+   ${p.runs} R
+  </span>
+ </div>`
+ ).join("");
 }
 
 
-/* EVENTS */
+/* ---------- EVENTS ---------- */
 
 function renderEvents(){
 
-events.innerHTML=
-game.events.length?
-
-game.events.map((e,i)=>
-`<div class="event">
-${i+1}. ${escape(e)}
-</div>`
-).join("")
-
-:"No events yet.";
-
+ events.innerHTML=
+ game.events.length
+ ?game.events.map((e,i)=>
+ `<div class="event">${i+1}. ${safe(e)}</div>`
+ ).join("")
+ :`<p class="muted">No events yet.</p>`;
 }
 
 
-/* FINISH */
+/* ---------- FINISH ---------- */
 
-function finishMatch(){
+finish.onclick=()=>{
 
-let result;
+ let result;
 
-if(sport==="football"){
+ if(sport==="football"){
 
-result=
-game.teamA+" "+game.scoreA+
-" - "+
-game.scoreB+" "+game.teamB;
+  result=
+   `${game.teamA} ${game.scoreA} - ${game.scoreB} ${game.teamB}`;
 
-}
+ }else{
 
-else{
+  result=
+   `${game.teamA} ${game.runs[0]}/${game.wickets[0]} • `+
+   `${game.teamB} ${game.runs[1]}/${game.wickets[1]}`;
+ }
 
-result=
-game.teamA+" "+game.runs[0]+"/"+
-game.wickets[0]+
-" | "+
-game.teamB+" "+game.runs[1]+"/"+
-game.wickets[1];
+ saved.unshift({
+  sport,
+  match:`${game.teamA} vs ${game.teamB}`,
+  score:result,
+  date:new Date().toLocaleString()
+ });
 
-}
+ localStorage.setItem(
+  "grvHistory",
+  JSON.stringify(saved)
+ );
 
-history.unshift({
+ alert("Match saved successfully 🔥");
 
-sport:sport,
-match:game.teamA+" vs "+game.teamB,
-score:result,
-date:new Date().toLocaleString()
-
-});
-
-localStorage.setItem(
-"grvHistory",
-JSON.stringify(history)
-);
-
-alert("Match saved successfully 🔥");
-
-renderHistory();
-
-}
+ renderHistory();
+};
 
 
 function renderHistory(){
 
-historyBox.innerHTML=
-history.length?
-
-history.map(x=>
-`<div class="event">
-<b>${x.sport==="football"?"⚽":"🏏"}
-${escape(x.match)}</b><br>
-${escape(x.score)}<br>
-<small>${escape(x.date)}</small>
-</div>`
-).join("")
-
-:"No saved matches.";
-
+ history.innerHTML=
+ saved.length
+ ?saved.map(x=>
+ `<div class="event">
+  <b>${x.sport==="football"?"⚽":"🏏"} ${safe(x.match)}</b>
+  <br>${safe(x.score)}
+  <br><small class="muted">${safe(x.date)}</small>
+ </div>`
+ ).join("")
+ :`<p class="muted">No saved matches yet.</p>`;
 }
 
 
-/* ESCAPE */
+/* ---------- SECURITY ---------- */
 
-function escape(value){
+function safe(value){
 
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
+ return String(value)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 }
 
 
-/* HISTORY */
+/* INITIAL */
 
-let historyBox=document.getElementById("history");
-
+renderPlayers();
 renderHistory();
 
 </script>
