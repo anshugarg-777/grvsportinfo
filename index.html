@@ -3,1097 +3,2258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
 <title>GRVSPORTINFO</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#070a10;
-color:#fff;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-header{
-background:#101722;
-padding:20px;
-text-align:center;
-border-bottom:1px solid #263041;
+
+:root {
+    --bg: #0b0f17;
+    --panel: #111827;
+    --panel2: #182131;
+    --border: #263244;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --accent: #ffffff;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --warning: #f59e0b;
 }
-header h1{margin:0;font-size:30px}
-header span{color:#55dfff}
-.container{max-width:1100px;margin:auto;padding:18px}
-.card{
-background:#111824;
-border:1px solid #273142;
-border-radius:18px;
-padding:18px;
-margin-bottom:16px;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
 }
-button{
-border:0;
-border-radius:11px;
-padding:11px 14px;
-margin:4px;
-background:#222d3e;
-color:white;
-font-weight:bold;
-cursor:pointer;
+
+button,
+input,
+select {
+    font: inherit;
 }
-button:hover{background:#304057}
-.primary{background:#55dfff;color:#061018}
-.danger{background:#7e2638}
-.green{background:#16734b}
-.tabs{display:flex;gap:8px}
-.tabs button{flex:1}
-.active{background:#55dfff!important;color:#061018!important}
-input,select{
-width:100%;
-padding:12px;
-margin:5px 0;
-border-radius:10px;
-border:1px solid #303c50;
-background:#0a1018;
-color:#fff;
+
+button {
+    cursor: pointer;
 }
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
+
+.hidden {
+    display: none !important;
 }
-.players{
-display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-top:8px;
+
+/* =========================
+   WELCOME
+========================= */
+
+#welcomeScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
-.player{
-background:#222d3e;
-padding:7px 11px;
-border-radius:20px;
+
+.welcome-card {
+    width: min(600px, 100%);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 45px 30px;
+    text-align: center;
+    box-shadow: 0 20px 70px rgba(0,0,0,.35);
 }
-.score{
-font-size:48px;
-font-weight:bold;
-text-align:center;
-margin:10px;
+
+.logo {
+    font-size: clamp(38px, 8vw, 64px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin-bottom: 12px;
 }
-.center{text-align:center}
-.controls{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:7px;
+
+.welcome-card p {
+    color: var(--muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
 }
-.event{
-padding:10px;
-border-bottom:1px solid #263041;
+
+.primary-btn {
+    border: 0;
+    background: white;
+    color: #111827;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 800;
+    transition: .2s;
 }
-.stat{
-display:flex;
-justify-content:space-between;
-padding:9px;
-border-bottom:1px solid #263041;
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    opacity: .9;
 }
-.hidden{display:none!important}
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-background:#243044;
-margin:3px;
-font-size:13px;
+
+/* =========================
+   APP
+========================= */
+
+#app {
+    min-height: 100vh;
 }
-@media(max-width:700px){
-.grid{grid-template-columns:1fr}
-.controls{grid-template-columns:repeat(2,1fr)}
-.score{font-size:38px}
+
+header {
+    height: 70px;
+    background: #0d131e;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.header-logo {
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -.5px;
+}
+
+.menu-btn {
+    display: none;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: white;
+    border-radius: 10px;
+    padding: 9px 12px;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.sidebar {
+    width: 230px;
+    border-right: 1px solid var(--border);
+    background: #0d131e;
+    padding: 18px 12px;
+    flex-shrink: 0;
+}
+
+.nav-btn {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 13px 14px;
+    margin-bottom: 5px;
+    text-align: left;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--panel2);
+    color: white;
+}
+
+.content {
+    flex: 1;
+    padding: 25px;
+    max-width: 1400px;
+    margin: auto;
+    width: 100%;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    margin-bottom: 7px;
+    font-size: 30px;
+}
+
+.page-subtitle {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 18px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 18px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.stat {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.btn {
+    border: 1px solid var(--border);
+    background: var(--panel2);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background: #202b3c;
+}
+
+.btn.success {
+    background: #14532d;
+    border-color: #166534;
+}
+
+.btn.danger {
+    background: #451a1a;
+    border-color: #7f1d1d;
+}
+
+.btn.warning {
+    background: #451f05;
+    border-color: #78350f;
+}
+
+.btn.white {
+    background: white;
+    color: #111827;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+    background: #0d131e;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 11px 12px;
+    border-radius: 9px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #64748b;
+}
+
+/* =========================
+   MATCH
+========================= */
+
+.scoreboard {
+    background: linear-gradient(145deg,#111827,#0e1521);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 18px;
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.score-main {
+    text-align: center;
+    padding: 15px;
+}
+
+.score-main .score {
+    font-size: clamp(48px, 8vw, 82px);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.score-main .score-label {
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+.team-score {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.team-box {
+    background: #0c131f;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-name {
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.team-number {
+    font-size: 35px;
+    font-weight: 900;
+}
+
+/* =========================
+   EVENT LOG
+========================= */
+
+.event-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.event {
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.event:last-child {
+    border-bottom: 0;
+}
+
+.event-time {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================
+   PLAYER LIST
+========================= */
+
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0d131e;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-number {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--panel2);
+    font-weight: 800;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.history-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 17px;
+    border-radius: 14px;
+    margin-bottom: 10px;
+}
+
+.history-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.empty {
+    padding: 35px;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+#toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: white;
+    color: #111827;
+    padding: 13px 18px;
+    border-radius: 10px;
+    font-weight: 800;
+    box-shadow: 0 10px 35px rgba(0,0,0,.4);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: .25s;
+    z-index: 100;
+}
+
+#toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 70px;
+        bottom: 0;
+        z-index: 30;
+        transition: .25s;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .grid,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 0 15px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-score {
+        grid-template-columns: 1fr;
+    }
+
+    .scoreboard {
+        padding: 17px;
+    }
+
+    .page-title {
+        font-size: 25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     WELCOME
+========================= -->
+
+<section id="welcomeScreen">
+    <div class="welcome-card">
+        <div class="logo">GRVSPORTINFO</div>
+        <p>
+            Your simple football and cricket match manager.
+            Track live scores, players, events and match history.
+        </p>
+        <button class="primary-btn" id="enterAppBtn">
+            Enter GRVSPORTINFO
+        </button>
+    </div>
+</section>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div id="app" class="hidden">
+
 <header>
-<h1>GRV<span>SPORTINFO</span></h1>
-<p>Football & Cricket Match Manager</p>
+    <div class="header-logo">GRVSPORTINFO</div>
+    <button class="menu-btn" id="menuBtn">☰</button>
 </header>
 
-<div class="container">
+<div class="layout">
 
-<!-- SETUP -->
+<aside class="sidebar" id="sidebar">
 
-<section id="setup" class="card">
+    <button class="nav-btn active" data-page="home">⌂ Home</button>
+    <button class="nav-btn" data-page="players">👥 Players</button>
+    <button class="nav-btn" data-page="football">⚽ Football</button>
+    <button class="nav-btn" data-page="cricket">🏏 Cricket</button>
+    <button class="nav-btn" data-page="history">📜 History</button>
 
-<h2>Choose Sport</h2>
+</aside>
 
-<div class="tabs">
-<button id="footballTab" class="active">⚽ Football</button>
-<button id="cricketTab">🏏 Cricket</button>
-</div>
+<main class="content">
 
-<h2>Match Setup</h2>
+<!-- ================= HOME ================= -->
 
-<div class="grid">
-<div>
-<label>Team A</label>
-<input id="teamA" value="Team A">
-</div>
+<section class="page active" id="home">
 
-<div>
-<label>Team B</label>
-<input id="teamB" value="Team B">
-</div>
-</div>
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">
+        Welcome to GRVSPORTINFO.
+    </p>
 
-<div id="oversSetup" class="hidden">
-<label>Overs per innings</label>
-<input id="totalOvers" type="number" min="1" value="10">
-</div>
+    <div class="grid-3">
 
-<div class="grid">
+        <div class="card">
+            <h3>Football Matches</h3>
+            <div class="stat" id="footballCount">0</div>
+            <div class="muted">Saved matches</div>
+        </div>
 
-<div>
-<h3>Team A Players</h3>
-<input id="playerAInput" placeholder="Player name">
-<button onclick="addPlayer('A')">➕ Add Player</button>
-<div id="playersA" class="players"></div>
-</div>
+        <div class="card">
+            <h3>Cricket Matches</h3>
+            <div class="stat" id="cricketCount">0</div>
+            <div class="muted">Saved matches</div>
+        </div>
 
-<div>
-<h3>Team B Players</h3>
-<input id="playerBInput" placeholder="Player name">
-<button onclick="addPlayer('B')">➕ Add Player</button>
-<div id="playersB" class="players"></div>
-</div>
+        <div class="card">
+            <h3>Total Players</h3>
+            <div class="stat" id="playerCount">0</div>
+            <div class="muted">Registered players</div>
+        </div>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<button class="primary" onclick="startMatch()">
-▶ START MATCH
-</button>
+    <div class="grid">
+
+        <div class="card">
+            <h3>Start Football</h3>
+            <p class="muted" style="margin-bottom:15px">
+                Track goals, fouls, cards and team scores.
+            </p>
+            <button class="btn white" data-go="football">
+                Open Football
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>Start Cricket</h3>
+            <p class="muted" style="margin-bottom:15px">
+                Track runs, wickets, balls, overs and extras.
+            </p>
+            <button class="btn white" data-go="cricket">
+                Open Cricket
+            </button>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- MATCH -->
+<!-- ================= PLAYERS ================= -->
 
-<section id="match" class="hidden">
+<section class="page" id="players">
 
-<div class="card center">
+    <h1 class="page-title">Players</h1>
+    <p class="page-subtitle">
+        Create and manage your players.
+    </p>
 
-<h2 id="matchTitle"></h2>
+    <div class="grid">
 
-<div id="mainScore" class="score">
-0 - 0
-</div>
+        <div class="card">
 
-<p id="matchStatus"></p>
+            <h3>Add Player</h3>
 
-</div>
+            <form id="playerForm">
 
+                <div class="field" style="margin-bottom:12px">
+                    <label>Name</label>
+                    <input
+                        id="playerName"
+                        type="text"
+                        placeholder="Player name"
+                        required
+                    >
+                </div>
 
-<!-- FOOTBALL -->
+                <div class="field" style="margin-bottom:15px">
+                    <label>Team</label>
+                    <input
+                        id="playerTeam"
+                        type="text"
+                        placeholder="Team name"
+                        required
+                    >
+                </div>
 
-<div id="footballPanel">
+                <button class="btn white" type="submit">
+                    Add Player
+                </button>
 
-<div class="card">
+            </form>
 
-<h2>⚽ Football Events</h2>
+        </div>
 
-<label>Team</label>
-<select id="footballTeam"></select>
+        <div class="card">
 
-<label>Player</label>
-<select id="footballPlayer"></select>
+            <h3>Player List</h3>
 
-<label>Assist (optional)</label>
-<select id="assistPlayer"></select>
+            <div id="playerList" class="player-list">
+            </div>
 
-<div class="controls">
+        </div>
 
-<button onclick="footballGoal(1)">⚽ + Goal</button>
-<button onclick="footballGoal(-1)">⚽ - Goal</button>
-
-<button onclick="footballEvent('Assist')">
-🎯 Assist
-</button>
-
-<button onclick="footballEvent('Foul')">
-🚫 Foul
-</button>
-
-<button onclick="footballEvent('Yellow Card')">
-🟨 Yellow
-</button>
-
-<button onclick="footballEvent('Red Card')">
-🟥 Red
-</button>
-
-<button onclick="footballEvent('Corner')">
-🚩 Corner
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>👥 Football Player Stats</h2>
-
-<div id="footballStats"></div>
-
-</div>
-
-</div>
-
-
-<!-- CRICKET -->
-
-<div id="cricketPanel" class="hidden">
-
-<div class="card center">
-
-<h2 id="inningsTitle">1st Innings</h2>
-
-<div id="cricketScore" class="score">
-0 / 0
-</div>
-
-<p id="oversDisplay">Overs: 0.0</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>Current Players</h3>
-
-<div class="grid">
-
-<div>
-<label>Striker</label>
-<select id="striker"></select>
-</div>
-
-<div>
-<label>Non-Striker</label>
-<select id="nonStriker"></select>
-</div>
-
-</div>
-
-<label>Bowler</label>
-<select id="bowler"></select>
-
-</div>
-
-
-<div class="card">
-
-<h2>🏏 Ball</h2>
-
-<div class="controls">
-
-<button onclick="cricketBall(0)">Dot</button>
-<button onclick="cricketBall(1)">+1</button>
-<button onclick="cricketBall(2)">+2</button>
-<button onclick="cricketBall(3)">+3</button>
-<button onclick="cricketBall(4)">FOUR</button>
-<button onclick="cricketBall(6)">SIX</button>
-
-<button onclick="cricketExtra('wide')">
-Wide
-</button>
-
-<button onclick="cricketExtra('no-ball')">
-No Ball
-</button>
-
-<button onclick="cricketExtra('bye')">
-Bye
-</button>
-
-<button onclick="cricketExtra('leg-bye')">
-Leg Bye
-</button>
-
-<button onclick="cricketWicket('Wicket')">
-🏏 Wicket
-</button>
-
-<button onclick="cricketWicket('LBW')">
-LBW
-</button>
-
-</div>
-
-<br>
-
-<button onclick="changeRuns(-1)">➖ Decrease Run</button>
-<button onclick="changeRuns(1)">➕ Increase Run</button>
-
-<br>
-
-<button onclick="changeWicket(-1)">
-➖ Decrease Wicket
-</button>
-
-<button onclick="changeWicket(1)">
-➕ Increase Wicket
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2>📊 Current Batting</h2>
-<div id="battingStats"></div>
-
-</div>
-
-
-<div class="card">
-
-<h2>🎯 Bowling</h2>
-<div id="bowlingStats"></div>
-
-</div>
-
-
-<div class="card center">
-
-<button class="green" onclick="endInnings()">
-🏁 END INNINGS
-</button>
-
-</div>
-
-</div>
-
-
-<!-- EVENTS -->
-
-<div class="card">
-
-<h2>📋 Match Timeline</h2>
-
-<div id="events">
-No events yet.
-</div>
-
-</div>
-
-
-<div class="card center">
-
-<button class="danger" onclick="finishMatch()">
-🏆 FINISH MATCH
-</button>
-
-<button onclick="location.reload()">
-🔄 NEW MATCH
-</button>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- HISTORY -->
+<!-- ================= FOOTBALL ================= -->
 
-<section class="card">
+<section class="page" id="football">
 
-<h2>📚 Match History</h2>
+    <h1 class="page-title">Football</h1>
+    <p class="page-subtitle">
+        Live football match manager.
+    </p>
 
-<div id="history"></div>
+    <div class="card" style="margin-bottom:18px">
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Home Team</label>
+                <input id="footballHome" value="Home">
+            </div>
+
+            <div class="field">
+                <label>Away Team</label>
+                <input id="footballAway" value="Away">
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="action-row">
+            <button class="btn white" id="startFootball">
+                Start New Match
+            </button>
+
+            <button class="btn danger" id="resetFootball">
+                Reset
+            </button>
+
+            <button class="btn" id="undoFootball">
+                Undo
+            </button>
+
+            <button class="btn success" id="finishFootball">
+                Finish Match
+            </button>
+        </div>
+
+    </div>
+
+    <div class="scoreboard">
+
+        <div class="score-header">
+            <div>
+                <strong id="footballStatus">Not started</strong>
+                <div class="muted" id="footballTimer">00:00</div>
+            </div>
+
+            <div class="muted">
+                Football
+            </div>
+        </div>
+
+        <div class="team-score">
+
+            <div class="team-box">
+                <div class="team-name" id="footballHomeName">
+                    Home
+                </div>
+
+                <div class="team-number" id="footballHomeScore">
+                    0
+                </div>
+
+                <div class="action-row" style="justify-content:center;margin-top:14px">
+
+                    <button class="btn success" id="homeGoal">
+                        + Goal
+                    </button>
+
+                    <button class="btn" id="homeFoul">
+                        + Foul
+                    </button>
+
+                </div>
+            </div>
+
+
+            <div class="team-box">
+
+                <div class="team-name" id="footballAwayName">
+                    Away
+                </div>
+
+                <div class="team-number" id="footballAwayScore">
+                    0
+                </div>
+
+                <div class="action-row" style="justify-content:center;margin-top:14px">
+
+                    <button class="btn success" id="awayGoal">
+                        + Goal
+                    </button>
+
+                    <button class="btn" id="awayFoul">
+                        + Foul
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Football Events</h3>
+
+            <div class="action-row" style="margin-bottom:15px">
+
+                <button class="btn warning" id="homeYellow">
+                    Home 🟨
+                </button>
+
+                <button class="btn warning" id="awayYellow">
+                    Away 🟨
+                </button>
+
+                <button class="btn danger" id="homeRed">
+                    Home 🟥
+                </button>
+
+                <button class="btn danger" id="awayRed">
+                    Away 🟥
+                </button>
+
+            </div>
+
+            <div id="footballEvents" class="event-list">
+                <div class="empty">
+                    No events yet.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Match Information</h3>
+
+            <div class="event">
+                <span>Home goals</span>
+                <strong id="homeGoalStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Away goals</span>
+                <strong id="awayGoalStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Home fouls</span>
+                <strong id="homeFoulStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Away fouls</span>
+                <strong id="awayFoulStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Cards</span>
+                <strong id="cardStat">0</strong>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
+
+<!-- ================= CRICKET ================= -->
+
+<section class="page" id="cricket">
+
+    <h1 class="page-title">Cricket</h1>
+    <p class="page-subtitle">
+        Live cricket scoring system.
+    </p>
+
+    <div class="card" style="margin-bottom:18px">
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Batting Team</label>
+                <input id="cricketTeam" value="Team A">
+            </div>
+
+            <div class="field">
+                <label>Overs</label>
+                <input
+                    id="cricketOversLimit"
+                    type="number"
+                    min="1"
+                    value="20"
+                >
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="action-row">
+
+            <button class="btn white" id="startCricket">
+                Start New Innings
+            </button>
+
+            <button class="btn danger" id="resetCricket">
+                Reset
+            </button>
+
+            <button class="btn" id="undoCricket">
+                Undo
+            </button>
+
+            <button class="btn success" id="finishCricket">
+                Finish Innings
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="scoreboard">
+
+        <div class="score-header">
+
+            <div>
+                <strong id="cricketStatus">
+                    Not started
+                </strong>
+
+                <div class="muted">
+                    <span id="cricketTeamName">
+                        Team A
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                <strong id="cricketScore">
+                    0/0
+                </strong>
+
+                <div class="muted">
+                    <span id="cricketOvers">
+                        0.0
+                    </span>
+                    overs
+                </div>
+            </div>
+
+        </div>
+
+        <div class="action-row">
+
+            <button class="btn white" data-run="0">0 Run</button>
+            <button class="btn" data-run="1">1 Run</button>
+            <button class="btn" data-run="2">2 Runs</button>
+            <button class="btn" data-run="3">3 Runs</button>
+            <button class="btn success" data-run="4">4 Runs</button>
+            <button class="btn success" data-run="6">6 Runs</button>
+
+            <button class="btn warning" id="wideBtn">
+                Wide
+            </button>
+
+            <button class="btn warning" id="noBallBtn">
+                No Ball
+            </button>
+
+            <button class="btn danger" id="wicketBtn">
+                Wicket
+            </button>
+
+            <button class="btn danger" id="lbwBtn">
+                LBW
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Batting Statistics</h3>
+
+            <div class="event">
+                <span>Total Runs</span>
+                <strong id="runsStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Wickets</span>
+                <strong id="wicketStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Overs</span>
+                <strong id="overStat">0.0</strong>
+            </div>
+
+            <div class="event">
+                <span>Balls</span>
+                <strong id="ballStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Fours</span>
+                <strong id="fourStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>Sixes</span>
+                <strong id="sixStat">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Extras</h3>
+
+            <div class="event">
+                <span>Wides</span>
+                <strong id="wideStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>No Balls</span>
+                <strong id="noBallStat">0</strong>
+            </div>
+
+            <div class="event">
+                <span>LBW Wickets</span>
+                <strong id="lbwStat">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <h3>Cricket Events</h3>
+
+        <div id="cricketEvents" class="event-list">
+            <div class="empty">
+                No events yet.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HISTORY ================= -->
+
+<section class="page" id="history">
+
+    <h1 class="page-title">Match History</h1>
+
+    <p class="page-subtitle">
+        Your completed matches are saved automatically.
+    </p>
+
+    <div class="action-row" style="margin-bottom:18px">
+
+        <button class="btn danger" id="clearHistory">
+            Clear History
+        </button>
+
+    </div>
+
+    <div id="historyList">
+        <div class="empty">
+            No completed matches yet.
+        </div>
+    </div>
+
+</section>
+
+</main>
 </div>
+</div>
+
+
+<div id="toast"></div>
 
 
 <script>
+"use strict";
 
-let sport="football";
+/* =========================================================
+   STORAGE
+========================================================= */
 
-let players={
-A:[],
-B:[]
+const STORAGE_KEY = "grvsportinfo_v2";
+
+const defaultData = {
+    players: [],
+    history: [],
+    football: null,
+    cricket: null
 };
 
-let game=null;
+let data = loadData();
 
-let history=
-JSON.parse(localStorage.getItem("grvHistory")||"[]");
+function loadData() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if (!saved) {
+            return structuredClone(defaultData);
+        }
+
+        const parsed = JSON.parse(saved);
+
+        return {
+            players: Array.isArray(parsed.players) ? parsed.players : [],
+            history: Array.isArray(parsed.history) ? parsed.history : [],
+            football: parsed.football || null,
+            cricket: parsed.cricket || null
+        };
+
+    } catch (error) {
+        console.error("Storage error:", error);
+        return structuredClone(defaultData);
+    }
+}
+
+function saveData() {
+    try {
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+    } catch (error) {
+        console.error("Could not save:", error);
+    }
+}
 
 
-/* SPORT */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-document.getElementById("footballTab").onclick=()=>{
-sport="football";
+function $(id) {
+    return document.getElementById(id);
+}
 
-footballTab.classList.add("active");
-cricketTab.classList.remove("active");
+function showToast(message) {
+    const toast = $("toast");
 
-oversSetup.classList.add("hidden");
-};
+    toast.textContent = message;
+    toast.classList.add("show");
 
-document.getElementById("cricketTab").onclick=()=>{
-sport="cricket";
+    clearTimeout(showToast.timer);
 
-cricketTab.classList.add("active");
-footballTab.classList.remove("active");
+    showToast.timer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1800);
+}
 
-oversSetup.classList.remove("hidden");
-};
+function now() {
+    return new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+}
+
+function deepCopy(object) {
+    return JSON.parse(JSON.stringify(object));
+}
 
 
-/* PLAYERS */
+/* =========================================================
+   WELCOME / APP
+========================================================= */
 
-function addPlayer(team){
+$("enterAppBtn").addEventListener("click", () => {
 
-let input=document.getElementById(
-team==="A"?"playerAInput":"playerBInput"
-);
+    $("welcomeScreen").classList.add("hidden");
+    $("app").classList.remove("hidden");
 
-let name=input.value.trim();
+    updateDashboard();
 
-if(!name)return;
-
-players[team].push({
-name:name,
-goals:0,
-assists:0,
-fouls:0,
-yellow:0,
-red:0,
-corners:0,
-runs:0,
-balls:0,
-fours:0,
-sixes:0,
-wickets:0
 });
 
-input.value="";
+function openPage(pageName) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.querySelectorAll(".nav-btn").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    const page = $(pageName);
+
+    if (!page) return;
+
+    page.classList.add("active");
+
+    const nav = document.querySelector(
+        `.nav-btn[data-page="${pageName}"]`
+    );
+
+    if (nav) {
+        nav.classList.add("active");
+    }
+
+    $("sidebar").classList.remove("open");
+
+    if (pageName === "players") {
+        renderPlayers();
+    }
+
+    if (pageName === "history") {
+        renderHistory();
+    }
+
+    if (pageName === "football") {
+        renderFootball();
+    }
+
+    if (pageName === "cricket") {
+        renderCricket();
+    }
+
+    updateDashboard();
+}
+
+document.querySelectorAll(".nav-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+        openPage(button.dataset.page);
+    });
+
+});
+
+document.querySelectorAll("[data-go]").forEach(button => {
+
+    button.addEventListener("click", () => {
+        openPage(button.dataset.go);
+    });
+
+});
+
+$("menuBtn").addEventListener("click", () => {
+    $("sidebar").classList.toggle("open");
+});
+
+
+/* =========================================================
+   PLAYERS
+========================================================= */
+
+$("playerForm").addEventListener("submit", event => {
+
+    event.preventDefault();
+
+    const name = $("playerName").value.trim();
+    const team = $("playerTeam").value.trim();
+
+    if (!name || !team) {
+        showToast("Enter player name and team.");
+        return;
+    }
+
+    data.players.push({
+        id: Date.now().toString(),
+        name,
+        team
+    });
+
+    saveData();
+
+    $("playerName").value = "";
+    $("playerTeam").value = "";
+
+    renderPlayers();
+    updateDashboard();
+
+    showToast("Player added.");
+});
+
+function renderPlayers() {
+
+    const container = $("playerList");
+
+    if (data.players.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No players added yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    data.players.forEach((player, index) => {
+
+        const element = document.createElement("div");
+
+        element.className = "player";
+
+        element.innerHTML = `
+            <div class="player-info">
+                <div class="player-number">
+                    ${index + 1}
+                </div>
+
+                <div>
+                    <strong>${escapeHTML(player.name)}</strong>
+                    <div class="muted">
+                        ${escapeHTML(player.team)}
+                    </div>
+                </div>
+            </div>
+
+            <button
+                class="btn danger"
+                data-delete-player="${player.id}"
+            >
+                Delete
+            </button>
+        `;
+
+        container.appendChild(element);
+    });
+
+    container.querySelectorAll("[data-delete-player]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id = button.dataset.deletePlayer;
+
+            data.players = data.players.filter(
+                player => player.id !== id
+            );
+
+            saveData();
+            renderPlayers();
+            updateDashboard();
+
+            showToast("Player deleted.");
+        });
+
+    });
+}
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* =========================================================
+   FOOTBALL
+========================================================= */
+
+function newFootballMatch() {
+
+    const home = $("footballHome").value.trim() || "Home";
+    const away = $("footballAway").value.trim() || "Away";
+
+    data.football = {
+        home,
+        away,
+        homeGoals: 0,
+        awayGoals: 0,
+        homeFouls: 0,
+        awayFouls: 0,
+        yellow: 0,
+        red: 0,
+        started: true,
+        finished: false,
+        startTime: Date.now(),
+        events: [],
+        undoStack: []
+    };
+
+    saveData();
+    renderFootball();
+
+    showToast("Football match started.");
+}
+
+$("startFootball").addEventListener(
+    "click",
+    newFootballMatch
+);
+
+$("resetFootball").addEventListener("click", () => {
+
+    if (!confirm("Reset the current football match?")) {
+        return;
+    }
+
+    data.football = null;
+
+    saveData();
+    renderFootball();
+
+    showToast("Football reset.");
+});
+
+
+function footballAction(action, team) {
+
+    if (!data.football || !data.football.started) {
+        showToast("Start a football match first.");
+        return;
+    }
+
+    if (data.football.finished) {
+        showToast("This match is already finished.");
+        return;
+    }
+
+    data.football.undoStack.push(
+        deepCopy(data.football)
+    );
+
+    const f = data.football;
+
+    if (action === "goal") {
+
+        if (team === "home") {
+            f.homeGoals++;
+        } else {
+            f.awayGoals++;
+        }
+
+        addFootballEvent(
+            `${team === "home" ? f.home : f.away} scored a goal`
+        );
+    }
+
+    if (action === "foul") {
+
+        if (team === "home") {
+            f.homeFouls++;
+        } else {
+            f.awayFouls++;
+        }
+
+        addFootballEvent(
+            `${team === "home" ? f.home : f.away} foul`
+        );
+    }
+
+    if (action === "yellow") {
+
+        f.yellow++;
+
+        addFootballEvent(
+            `${team === "home" ? f.home : f.away} received a yellow card`
+        );
+    }
+
+    if (action === "red") {
+
+        f.red++;
+
+        addFootballEvent(
+            `${team === "home" ? f.home : f.away} received a red card`
+        );
+    }
+
+    saveData();
+    renderFootball();
+}
+
+function addFootballEvent(text) {
+
+    data.football.events.unshift({
+        text,
+        time: now()
+    });
+}
+
+$("homeGoal").addEventListener(
+    "click",
+    () => footballAction("goal", "home")
+);
+
+$("awayGoal").addEventListener(
+    "click",
+    () => footballAction("goal", "away")
+);
+
+$("homeFoul").addEventListener(
+    "click",
+    () => footballAction("foul", "home")
+);
+
+$("awayFoul").addEventListener(
+    "click",
+    () => footballAction("foul", "away")
+);
+
+$("homeYellow").addEventListener(
+    "click",
+    () => footballAction("yellow", "home")
+);
+
+$("awayYellow").addEventListener(
+    "click",
+    () => footballAction("yellow", "away")
+);
+
+$("homeRed").addEventListener(
+    "click",
+    () => footballAction("red", "home")
+);
+
+$("awayRed").addEventListener(
+    "click",
+    () => footballAction("red", "away")
+);
+
+$("undoFootball").addEventListener("click", () => {
+
+    const f = data.football;
+
+    if (!f || !f.undoStack || f.undoStack.length === 0) {
+        showToast("Nothing to undo.");
+        return;
+    }
+
+    const previous = f.undoStack.pop();
+
+    data.football = previous;
+
+    saveData();
+    renderFootball();
+
+    showToast("Last football action undone.");
+});
+
+
+$("finishFootball").addEventListener("click", () => {
+
+    if (!data.football || !data.football.started) {
+        showToast("Start a match first.");
+        return;
+    }
+
+    if (data.football.finished) {
+        showToast("Match already finished.");
+        return;
+    }
+
+    data.football.finished = true;
+
+    data.history.unshift({
+        id: Date.now().toString(),
+        sport: "Football",
+        date: new Date().toLocaleString(),
+        title: `${data.football.home} ${data.football.homeGoals} - ${data.football.awayGoals} ${data.football.away}`,
+        details:
+            `${data.football.home} vs ${data.football.away}`
+    });
+
+    saveData();
+    renderFootball();
+    updateDashboard();
+
+    showToast("Football match saved.");
+});
+
+
+function renderFootball() {
+
+    const f = data.football;
+
+    if (!f) {
+
+        $("footballStatus").textContent = "Not started";
+        $("footballHomeScore").textContent = "0";
+        $("footballAwayScore").textContent = "0";
+        $("footballHomeName").textContent = $("footballHome").value || "Home";
+        $("footballAwayName").textContent = $("footballAway").value || "Away";
+
+        $("homeGoalStat").textContent = "0";
+        $("awayGoalStat").textContent = "0";
+        $("homeFoulStat").textContent = "0";
+        $("awayFoulStat").textContent = "0";
+        $("cardStat").textContent = "0";
+
+        renderFootballEvents([]);
+
+        return;
+    }
+
+    $("footballHomeName").textContent = f.home;
+    $("footballAwayName").textContent = f.away;
+
+    $("footballHomeScore").textContent = f.homeGoals;
+    $("footballAwayScore").textContent = f.awayGoals;
+
+    $("homeGoalStat").textContent = f.homeGoals;
+    $("awayGoalStat").textContent = f.awayGoals;
+    $("homeFoulStat").textContent = f.homeFouls;
+    $("awayFoulStat").textContent = f.awayFouls;
+    $("cardStat").textContent = f.yellow + f.red;
+
+    $("footballStatus").textContent =
+        f.finished ? "Finished" : "Live";
+
+    const elapsed = f.startTime
+        ? Math.max(0, Math.floor((Date.now() - f.startTime) / 1000))
+        : 0;
+
+    $("footballTimer").textContent =
+        formatTime(elapsed);
+
+    renderFootballEvents(f.events || []);
+}
+
+function renderFootballEvents(events) {
+
+    const container = $("footballEvents");
+
+    if (!events || events.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No events yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = events.map(event => `
+        <div class="event">
+            <span>${escapeHTML(event.text)}</span>
+            <span class="event-time">
+                ${escapeHTML(event.time)}
+            </span>
+        </div>
+    `).join("");
+}
+
+function formatTime(totalSeconds) {
+
+    const minutes =
+        Math.floor(totalSeconds / 60)
+            .toString()
+            .padStart(2, "0");
+
+    const seconds =
+        (totalSeconds % 60)
+            .toString()
+            .padStart(2, "0");
+
+    return `${minutes}:${seconds}`;
+}
+
+
+/* =========================================================
+   CRICKET
+========================================================= */
+
+function newCricketMatch() {
+
+    const team =
+        $("cricketTeam").value.trim() || "Team A";
+
+    let oversLimit =
+        Number($("cricketOversLimit").value);
+
+    if (!Number.isFinite(oversLimit) || oversLimit < 1) {
+        oversLimit = 20;
+        $("cricketOversLimit").value = "20";
+    }
+
+    data.cricket = {
+        team,
+        oversLimit,
+        runs: 0,
+        wickets: 0,
+        balls: 0,
+        fours: 0,
+        sixes: 0,
+        wides: 0,
+        noBalls: 0,
+        lbw: 0,
+        started: true,
+        finished: false,
+        events: [],
+        undoStack: []
+    };
+
+    saveData();
+    renderCricket();
+
+    showToast("Cricket innings started.");
+}
+
+$("startCricket").addEventListener(
+    "click",
+    newCricketMatch
+);
+
+$("resetCricket").addEventListener("click", () => {
+
+    if (!confirm("Reset the current cricket innings?")) {
+        return;
+    }
+
+    data.cricket = null;
+
+    saveData();
+    renderCricket();
+
+    showToast("Cricket reset.");
+});
+
+
+function cricketSnapshot() {
+
+    return deepCopy(data.cricket);
+}
+
+function pushCricketUndo() {
+
+    if (!data.cricket.undoStack) {
+        data.cricket.undoStack = [];
+    }
+
+    data.cricket.undoStack.push(
+        cricketSnapshot()
+    );
+}
+
+function cricketEvent(text) {
+
+    data.cricket.events.unshift({
+        text,
+        time: now()
+    });
+}
+
+
+function legalBall() {
+
+    data.cricket.balls++;
+}
+
+
+function checkCricketFinished() {
+
+    const c = data.cricket;
+
+    const maxBalls = c.oversLimit * 6;
+
+    if (c.balls >= maxBalls) {
+        c.finished = true;
+        return true;
+    }
+
+    return false;
+}
+
+
+function addRuns(runs) {
+
+    const c = data.cricket;
+
+    if (!c || !c.started) {
+        showToast("Start a cricket innings first.");
+        return;
+    }
+
+    if (c.finished) {
+        showToast("This innings is finished.");
+        return;
+    }
+
+    pushCricketUndo();
+
+    c.runs += runs;
+
+    if (runs === 4) {
+        c.fours++;
+    }
+
+    if (runs === 6) {
+        c.sixes++;
+    }
+
+    legalBall();
+
+    cricketEvent(
+        runs === 0
+            ? "Dot ball"
+            : `${runs} run${runs === 1 ? "" : "s"}`
+    );
+
+    checkCricketFinished();
+
+    saveData();
+    renderCricket();
+}
+
+
+document.querySelectorAll("[data-run]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const runs =
+            Number(button.dataset.run);
+
+        addRuns(runs);
+    });
+
+});
+
+
+$("wideBtn").addEventListener("click", () => {
+
+    const c = data.cricket;
+
+    if (!c || !c.started) {
+        showToast("Start a cricket innings first.");
+        return;
+    }
+
+    if (c.finished) {
+        showToast("This innings is finished.");
+        return;
+    }
+
+    pushCricketUndo();
+
+    c.runs++;
+    c.wides++;
+
+    cricketEvent("Wide +1");
+
+    saveData();
+    renderCricket();
+});
+
+
+$("noBallBtn").addEventListener("click", () => {
+
+    const c = data.cricket;
+
+    if (!c || !c.started) {
+        showToast("Start a cricket innings first.");
+        return;
+    }
+
+    if (c.finished) {
+        showToast("This innings is finished.");
+        return;
+    }
+
+    pushCricketUndo();
+
+    c.runs++;
+    c.noBalls++;
+
+    cricketEvent("No ball +1");
+
+    saveData();
+    renderCricket();
+});
+
+
+function addWicket(type) {
+
+    const c = data.cricket;
+
+    if (!c || !c.started) {
+        showToast("Start a cricket innings first.");
+        return;
+    }
+
+    if (c.finished) {
+        showToast("This innings is finished.");
+        return;
+    }
+
+    pushCricketUndo();
+
+    c.wickets++;
+
+    legalBall();
+
+    if (type === "LBW") {
+        c.lbw++;
+    }
+
+    cricketEvent(
+        type === "LBW"
+            ? "Wicket — LBW"
+            : "Wicket"
+    );
+
+    checkCricketFinished();
+
+    saveData();
+    renderCricket();
+}
+
+
+$("wicketBtn").addEventListener(
+    "click",
+    () => addWicket("Wicket")
+);
+
+$("lbwBtn").addEventListener(
+    "click",
+    () => addWicket("LBW")
+);
+
+
+$("undoCricket").addEventListener("click", () => {
+
+    const c = data.cricket;
+
+    if (!c || !c.undoStack || c.undoStack.length === 0) {
+        showToast("Nothing to undo.");
+        return;
+    }
+
+    const previous = c.undoStack.pop();
+
+    data.cricket = previous;
+
+    saveData();
+    renderCricket();
+
+    showToast("Last cricket action undone.");
+});
+
+
+$("finishCricket").addEventListener("click", () => {
+
+    if (!data.cricket || !data.cricket.started) {
+        showToast("Start an innings first.");
+        return;
+    }
+
+    if (data.cricket.finished) {
+        showToast("Innings already finished.");
+        return;
+    }
+
+    data.cricket.finished = true;
+
+    const c = data.cricket;
+
+    data.history.unshift({
+        id: Date.now().toString(),
+        sport: "Cricket",
+        date: new Date().toLocaleString(),
+        title: `${c.team} ${c.runs}/${c.wickets}`,
+        details:
+            `${c.team} — ${oversText(c.balls)} overs`
+    });
+
+    saveData();
+    renderCricket();
+    updateDashboard();
+
+    showToast("Cricket innings saved.");
+});
+
+
+function oversText(balls) {
+
+    return `${Math.floor(balls / 6)}.${balls % 6}`;
+}
+
+
+function renderCricket() {
+
+    const c = data.cricket;
+
+    if (!c) {
+
+        $("cricketStatus").textContent = "Not started";
+        $("cricketTeamName").textContent =
+            $("cricketTeam").value || "Team A";
+
+        $("cricketScore").textContent = "0/0";
+        $("cricketOvers").textContent = "0.0";
+
+        $("runsStat").textContent = "0";
+        $("wicketStat").textContent = "0";
+        $("overStat").textContent = "0.0";
+        $("ballStat").textContent = "0";
+        $("fourStat").textContent = "0";
+        $("sixStat").textContent = "0";
+        $("wideStat").textContent = "0";
+        $("noBallStat").textContent = "0";
+        $("lbwStat").textContent = "0";
+
+        renderCricketEvents([]);
+
+        return;
+    }
+
+    $("cricketTeamName").textContent = c.team;
+
+    $("cricketStatus").textContent =
+        c.finished ? "Finished" : "Live";
+
+    $("cricketScore").textContent =
+        `${c.runs}/${c.wickets}`;
+
+    $("cricketOvers").textContent =
+        oversText(c.balls);
+
+    $("runsStat").textContent = c.runs;
+    $("wicketStat").textContent = c.wickets;
+    $("overStat").textContent = oversText(c.balls);
+    $("ballStat").textContent = c.balls;
+    $("fourStat").textContent = c.fours;
+    $("sixStat").textContent = c.sixes;
+    $("wideStat").textContent = c.wides;
+    $("noBallStat").textContent = c.noBalls;
+    $("lbwStat").textContent = c.lbw;
+
+    renderCricketEvents(c.events || []);
+}
+
+
+function renderCricketEvents(events) {
+
+    const container = $("cricketEvents");
+
+    if (!events || events.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No events yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = events.map(event => `
+        <div class="event">
+            <span>${escapeHTML(event.text)}</span>
+            <span class="event-time">
+                ${escapeHTML(event.time)}
+            </span>
+        </div>
+    `).join("");
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory() {
+
+    const container = $("historyList");
+
+    if (data.history.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No completed matches yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = data.history.map(match => `
+        <div class="history-item">
+
+            <div class="history-top">
+
+                <strong>
+                    ${escapeHTML(match.title)}
+                </strong>
+
+                <span class="muted">
+                    ${escapeHTML(match.sport)}
+                </span>
+
+            </div>
+
+            <div class="muted">
+                ${escapeHTML(match.details)}
+            </div>
+
+            <div
+                class="event-time"
+                style="margin-top:8px"
+            >
+                ${escapeHTML(match.date)}
+            </div>
+
+            <button
+                class="btn danger"
+                style="margin-top:12px"
+                data-delete-history="${match.id}"
+            >
+                Delete
+            </button>
+
+        </div>
+    `).join("");
+
+    container
+        .querySelectorAll("[data-delete-history]")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const id =
+                    button.dataset.deleteHistory;
+
+                data.history =
+                    data.history.filter(
+                        item => item.id !== id
+                    );
+
+                saveData();
+                renderHistory();
+                updateDashboard();
+
+                showToast("History item deleted.");
+            });
+
+        });
+}
+
+
+$("clearHistory").addEventListener("click", () => {
+
+    if (data.history.length === 0) {
+        showToast("History is already empty.");
+        return;
+    }
+
+    if (!confirm("Delete all match history?")) {
+        return;
+    }
+
+    data.history = [];
+
+    saveData();
+    renderHistory();
+    updateDashboard();
+
+    showToast("History cleared.");
+});
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard() {
+
+    const footballMatches =
+        data.history.filter(
+            match => match.sport === "Football"
+        ).length;
+
+    const cricketMatches =
+        data.history.filter(
+            match => match.sport === "Cricket"
+        ).length;
+
+    $("footballCount").textContent =
+        footballMatches;
+
+    $("cricketCount").textContent =
+        cricketMatches;
+
+    $("playerCount").textContent =
+        data.players.length;
+}
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
 
 renderPlayers();
-
-}
-
-function renderPlayers(){
-
-playersA.innerHTML=
-players.A.map(p=>
-`<span class="player">👤 ${escape(p.name)}</span>`
-).join("");
-
-playersB.innerHTML=
-players.B.map(p=>
-`<span class="player">👤 ${escape(p.name)}</span>`
-).join("");
-
-}
-
-
-/* START */
-
-function startMatch(){
-
-game={
-teamA:teamA.value.trim()||"Team A",
-teamB:teamB.value.trim()||"Team B",
-
-scoreA:0,
-scoreB:0,
-
-innings:1,
-
-runs:[0,0],
-wickets:[0,0],
-balls:[0,0],
-
-events:[],
-
-totalOvers:+totalOvers.value||10
-};
-
-setup.classList.add("hidden");
-match.classList.remove("hidden");
-
-if(sport==="football"){
-
-footballPanel.classList.remove("hidden");
-cricketPanel.classList.add("hidden");
-
-}
-
-else{
-
-footballPanel.classList.add("hidden");
-cricketPanel.classList.remove("hidden");
-
-prepareCricket();
-
-}
-
-update();
-
-}
-
-
-/* FOOTBALL */
-
-function footballGoal(change){
-
-let team=
-document.getElementById("footballTeam").value;
-
-let index=team==="A"?0:1;
-
-if(change===1){
-
-game["score"+team]++;
-
-let player=getFootballPlayer();
-
-if(player)player.goals++;
-
-let assist=getAssistPlayer();
-
-if(assist)assist.assists++;
-
-game.events.unshift(
-"⚽ GOAL — "+
-player?.name+
-(assist?" 🎯 Assist: "+assist.name:"")
-);
-
-}
-
-else{
-
-if(game["score"+team]>0)
-game["score"+team]--;
-
-let player=getFootballPlayer();
-
-if(player && player.goals>0)
-player.goals--;
-
-game.events.unshift(
-"➖ Goal removed — "+(player?.name||"")
-);
-
-}
-
-update();
-
-}
-
-function footballEvent(type){
-
-let player=getFootballPlayer();
-
-if(!player)return;
-
-if(type==="Assist")player.assists++;
-if(type==="Foul")player.fouls++;
-if(type==="Yellow Card")player.yellow++;
-if(type==="Red Card")player.red++;
-if(type==="Corner")player.corners++;
-
-game.events.unshift(
-type+" — "+player.name
-);
-
-update();
-
-}
-
-function getFootballPlayer(){
-
-let team=document.getElementById("footballTeam").value;
-
-let id=document.getElementById("footballPlayer").value;
-
-return players[team][id];
-
-}
-
-function getAssistPlayer(){
-
-let team=document.getElementById("footballTeam").value;
-
-let id=document.getElementById("assistPlayer").value;
-
-return players[team][id];
-
-}
-
-
-/* CRICKET */
-
-function prepareCricket(){
-
-let batting=game.innings===1?"A":"B";
-let bowling=game.innings===1?"B":"A";
-
-striker.innerHTML=
-players[batting].map((p,i)=>
-`<option value="${i}">${escape(p.name)}</option>`
-).join("");
-
-nonStriker.innerHTML=
-striker.innerHTML;
-
-bowler.innerHTML=
-players[bowling].map((p,i)=>
-`<option value="${i}">${escape(p.name)}</option>`
-).join("");
-
-}
-
-function currentBatter(){
-
-let batting=game.innings===1?"A":"B";
-
-return players[batting][
-document.getElementById("striker").value
-];
-
-}
-
-function currentBowler(){
-
-let bowling=game.innings===1?"B":"A";
-
-return players[bowling][
-document.getElementById("bowler").value
-];
-
-}
-
-
-function cricketBall(runs){
-
-let batter=currentBatter();
-let bowler=currentBowler();
-
-if(!batter)return;
-
-game.runs[game.innings-1]+=runs;
-game.balls[game.innings-1]++;
-
-batter.runs+=runs;
-batter.balls++;
-
-if(runs===4)batter.fours++;
-if(runs===6)batter.sixes++;
-
-if(bowler){
-bowler.runs+=runs;
-}
-
-game.events.unshift(
-`${runs===0?"•":runs} run — ${batter.name}`
-);
-
-update();
-
-}
-
-
-function cricketExtra(type){
-
-let batter=currentBatter();
-let bowler=currentBowler();
-
-game.runs[game.innings-1]++;
-game.events.unshift(
-type.toUpperCase()+" — "+(batter?.name||"")
-);
-
-if(type==="wide"||type==="no-ball"){
-
-if(bowler)bowler.runs++;
-
-}
-
-else{
-
-game.balls[game.innings-1]++;
-
-}
-
-update();
-
-}
-
-
-function cricketWicket(type){
-
-let batter=currentBatter();
-let bowler=currentBowler();
-
-game.wickets[game.innings-1]++;
-
-game.balls[game.innings-1]++;
-
-if(batter)batter.balls++;
-
-if(bowler)bowler.wickets++;
-
-game.events.unshift(
-"❌ "+type+" — "+(batter?.name||"")
-);
-
-update();
-
-}
-
-
-/* DECREASE / INCREASE */
-
-function changeRuns(amount){
-
-let i=game.innings-1;
-
-if(amount<0 && game.runs[i]<=0)return;
-
-game.runs[i]+=amount;
-
-if(game.runs[i]<0)
-game.runs[i]=0;
-
-game.events.unshift(
-amount>0?"➕ Run added":"➖ Run removed"
-);
-
-update();
-
-}
-
-
-function changeWicket(amount){
-
-let i=game.innings-1;
-
-if(amount<0 && game.wickets[i]<=0)return;
-
-game.wickets[i]+=amount;
-
-if(game.wickets[i]<0)
-game.wickets[i]=0;
-
-game.events.unshift(
-amount>0?"➕ Wicket added":"➖ Wicket removed"
-);
-
-update();
-
-}
-
-
-/* INNINGS */
-
-function endInnings(){
-
-if(game.innings===1){
-
-game.innings=2;
-
-prepareCricket();
-
-game.events.unshift(
-"🏁 1st innings ended"
-);
-
-update();
-
-}
-
-else{
-
-alert("Both innings are complete.");
-
-}
-
-}
-
-
-/* UPDATE */
-
-function update(){
-
-matchTitle.innerText=
-game.teamA+" vs "+game.teamB;
-
-if(sport==="football"){
-
-mainScore.innerText=
-game.scoreA+" - "+game.scoreB;
-
-matchStatus.innerText="Football";
-
 renderFootball();
-
-}
-
-else{
-
-let i=game.innings-1;
-
-let overs=
-Math.floor(game.balls[i]/6)+
-"."+
-(game.balls[i]%6);
-
-inningsTitle.innerText=
-game.innings===1?
-"1st Innings — "+game.teamA:
-"2nd Innings — "+game.teamB;
-
-cricketScore.innerText=
-game.runs[i]+" / "+game.wickets[i];
-
-oversDisplay.innerText=
-"Overs: "+overs+" / "+game.totalOvers;
-
-renderBatting();
-renderBowling();
-
-}
-
-renderEvents();
-
-}
-
-
-/* FOOTBALL UI */
-
-function renderFootball(){
-
-let team=
-footballTeam.value;
-
-footballPlayer.innerHTML=
-players[team].map((p,i)=>
-`<option value="${i}">
-${escape(p.name)}
-</option>`
-).join("");
-
-assistPlayer.innerHTML=
-`<option value="">No assist</option>`+
-players[team].map((p,i)=>
-`<option value="${i}">
-${escape(p.name)}
-</option>`
-).join("");
-
-footballTeam.innerHTML=`
-<option value="A">${escape(game.teamA)}</option>
-<option value="B">${escape(game.teamB)}</option>
-`;
-
-}
-
-function renderFootballStats(){
-
-let html="";
-
-["A","B"].forEach(team=>{
-
-html+=`<h3>${escape(
-team==="A"?game.teamA:game.teamB
-)}</h3>`;
-
-players[team].forEach(p=>{
-
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-⚽ ${p.goals}
-🎯 ${p.assists}
-🚫 ${p.fouls}
-🟨 ${p.yellow}
-🟥 ${p.red}
-</span>
-</div>`;
-
-});
-
-});
-
-footballStats.innerHTML=html;
-
-}
-
-
-/* CRICKET STATS */
-
-function renderBatting(){
-
-let team=
-game.innings===1?"A":"B";
-
-let html="";
-
-players[team].forEach(p=>{
-
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-${p.runs} runs |
-${p.balls} balls |
-4s: ${p.fours} |
-6s: ${p.sixes}
-</span>
-</div>`;
-
-});
-
-battingStats.innerHTML=html;
-
-}
-
-
-function renderBowling(){
-
-let team=
-game.innings===1?"B":"A";
-
-let html="";
-
-players[team].forEach(p=>{
-
-html+=`
-<div class="stat">
-<span>${escape(p.name)}</span>
-<span>
-Wickets: ${p.wickets} |
-Runs: ${p.runs}
-</span>
-</div>`;
-
-});
-
-bowlingStats.innerHTML=html;
-
-}
-
-
-/* EVENTS */
-
-function renderEvents(){
-
-events.innerHTML=
-game.events.length?
-
-game.events.map((e,i)=>
-`<div class="event">
-${i+1}. ${escape(e)}
-</div>`
-).join("")
-
-:"No events yet.";
-
-}
-
-
-/* FINISH */
-
-function finishMatch(){
-
-let result;
-
-if(sport==="football"){
-
-result=
-game.teamA+" "+game.scoreA+
-" - "+
-game.scoreB+" "+game.teamB;
-
-}
-
-else{
-
-result=
-game.teamA+" "+game.runs[0]+"/"+
-game.wickets[0]+
-" | "+
-game.teamB+" "+game.runs[1]+"/"+
-game.wickets[1];
-
-}
-
-history.unshift({
-
-sport:sport,
-match:game.teamA+" vs "+game.teamB,
-score:result,
-date:new Date().toLocaleString()
-
-});
-
-localStorage.setItem(
-"grvHistory",
-JSON.stringify(history)
-);
-
-alert("Match saved successfully 🔥");
-
+renderCricket();
 renderHistory();
-
-}
-
-
-function renderHistory(){
-
-historyBox.innerHTML=
-history.length?
-
-history.map(x=>
-`<div class="event">
-<b>${x.sport==="football"?"⚽":"🏏"}
-${escape(x.match)}</b><br>
-${escape(x.score)}<br>
-<small>${escape(x.date)}</small>
-</div>`
-).join("")
-
-:"No saved matches.";
-
-}
+updateDashboard();
 
 
-/* ESCAPE */
+/* =========================================================
+   LIVE FOOTBALL TIMER
+========================================================= */
 
-function escape(value){
+setInterval(() => {
 
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    if (
+        data.football &&
+        data.football.started &&
+        !data.football.finished
+    ) {
+        renderFootball();
+    }
 
-}
+}, 1000);
 
 
-/* HISTORY */
+/* =========================================================
+   SAVE BEFORE LEAVING
+========================================================= */
 
-let historyBox=document.getElementById("history");
-
-renderHistory();
+window.addEventListener("beforeunload", () => {
+    saveData();
+});
 
 </script>
 
