@@ -2298,6 +2298,11 @@ window.addEventListener("beforeunload", () => {
       alert("Sign-in failed: " + error.message);
     }
   };
+    const googleSignInBtn = document.getElementById("googleSignInBtn");
+
+if (googleSignInBtn) {
+  googleSignInBtn.addEventListener("click", window.signInWithGoogle);
+}
 </script>
 </body>
 </html>
