@@ -2288,16 +2288,46 @@ window.addEventListener("beforeunload", () => {
   const auth = getAuth(app);
   const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
+let signingIn = false;
 
-  window.signInWithGoogle = async function () {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      alert("Signed in as " + result.user.displayName);
-    } catch (error) {
-      console.error(error);
+window.signInWithGoogle = async function () {
+
+  if (signingIn) return;
+
+  signingIn = true;
+
+  const button = document.getElementById("googleSignInBtn");
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Signing in...";
+  }
+
+  try {
+
+    const result = await signInWithPopup(auth, provider);
+
+    alert("Signed in as " + (result.user.displayName || result.user.email));
+
+  } catch (error) {
+
+    console.error("Google Sign-In Error:", error);
+
+    if (error.code !== "auth/popup-closed-by-user") {
       alert("Sign-in failed: " + error.message);
     }
-  };
+
+  } finally {
+
+    signingIn = false;
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = "Sign in with Google";
+    }
+
+  }
+};
     const googleSignInBtn = document.getElementById("googleSignInBtn");
 
 if (googleSignInBtn) {
