@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1134,7 +1134,14 @@ const defaultData = {
 };
 
 let data = loadData();
-
+window.grvData = data;
+    window.grvRefresh = function () {
+    renderPlayers();
+    renderFootball();
+    renderCricket();
+    renderHistory();
+    updateDashboard();
+};
 function loadData() {
     try {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -1164,6 +1171,11 @@ function saveData() {
             STORAGE_KEY,
             JSON.stringify(data)
         );
+
+        if (typeof window.grvCloudSave === "function") {
+            window.grvCloudSave();
+        }
+
     } catch (error) {
         console.error("Could not save:", error);
     }
@@ -2265,95 +2277,175 @@ window.addEventListener("beforeunload", () => {
 
 </script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-  import {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import {
     getAuth,
     GoogleAuthProvider,
     signInWithPopup
-  } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-  apiKey: "AIzaSyBsIvXpxvAUW5I5N4GXcAr0X9GQF4TKS80",
-  authDomain: "grvsportinfo.firebaseapp.com",
-  projectId: "grvsportinfo",
-  storageBucket: "grvsportinfo.firebasestorage.app",
-  messagingSenderId: "247996649575",
-  appId: "1:247996649575:web:069ec944f071f49ca9c4c2",
-  measurementId: "G-7H98LHYN8V"
-};  
-  
+const firebaseConfig = {
+    apiKey: "AIzaSyBsIvXpxvAUW5I5N4GXcAr0X9GQF4TKS80",
+    authDomain: "grvsportinfo.firebaseapp.com",
+    projectId: "grvsportinfo",
+    storageBucket: "grvsportinfo.firebasestorage.app",
+    messagingSenderId: "247996649575",
+    appId: "1:247996649575:web:069ec944f071f49ca9c4c2",
+    measurementId: "G-7H98LHYN8V"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+    window.grvCloudLoad = async function () {
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    try {
+        const snapshot = await getDoc(
+            doc(db, "users", user.uid)
+        );
+
+        if (!snapshot.exists()) return;
+
+        const cloudData = snapshot.data();
+if (cloudData.username) {
+    window.grvUsername = cloudData.username;
+
+    const button = document.getElementById("googleSignInBtn");
+
+    if (button) {
+        button.textContent = cloudData.username;
+    }
+}
+        if (Array.isArray(cloudData.players)) {
+            window.grvData.players = cloudData.players;
+        }
+
+        if (Array.isArray(cloudData.history)) {
+            window.grvData.history = cloudData.history;
+        }
+
+        if (cloudData.football !== undefined) {
+            window.grvData.football = cloudData.football;
+        }
+
+        if (cloudData.cricket !== undefined) {
+            window.grvData.cricket = cloudData.cricket;
+        }
+
+        console.log("☁️ GRVSPORTINFO data loaded");
+
+    } catch (error) {
+        console.error("Cloud load error:", error);
+    }
+};
+   window.grvCloudSave = async function () {
+    const user = auth.currentUser;
+
+    if (!user || !window.grvData) return;
+
+    try {
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                username: window.grvUsername || "",
+                players: window.grvData.players,
+                history: window.grvData.history,
+                football: window.grvData.football,
+                cricket: window.grvData.cricket
+            },
+            { merge: true }
+        );
+
+        console.log("☁️ GRVSPORTINFO data saved");
+    } catch (error) {
+        console.error("Cloud save error:", error);
+    }
+}; 
+const provider = new GoogleAuthProvider();
+
 let signingIn = false;
 
 window.signInWithGoogle = async function () {
 
-  if (signingIn) return;
+    if (signingIn) return;
 
-  signingIn = true;
+    signingIn = true;
 
-  const button = document.getElementById("googleSignInBtn");
+    const button = document.getElementById("googleSignInBtn");
 
-  if (button) {
-    button.disabled = true;
-    button.textContent = "Signing in...";
-  }
+    if (button) {
+        button.disabled = true;
+        button.textContent = "Signing in...";
+    }
 
-  try {
+    try {
 
-    // Google sign-in
-    const result = await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, provider);
+       window.googleUser = result.user;      
+await window.grvCloudLoad();
+window.grvRefresh();
 
-    // Save Google user
-    window.googleUser = result.user;
-
-    // Ask for GRVSPORTINFO username
-    let username = prompt(
-      "Welcome to GRVSPORTINFO!\n\nEnter your name / username:"
+let username = window.grvUsername;
+    if (!username) {
+    username = prompt(
+        "Welcome to GRVSPORTINFO!\n\nEnter your GRVSPORTINFO name / username:"
     );
 
     if (username && username.trim()) {
+        username = username.trim();
+        window.grvUsername = username;
 
-      username = username.trim();
+        button.textContent = username;
 
-      // Show YOUR chosen name
-      button.textContent = username;
-
+        await window.grvCloudSave();
     } else {
-
-      button.textContent = "Choose username";
+        button.textContent = "Choose username";
     }
+} else {
+    button.textContent = username;
+}
 
-  } catch (error) {
+    } catch (error) {
 
-    console.error("Google Sign-In Error:", error);
+        console.error("Google Sign-In Error:", error);
 
-    if (error.code !== "auth/popup-closed-by-user") {
-      alert("Sign-in failed: " + error.message);
+        if (error.code !== "auth/popup-closed-by-user") {
+            alert("Sign-in failed: " + error.message);
+        }
+
+    } finally {
+
+        signingIn = false;
+
+        if (button) {
+            button.disabled = false;
+
+            if (button.textContent === "Signing in...") {
+                button.textContent = "Sign in with Google";
+            }
+        }
     }
-
-  } finally {
-
-    signingIn = false;
-
-    if (button) {
-      button.disabled = false;
-
-      if (button.textContent === "Signing in...") {
-        button.textContent = "Sign in with Google";
-      }
-    }
-  }
 };
-    const googleSignInBtn = document.getElementById("googleSignInBtn");
+
+const googleSignInBtn =
+    document.getElementById("googleSignInBtn");
 
 if (googleSignInBtn) {
-  googleSignInBtn.addEventListener("click", window.signInWithGoogle);
+    googleSignInBtn.addEventListener(
+        "click",
+        window.signInWithGoogle
+    );
 }
 </script>
+   
 </body>
 </html>
