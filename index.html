@@ -2305,9 +2305,28 @@ window.signInWithGoogle = async function () {
 
   try {
 
+    // Google sign-in
     const result = await signInWithPopup(auth, provider);
 
-    alert("Signed in as " + (result.user.displayName || result.user.email));
+    // Save Google user
+    window.googleUser = result.user;
+
+    // Ask for GRVSPORTINFO username
+    let username = prompt(
+      "Welcome to GRVSPORTINFO!\n\nEnter your name / username:"
+    );
+
+    if (username && username.trim()) {
+
+      username = username.trim();
+
+      // Show YOUR chosen name
+      button.textContent = username;
+
+    } else {
+
+      button.textContent = "Choose username";
+    }
 
   } catch (error) {
 
@@ -2323,9 +2342,11 @@ window.signInWithGoogle = async function () {
 
     if (button) {
       button.disabled = false;
-      button.textContent = "Sign in with Google";
-    }
 
+      if (button.textContent === "Signing in...") {
+        button.textContent = "Sign in with Google";
+      }
+    }
   }
 };
     const googleSignInBtn = document.getElementById("googleSignInBtn");
