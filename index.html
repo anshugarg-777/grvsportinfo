@@ -2257,6 +2257,40 @@ window.addEventListener("beforeunload", () => {
 });
 
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup
+  } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+  apiKey: "AIzaSyBsIvXpxvAUW5I5N4GXcAr0X9GQF4TKS80",
+  authDomain: "grvsportinfo.firebaseapp.com",
+  projectId: "grvsportinfo",
+  storageBucket: "grvsportinfo.firebasestorage.app",
+  messagingSenderId: "247996649575",
+  appId: "1:247996649575:web:069ec944f071f49ca9c4c2",
+  measurementId: "G-7H98LHYN8V"
+};  
+  
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const provider = new GoogleAuthProvider();
+
+  window.signInWithGoogle = async function () {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      alert("Signed in as " + result.user.displayName);
+    } catch (error) {
+      console.error(error);
+      alert("Sign-in failed: " + error.message);
+    }
+  };
+</script>
 </body>
 </html>
