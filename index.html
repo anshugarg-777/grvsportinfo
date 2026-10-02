@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,8 @@
 <title>GRVSPORTINFO</title>
 
 <style>
-* { 
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -49,6 +51,7 @@ button {
 .hidden {
     display: none !important;
 }
+
 
 /* =========================
    WELCOME
@@ -99,6 +102,7 @@ button {
     transform: translateY(-2px);
     opacity: .9;
 }
+
 
 /* =========================
    APP
@@ -193,6 +197,7 @@ header {
     margin-bottom: 25px;
 }
 
+
 /* =========================
    CARDS
 ========================= */
@@ -268,6 +273,7 @@ header {
     color: #111827;
 }
 
+
 /* =========================
    FORMS
 ========================= */
@@ -309,6 +315,7 @@ input:focus,
 select:focus {
     border-color: #64748b;
 }
+
 
 /* =========================
    MATCH
@@ -370,6 +377,7 @@ select:focus {
     font-weight: 900;
 }
 
+
 /* =========================
    EVENT LOG
 ========================= */
@@ -395,6 +403,7 @@ select:focus {
     color: var(--muted);
     font-size: 12px;
 }
+
 
 /* =========================
    PLAYER LIST
@@ -432,6 +441,7 @@ select:focus {
     font-weight: 800;
 }
 
+
 /* =========================
    HISTORY
 ========================= */
@@ -456,6 +466,7 @@ select:focus {
     text-align: center;
     color: var(--muted);
 }
+
 
 /* =========================
    TOAST
@@ -482,11 +493,13 @@ select:focus {
     opacity: 1;
 }
 
+
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 850px) {
+
     .menu-btn {
         display: block;
     }
@@ -515,6 +528,7 @@ select:focus {
 }
 
 @media (max-width: 550px) {
+
     header {
         padding: 0 15px;
     }
@@ -535,26 +549,40 @@ select:focus {
         font-size: 25px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      WELCOME
 ========================= -->
 
 <section id="welcomeScreen">
+
     <div class="welcome-card">
-        <div class="logo">GRVSPORTINFO</div>
+
+        <div class="logo">
+            GRVSPORTINFO
+        </div>
+
         <p>
             Your simple football and cricket match manager.
             Track live scores, players, events and match history.
         </p>
-        <button class="primary-btn" id="enterAppBtn">
+
+        <button
+            class="primary-btn"
+            id="enterAppBtn"
+        >
             Enter GRVSPORTINFO
         </button>
+
     </div>
+
 </section>
 
 
@@ -564,85 +592,211 @@ select:focus {
 
 <div id="app" class="hidden">
 
+
 <header>
-    <div class="header-logo">GRVSPORTINFO</div>
+
+    <div class="header-logo">
+        GRVSPORTINFO
+    </div>
 
     <div style="display:flex; gap:8px; align-items:center;">
-        <button class="btn white" id="googleSignInBtn">
+
+        <button
+            class="btn white"
+            id="googleSignInBtn"
+        >
             Sign in with Google
         </button>
 
-        <button class="menu-btn" id="menuBtn">☰</button>
+        <button
+            class="menu-btn"
+            id="menuBtn"
+        >
+            ☰
+        </button>
+
     </div>
+
 </header>
+
 
 <div class="layout">
 
-<aside class="sidebar" id="sidebar">
 
-    <button class="nav-btn active" data-page="home">⌂ Home</button>
-    <button class="nav-btn" data-page="players">👥 Players</button>
-    <button class="nav-btn" data-page="football">⚽ Football</button>
-    <button class="nav-btn" data-page="cricket">🏏 Cricket</button>
-    <button class="nav-btn" data-page="history">📜 History</button>
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <button
+        class="nav-btn active"
+        data-page="home"
+    >
+        ⌂ Home
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="players"
+    >
+        👥 Players
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="football"
+    >
+        ⚽ Football
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="cricket"
+    >
+        🏏 Cricket
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="history"
+    >
+        📜 History
+    </button>
 
 </aside>
 
+
 <main class="content">
+
 
 <!-- ================= HOME ================= -->
 
-<section class="page active" id="home">
+<section
+    class="page active"
+    id="home"
+>
 
-    <h1 class="page-title">Dashboard</h1>
+    <h1 class="page-title">
+        Dashboard
+    </h1>
+
     <p class="page-subtitle">
         Welcome to GRVSPORTINFO.
     </p>
 
+
     <div class="grid-3">
 
         <div class="card">
-            <h3>Football Matches</h3>
-            <div class="stat" id="footballCount">0</div>
-            <div class="muted">Saved matches</div>
+
+            <h3>
+                Football Matches
+            </h3>
+
+            <div
+                class="stat"
+                id="footballCount"
+            >
+                0
+            </div>
+
+            <div class="muted">
+                Saved matches
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>Cricket Matches</h3>
-            <div class="stat" id="cricketCount">0</div>
-            <div class="muted">Saved matches</div>
-        </div>
 
         <div class="card">
-            <h3>Total Players</h3>
-            <div class="stat" id="playerCount">0</div>
-            <div class="muted">Registered players</div>
+
+            <h3>
+                Cricket Matches
+            </h3>
+
+            <div
+                class="stat"
+                id="cricketCount"
+            >
+                0
+            </div>
+
+            <div class="muted">
+                Saved matches
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Total Players
+            </h3>
+
+            <div
+                class="stat"
+                id="playerCount"
+            >
+                0
+            </div>
+
+            <div class="muted">
+                Registered players
+            </div>
+
         </div>
 
     </div>
 
+
     <br>
+
 
     <div class="grid">
 
         <div class="card">
-            <h3>Start Football</h3>
-            <p class="muted" style="margin-bottom:15px">
+
+            <h3>
+                Start Football
+            </h3>
+
+            <p
+                class="muted"
+                style="margin-bottom:15px"
+            >
                 Track goals, fouls, cards and team scores.
             </p>
-            <button class="btn white" data-go="football">
+
+            <button
+                class="btn white"
+                data-go="football"
+            >
                 Open Football
             </button>
+
         </div>
 
+
         <div class="card">
-            <h3>Start Cricket</h3>
-            <p class="muted" style="margin-bottom:15px">
+
+            <h3>
+                Start Cricket
+            </h3>
+
+            <p
+                class="muted"
+                style="margin-bottom:15px"
+            >
                 Track runs, wickets, balls, overs and extras.
             </p>
-            <button class="btn white" data-go="cricket">
+
+            <button
+                class="btn white"
+                data-go="cricket"
+            >
                 Open Cricket
             </button>
+
         </div>
 
     </div>
@@ -652,42 +806,73 @@ select:focus {
 
 <!-- ================= PLAYERS ================= -->
 
-<section class="page" id="players">
+<section
+    class="page"
+    id="players"
+>
 
-    <h1 class="page-title">Players</h1>
+    <h1 class="page-title">
+        Players
+    </h1>
+
     <p class="page-subtitle">
         Create and manage your players.
     </p>
 
+
     <div class="grid">
+
 
         <div class="card">
 
-            <h3>Add Player</h3>
+            <h3>
+                Add Player
+            </h3>
 
             <form id="playerForm">
 
-                <div class="field" style="margin-bottom:12px">
-                    <label>Name</label>
+                <div
+                    class="field"
+                    style="margin-bottom:12px"
+                >
+
+                    <label>
+                        Name
+                    </label>
+
                     <input
                         id="playerName"
                         type="text"
                         placeholder="Player name"
                         required
                     >
+
                 </div>
 
-                <div class="field" style="margin-bottom:15px">
-                    <label>Team</label>
+
+                <div
+                    class="field"
+                    style="margin-bottom:15px"
+                >
+
+                    <label>
+                        Team
+                    </label>
+
                     <input
                         id="playerTeam"
                         type="text"
                         placeholder="Team name"
                         required
                     >
+
                 </div>
 
-                <button class="btn white" type="submit">
+
+                <button
+                    class="btn white"
+                    type="submit"
+                >
                     Add Player
                 </button>
 
@@ -695,12 +880,17 @@ select:focus {
 
         </div>
 
+
         <div class="card">
 
-            <h3>Player List</h3>
+            <h3>
+                Player List
+            </h3>
 
-            <div id="playerList" class="player-list">
-            </div>
+            <div
+                id="playerList"
+                class="player-list"
+            ></div>
 
         </div>
 
@@ -711,106 +901,198 @@ select:focus {
 
 <!-- ================= FOOTBALL ================= -->
 
-<section class="page" id="football">
+<section
+    class="page"
+    id="football"
+>
 
-    <h1 class="page-title">Football</h1>
+    <h1 class="page-title">
+        Football
+    </h1>
+
     <p class="page-subtitle">
         Live football match manager.
     </p>
 
-    <div class="card" style="margin-bottom:18px">
+
+    <div
+        class="card"
+        style="margin-bottom:18px"
+    >
 
         <div class="form-grid">
 
             <div class="field">
-                <label>Home Team</label>
-                <input id="footballHome" value="Home">
+
+                <label>
+                    Home Team
+                </label>
+
+                <input
+                    id="footballHome"
+                    value="Home"
+                >
+
             </div>
 
+
             <div class="field">
-                <label>Away Team</label>
-                <input id="footballAway" value="Away">
+
+                <label>
+                    Away Team
+                </label>
+
+                <input
+                    id="footballAway"
+                    value="Away"
+                >
+
             </div>
 
         </div>
 
+
         <br>
 
+
         <div class="action-row">
-            <button class="btn white" id="startFootball">
+
+            <button
+                class="btn white"
+                id="startFootball"
+            >
                 Start New Match
             </button>
 
-            <button class="btn danger" id="resetFootball">
+            <button
+                class="btn danger"
+                id="resetFootball"
+            >
                 Reset
             </button>
 
-            <button class="btn" id="undoFootball">
+            <button
+                class="btn"
+                id="undoFootball"
+            >
                 Undo
             </button>
 
-            <button class="btn success" id="finishFootball">
+            <button
+                class="btn success"
+                id="finishFootball"
+            >
                 Finish Match
             </button>
+
         </div>
 
     </div>
 
+
     <div class="scoreboard">
 
         <div class="score-header">
+
             <div>
-                <strong id="footballStatus">Not started</strong>
-                <div class="muted" id="footballTimer">00:00</div>
+
+                <strong id="footballStatus">
+                    Not started
+                </strong>
+
+                <div
+                    class="muted"
+                    id="footballTimer"
+                >
+                    00:00
+                </div>
+
             </div>
 
             <div class="muted">
                 Football
             </div>
+
         </div>
+
 
         <div class="team-score">
 
+
             <div class="team-box">
-                <div class="team-name" id="footballHomeName">
+
+                <div
+                    class="team-name"
+                    id="footballHomeName"
+                >
                     Home
                 </div>
 
-                <div class="team-number" id="footballHomeScore">
+                <div
+                    class="team-number"
+                    id="footballHomeScore"
+                >
                     0
                 </div>
 
-                <div class="action-row" style="justify-content:center;margin-top:14px">
 
-                    <button class="btn success" id="homeGoal">
+                <div
+                    class="action-row"
+                    style="justify-content:center;margin-top:14px"
+                >
+
+                    <button
+                        class="btn success"
+                        id="homeGoal"
+                    >
                         + Goal
                     </button>
 
-                    <button class="btn" id="homeFoul">
+                    <button
+                        class="btn"
+                        id="homeFoul"
+                    >
                         + Foul
                     </button>
 
                 </div>
+
             </div>
 
 
             <div class="team-box">
 
-                <div class="team-name" id="footballAwayName">
+                <div
+                    class="team-name"
+                    id="footballAwayName"
+                >
                     Away
                 </div>
 
-                <div class="team-number" id="footballAwayScore">
+                <div
+                    class="team-number"
+                    id="footballAwayScore"
+                >
                     0
                 </div>
 
-                <div class="action-row" style="justify-content:center;margin-top:14px">
 
-                    <button class="btn success" id="awayGoal">
+                <div
+                    class="action-row"
+                    style="justify-content:center;margin-top:14px"
+                >
+
+                    <button
+                        class="btn success"
+                        id="awayGoal"
+                    >
                         + Goal
                     </button>
 
-                    <button class="btn" id="awayFoul">
+                    <button
+                        class="btn"
+                        id="awayFoul"
+                    >
                         + Foul
                     </button>
 
@@ -822,67 +1104,136 @@ select:focus {
 
     </div>
 
+
     <div class="grid">
+
 
         <div class="card">
 
-            <h3>Football Events</h3>
+            <h3>
+                Football Events
+            </h3>
 
-            <div class="action-row" style="margin-bottom:15px">
 
-                <button class="btn warning" id="homeYellow">
+            <div
+                class="action-row"
+                style="margin-bottom:15px"
+            >
+
+                <button
+                    class="btn warning"
+                    id="homeYellow"
+                >
                     Home 🟨
                 </button>
 
-                <button class="btn warning" id="awayYellow">
+                <button
+                    class="btn warning"
+                    id="awayYellow"
+                >
                     Away 🟨
                 </button>
 
-                <button class="btn danger" id="homeRed">
+                <button
+                    class="btn danger"
+                    id="homeRed"
+                >
                     Home 🟥
                 </button>
 
-                <button class="btn danger" id="awayRed">
+                <button
+                    class="btn danger"
+                    id="awayRed"
+                >
                     Away 🟥
                 </button>
 
             </div>
 
-            <div id="footballEvents" class="event-list">
+
+            <div
+                id="footballEvents"
+                class="event-list"
+            >
+
                 <div class="empty">
                     No events yet.
                 </div>
+
             </div>
 
         </div>
 
+
         <div class="card">
 
-            <h3>Match Information</h3>
+            <h3>
+                Match Information
+            </h3>
+
 
             <div class="event">
-                <span>Home goals</span>
-                <strong id="homeGoalStat">0</strong>
+
+                <span>
+                    Home goals
+                </span>
+
+                <strong id="homeGoalStat">
+                    0
+                </strong>
+
             </div>
 
-            <div class="event">
-                <span>Away goals</span>
-                <strong id="awayGoalStat">0</strong>
-            </div>
 
             <div class="event">
-                <span>Home fouls</span>
-                <strong id="homeFoulStat">0</strong>
+
+                <span>
+                    Away goals
+                </span>
+
+                <strong id="awayGoalStat">
+                    0
+                </strong>
+
             </div>
 
-            <div class="event">
-                <span>Away fouls</span>
-                <strong id="awayFoulStat">0</strong>
-            </div>
 
             <div class="event">
-                <span>Cards</span>
-                <strong id="cardStat">0</strong>
+
+                <span>
+                    Home fouls
+                </span>
+
+                <strong id="homeFoulStat">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event">
+
+                <span>
+                    Away fouls
+                </span>
+
+                <strong id="awayFoulStat">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event">
+
+                <span>
+                    Cards
+                </span>
+
+                <strong id="cardStat">
+                    0
+                </strong>
+
             </div>
 
         </div>
@@ -894,51 +1245,90 @@ select:focus {
 
 <!-- ================= CRICKET ================= -->
 
-<section class="page" id="cricket">
+<section
+    class="page"
+    id="cricket"
+>
 
-    <h1 class="page-title">Cricket</h1>
+    <h1 class="page-title">
+        Cricket
+    </h1>
+
     <p class="page-subtitle">
         Live cricket scoring system.
     </p>
 
-    <div class="card" style="margin-bottom:18px">
+
+    <div
+        class="card"
+        style="margin-bottom:18px"
+    >
 
         <div class="form-grid">
 
-            <div class="field">
-                <label>Batting Team</label>
-                <input id="cricketTeam" value="Team A">
-            </div>
 
             <div class="field">
-                <label>Overs</label>
+
+                <label>
+                    Batting Team
+                </label>
+
+                <input
+                    id="cricketTeam"
+                    value="Team A"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Overs
+                </label>
+
                 <input
                     id="cricketOversLimit"
                     type="number"
                     min="1"
                     value="20"
                 >
+
             </div>
 
         </div>
 
+
         <br>
+
 
         <div class="action-row">
 
-            <button class="btn white" id="startCricket">
+            <button
+                class="btn white"
+                id="startCricket"
+            >
                 Start New Innings
             </button>
 
-            <button class="btn danger" id="resetCricket">
+            <button
+                class="btn danger"
+                id="resetCricket"
+            >
                 Reset
             </button>
 
-            <button class="btn" id="undoCricket">
+            <button
+                class="btn"
+                id="undoCricket"
+            >
                 Undo
             </button>
 
-            <button class="btn success" id="finishCricket">
+            <button
+                class="btn success"
+                id="finishCricket"
+            >
                 Finish Innings
             </button>
 
@@ -946,59 +1336,118 @@ select:focus {
 
     </div>
 
+
     <div class="scoreboard">
 
         <div class="score-header">
 
             <div>
+
                 <strong id="cricketStatus">
                     Not started
                 </strong>
 
                 <div class="muted">
+
                     <span id="cricketTeamName">
                         Team A
                     </span>
+
                 </div>
+
             </div>
 
+
             <div>
+
                 <strong id="cricketScore">
                     0/0
                 </strong>
 
                 <div class="muted">
+
                     <span id="cricketOvers">
                         0.0
                     </span>
+
                     overs
+
                 </div>
+
             </div>
 
         </div>
 
+
         <div class="action-row">
 
-            <button class="btn white" data-run="0">0 Run</button>
-            <button class="btn" data-run="1">1 Run</button>
-            <button class="btn" data-run="2">2 Runs</button>
-            <button class="btn" data-run="3">3 Runs</button>
-            <button class="btn success" data-run="4">4 Runs</button>
-            <button class="btn success" data-run="6">6 Runs</button>
+            <button
+                class="btn white"
+                data-run="0"
+            >
+                0 Run
+            </button>
 
-            <button class="btn warning" id="wideBtn">
+            <button
+                class="btn"
+                data-run="1"
+            >
+                1 Run
+            </button>
+
+            <button
+                class="btn"
+                data-run="2"
+            >
+                2 Runs
+            </button>
+
+            <button
+                class="btn"
+                data-run="3"
+            >
+                3 Runs
+            </button>
+
+            <button
+                class="btn success"
+                data-run="4"
+            >
+                4 Runs
+            </button>
+
+            <button
+                class="btn success"
+                data-run="6"
+            >
+                6 Runs
+            </button>
+
+            <button
+                class="btn warning"
+                id="wideBtn"
+            >
                 Wide
             </button>
 
-            <button class="btn warning" id="noBallBtn">
+            <button
+                class="btn warning"
+                id="noBallBtn"
+            >
                 No Ball
             </button>
 
-            <button class="btn danger" id="wicketBtn">
+            <button
+                class="btn danger"
+                id="wicketBtn"
+            >
                 Wicket
             </button>
 
-            <button class="btn danger" id="lbwBtn">
+            <button
+                class="btn danger"
+                id="lbwBtn"
+            >
                 LBW
             </button>
 
@@ -1009,38 +1458,89 @@ select:focus {
 
     <div class="grid">
 
+
         <div class="card">
 
-            <h3>Batting Statistics</h3>
+            <h3>
+                Batting Statistics
+            </h3>
+
 
             <div class="event">
-                <span>Total Runs</span>
-                <strong id="runsStat">0</strong>
+
+                <span>
+                    Total Runs
+                </span>
+
+                <strong id="runsStat">
+                    0
+                </strong>
+
             </div>
 
-            <div class="event">
-                <span>Wickets</span>
-                <strong id="wicketStat">0</strong>
-            </div>
 
             <div class="event">
-                <span>Overs</span>
-                <strong id="overStat">0.0</strong>
+
+                <span>
+                    Wickets
+                </span>
+
+                <strong id="wicketStat">
+                    0
+                </strong>
+
             </div>
 
-            <div class="event">
-                <span>Balls</span>
-                <strong id="ballStat">0</strong>
-            </div>
 
             <div class="event">
-                <span>Fours</span>
-                <strong id="fourStat">0</strong>
+
+                <span>
+                    Overs
+                </span>
+
+                <strong id="overStat">
+                    0.0
+                </strong>
+
             </div>
 
+
             <div class="event">
-                <span>Sixes</span>
-                <strong id="sixStat">0</strong>
+
+                <span>
+                    Balls
+                </span>
+
+                <strong id="ballStat">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event">
+
+                <span>
+                    Fours
+                </span>
+
+                <strong id="fourStat">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event">
+
+                <span>
+                    Sixes
+                </span>
+
+                <strong id="sixStat">
+                    0
+                </strong>
+
             </div>
 
         </div>
@@ -1048,37 +1548,72 @@ select:focus {
 
         <div class="card">
 
-            <h3>Extras</h3>
+            <h3>
+                Extras
+            </h3>
+
 
             <div class="event">
-                <span>Wides</span>
-                <strong id="wideStat">0</strong>
+
+                <span>
+                    Wides
+                </span>
+
+                <strong id="wideStat">
+                    0
+                </strong>
+
             </div>
 
-            <div class="event">
-                <span>No Balls</span>
-                <strong id="noBallStat">0</strong>
-            </div>
 
             <div class="event">
-                <span>LBW Wickets</span>
-                <strong id="lbwStat">0</strong>
+
+                <span>
+                    No Balls
+                </span>
+
+                <strong id="noBallStat">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="event">
+
+                <span>
+                    LBW Wickets
+                </span>
+
+                <strong id="lbwStat">
+                    0
+                </strong>
+
             </div>
 
         </div>
 
     </div>
 
+
     <br>
+
 
     <div class="card">
 
-        <h3>Cricket Events</h3>
+        <h3>
+            Cricket Events
+        </h3>
 
-        <div id="cricketEvents" class="event-list">
+        <div
+            id="cricketEvents"
+            class="event-list"
+        >
+
             <div class="empty">
                 No events yet.
             </div>
+
         </div>
 
     </div>
@@ -1088,29 +1623,45 @@ select:focus {
 
 <!-- ================= HISTORY ================= -->
 
-<section class="page" id="history">
+<section
+    class="page"
+    id="history"
+>
 
-    <h1 class="page-title">Match History</h1>
+    <h1 class="page-title">
+        Match History
+    </h1>
 
     <p class="page-subtitle">
         Your completed matches are saved automatically.
     </p>
 
-    <div class="action-row" style="margin-bottom:18px">
 
-        <button class="btn danger" id="clearHistory">
+    <div
+        class="action-row"
+        style="margin-bottom:18px"
+    >
+
+        <button
+            class="btn danger"
+            id="clearHistory"
+        >
             Clear History
         </button>
 
     </div>
 
+
     <div id="historyList">
+
         <div class="empty">
             No completed matches yet.
         </div>
+
     </div>
 
 </section>
+
 
 </main>
 </div>
@@ -1120,8 +1671,14 @@ select:focus {
 <div id="toast"></div>
 
 
+<!-- =========================================================
+     MAIN APPLICATION JAVASCRIPT
+========================================================= -->
+
 <script>
+
 "use strict";
+
 
 /* =========================================================
    STORAGE
@@ -1136,52 +1693,122 @@ const defaultData = {
     cricket: null
 };
 
+
 let data = loadData();
+
 window.grvData = data;
-    window.grvRefresh = function () {
+
+
+/* =========================================================
+   GLOBAL REFRESH
+========================================================= */
+
+window.grvRefresh = function () {
+
     renderPlayers();
     renderFootball();
     renderCricket();
     renderHistory();
     updateDashboard();
+
 };
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
 function loadData() {
+
     try {
-        const saved = localStorage.getItem(STORAGE_KEY);
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
 
         if (!saved) {
-            return structuredClone(defaultData);
+
+            return structuredClone(
+                defaultData
+            );
+
         }
 
-        const parsed = JSON.parse(saved);
+
+        const parsed =
+            JSON.parse(saved);
+
 
         return {
-            players: Array.isArray(parsed.players) ? parsed.players : [],
-            history: Array.isArray(parsed.history) ? parsed.history : [],
-            football: parsed.football || null,
-            cricket: parsed.cricket || null
+
+            players:
+                Array.isArray(parsed.players)
+                    ? parsed.players
+                    : [],
+
+            history:
+                Array.isArray(parsed.history)
+                    ? parsed.history
+                    : [],
+
+            football:
+                parsed.football || null,
+
+            cricket:
+                parsed.cricket || null
+
         };
 
+
     } catch (error) {
-        console.error("Storage error:", error);
-        return structuredClone(defaultData);
+
+        console.error(
+            "Storage error:",
+            error
+        );
+
+        return structuredClone(
+            defaultData
+        );
+
     }
+
 }
 
+
+/* =========================================================
+   SAVE DATA
+========================================================= */
+
 function saveData() {
+
     try {
+
         localStorage.setItem(
             STORAGE_KEY,
             JSON.stringify(data)
         );
 
-        if (typeof window.grvCloudSave === "function") {
+
+        if (
+            typeof window.grvCloudSave ===
+            "function"
+        ) {
+
             window.grvCloudSave();
+
         }
 
+
     } catch (error) {
-        console.error("Could not save:", error);
+
+        console.error(
+            "Could not save:",
+            error
+        );
+
     }
+
 }
 
 
@@ -1190,32 +1817,75 @@ function saveData() {
 ========================================================= */
 
 function $(id) {
+
     return document.getElementById(id);
+
 }
+
 
 function showToast(message) {
+
     const toast = $("toast");
 
+    if (!toast) {
+        return;
+    }
+
+
     toast.textContent = message;
+
     toast.classList.add("show");
 
-    clearTimeout(showToast.timer);
 
-    showToast.timer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 1800);
+    clearTimeout(
+        showToast.timer
+    );
+
+
+    showToast.timer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 1800);
+
 }
+
 
 function now() {
-    return new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
+
+    return new Date().toLocaleTimeString(
+        [],
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
+
 }
 
+
 function deepCopy(object) {
-    return JSON.parse(JSON.stringify(object));
+
+    return JSON.parse(
+        JSON.stringify(object)
+    );
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
 }
 
 
@@ -1223,117 +1893,227 @@ function deepCopy(object) {
    WELCOME / APP
 ========================================================= */
 
-$("enterAppBtn").addEventListener("click", () => {
+$("enterAppBtn").addEventListener(
+    "click",
+    () => {
 
-    $("welcomeScreen").classList.add("hidden");
-    $("app").classList.remove("hidden");
+        $("welcomeScreen")
+            .classList
+            .add("hidden");
 
-    updateDashboard();
+        $("app")
+            .classList
+            .remove("hidden");
 
-});
+        updateDashboard();
+
+    }
+);
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
 function openPage(pageName) {
 
-    document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-    });
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
 
-    document.querySelectorAll(".nav-btn").forEach(button => {
-        button.classList.remove("active");
-    });
+            page.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
 
     const page = $(pageName);
 
-    if (!page) return;
+
+    if (!page) {
+        return;
+    }
+
 
     page.classList.add("active");
 
-    const nav = document.querySelector(
-        `.nav-btn[data-page="${pageName}"]`
-    );
+
+    const nav =
+        document.querySelector(
+            `.nav-btn[data-page="${pageName}"]`
+        );
+
 
     if (nav) {
-        nav.classList.add("active");
+
+        nav.classList.add(
+            "active"
+        );
+
     }
 
-    $("sidebar").classList.remove("open");
+
+    $("sidebar")
+        .classList
+        .remove("open");
+
 
     if (pageName === "players") {
         renderPlayers();
     }
 
+
     if (pageName === "history") {
         renderHistory();
     }
+
 
     if (pageName === "football") {
         renderFootball();
     }
 
+
     if (pageName === "cricket") {
         renderCricket();
     }
 
+
     updateDashboard();
+
 }
 
-document.querySelectorAll(".nav-btn").forEach(button => {
 
-    button.addEventListener("click", () => {
-        openPage(button.dataset.page);
+document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                openPage(
+                    button.dataset.page
+                );
+
+            }
+        );
+
     });
 
-});
 
-document.querySelectorAll("[data-go]").forEach(button => {
+document
+    .querySelectorAll("[data-go]")
+    .forEach(button => {
 
-    button.addEventListener("click", () => {
-        openPage(button.dataset.go);
+        button.addEventListener(
+            "click",
+            () => {
+
+                openPage(
+                    button.dataset.go
+                );
+
+            }
+        );
+
     });
 
-});
 
-$("menuBtn").addEventListener("click", () => {
-    $("sidebar").classList.toggle("open");
-});
+$("menuBtn").addEventListener(
+    "click",
+    () => {
+
+        $("sidebar")
+            .classList
+            .toggle("open");
+
+    }
+);
 
 
 /* =========================================================
    PLAYERS
 ========================================================= */
 
-$("playerForm").addEventListener("submit", event => {
+$("playerForm").addEventListener(
+    "submit",
+    event => {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const name = $("playerName").value.trim();
-    const team = $("playerTeam").value.trim();
 
-    if (!name || !team) {
-        showToast("Enter player name and team.");
-        return;
+        const name =
+            $("playerName")
+                .value
+                .trim();
+
+
+        const team =
+            $("playerTeam")
+                .value
+                .trim();
+
+
+        if (!name || !team) {
+
+            showToast(
+                "Enter player name and team."
+            );
+
+            return;
+
+        }
+
+
+        data.players.push({
+
+            id:
+                Date.now().toString(),
+
+            name,
+            team
+
+        });
+
+
+        saveData();
+
+
+        $("playerName").value = "";
+
+        $("playerTeam").value = "";
+
+
+        renderPlayers();
+
+        updateDashboard();
+
+
+        showToast(
+            "Player added."
+        );
+
     }
+);
 
-    data.players.push({
-        id: Date.now().toString(),
-        name,
-        team
-    });
-
-    saveData();
-
-    $("playerName").value = "";
-    $("playerTeam").value = "";
-
-    renderPlayers();
-    updateDashboard();
-
-    showToast("Player added.");
-});
 
 function renderPlayers() {
 
-    const container = $("playerList");
+    const container =
+        $("playerList");
+
 
     if (data.players.length === 0) {
 
@@ -1344,69 +2124,102 @@ function renderPlayers() {
         `;
 
         return;
+
     }
+
 
     container.innerHTML = "";
 
-    data.players.forEach((player, index) => {
 
-        const element = document.createElement("div");
+    data.players.forEach(
+        (player, index) => {
 
-        element.className = "player";
+            const element =
+                document.createElement(
+                    "div"
+                );
 
-        element.innerHTML = `
-            <div class="player-info">
-                <div class="player-number">
-                    ${index + 1}
-                </div>
 
-                <div>
-                    <strong>${escapeHTML(player.name)}</strong>
-                    <div class="muted">
-                        ${escapeHTML(player.team)}
+            element.className =
+                "player";
+
+
+            element.innerHTML = `
+                <div class="player-info">
+
+                    <div class="player-number">
+                        ${index + 1}
                     </div>
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(player.name)}
+                        </strong>
+
+                        <div class="muted">
+                            ${escapeHTML(player.team)}
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
 
-            <button
-                class="btn danger"
-                data-delete-player="${player.id}"
-            >
-                Delete
-            </button>
-        `;
+                <button
+                    class="btn danger"
+                    data-delete-player="${player.id}"
+                >
+                    Delete
+                </button>
+            `;
 
-        container.appendChild(element);
-    });
 
-    container.querySelectorAll("[data-delete-player]").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const id = button.dataset.deletePlayer;
-
-            data.players = data.players.filter(
-                player => player.id !== id
+            container.appendChild(
+                element
             );
 
-            saveData();
-            renderPlayers();
-            updateDashboard();
+        }
+    );
 
-            showToast("Player deleted.");
+
+    container
+        .querySelectorAll(
+            "[data-delete-player]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const id =
+                        button.dataset
+                            .deletePlayer;
+
+
+                    data.players =
+                        data.players.filter(
+                            player =>
+                                player.id !== id
+                        );
+
+
+                    saveData();
+
+                    renderPlayers();
+
+                    updateDashboard();
+
+
+                    showToast(
+                        "Player deleted."
+                    );
+
+                }
+            );
+
         });
 
-    });
-}
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
 }
 
 
@@ -1416,269 +2229,596 @@ function escapeHTML(value) {
 
 function newFootballMatch() {
 
-    const home = $("footballHome").value.trim() || "Home";
-    const away = $("footballAway").value.trim() || "Away";
+    const home =
+        $("footballHome")
+            .value
+            .trim() || "Home";
+
+
+    const away =
+        $("footballAway")
+            .value
+            .trim() || "Away";
+
 
     data.football = {
+
         home,
         away,
+
         homeGoals: 0,
         awayGoals: 0,
+
         homeFouls: 0,
         awayFouls: 0,
+
         yellow: 0,
         red: 0,
+
         started: true,
         finished: false,
-        startTime: Date.now(),
+
+        startTime:
+            Date.now(),
+
         events: [],
+
         undoStack: []
+
     };
 
+
     saveData();
+
     renderFootball();
 
-    showToast("Football match started.");
+
+    showToast(
+        "Football match started."
+    );
+
 }
+
 
 $("startFootball").addEventListener(
     "click",
     newFootballMatch
 );
 
-$("resetFootball").addEventListener("click", () => {
 
-    if (!confirm("Reset the current football match?")) {
+$("resetFootball").addEventListener(
+    "click",
+    () => {
+
+        if (
+            !confirm(
+                "Reset the current football match?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        data.football = null;
+
+
+        saveData();
+
+        renderFootball();
+
+
+        showToast(
+            "Football reset."
+        );
+
+    }
+);
+
+
+function footballAction(
+    action,
+    team
+) {
+
+    if (
+        !data.football ||
+        !data.football.started
+    ) {
+
+        showToast(
+            "Start a football match first."
+        );
+
         return;
+
     }
 
-    data.football = null;
-
-    saveData();
-    renderFootball();
-
-    showToast("Football reset.");
-});
-
-
-function footballAction(action, team) {
-
-    if (!data.football || !data.football.started) {
-        showToast("Start a football match first.");
-        return;
-    }
 
     if (data.football.finished) {
-        showToast("This match is already finished.");
+
+        showToast(
+            "This match is already finished."
+        );
+
         return;
+
     }
 
+
     data.football.undoStack.push(
-        deepCopy(data.football)
+        deepCopy(
+            data.football
+        )
     );
 
-    const f = data.football;
+
+    const f =
+        data.football;
+
+
+    const teamName =
+        team === "home"
+            ? f.home
+            : f.away;
+
 
     if (action === "goal") {
 
         if (team === "home") {
+
             f.homeGoals++;
+
         } else {
+
             f.awayGoals++;
+
         }
 
+
         addFootballEvent(
-            `${team === "home" ? f.home : f.away} scored a goal`
+            `${teamName} scored a goal`
         );
+
     }
+
 
     if (action === "foul") {
 
         if (team === "home") {
+
             f.homeFouls++;
+
         } else {
+
             f.awayFouls++;
+
         }
 
+
         addFootballEvent(
-            `${team === "home" ? f.home : f.away} foul`
+            `${teamName} committed a foul`
         );
+
     }
+
 
     if (action === "yellow") {
 
         f.yellow++;
 
+
         addFootballEvent(
-            `${team === "home" ? f.home : f.away} received a yellow card`
+            `${teamName} received a yellow card`
         );
+
     }
+
 
     if (action === "red") {
 
         f.red++;
 
+
         addFootballEvent(
-            `${team === "home" ? f.home : f.away} received a red card`
+            `${teamName} received a red card`
         );
+
     }
 
+
     saveData();
+
     renderFootball();
+
 }
+
 
 function addFootballEvent(text) {
 
     data.football.events.unshift({
+
         text,
-        time: now()
+
+        time:
+            now()
+
     });
+
 }
+
 
 $("homeGoal").addEventListener(
     "click",
-    () => footballAction("goal", "home")
+    () =>
+        footballAction(
+            "goal",
+            "home"
+        )
 );
+
 
 $("awayGoal").addEventListener(
     "click",
-    () => footballAction("goal", "away")
+    () =>
+        footballAction(
+            "goal",
+            "away"
+        )
 );
+
 
 $("homeFoul").addEventListener(
     "click",
-    () => footballAction("foul", "home")
+    () =>
+        footballAction(
+            "foul",
+            "home"
+        )
 );
+
 
 $("awayFoul").addEventListener(
     "click",
-    () => footballAction("foul", "away")
+    () =>
+        footballAction(
+            "foul",
+            "away"
+        )
 );
+
 
 $("homeYellow").addEventListener(
     "click",
-    () => footballAction("yellow", "home")
+    () =>
+        footballAction(
+            "yellow",
+            "home"
+        )
 );
+
 
 $("awayYellow").addEventListener(
     "click",
-    () => footballAction("yellow", "away")
+    () =>
+        footballAction(
+            "yellow",
+            "away"
+        )
 );
+
 
 $("homeRed").addEventListener(
     "click",
-    () => footballAction("red", "home")
+    () =>
+        footballAction(
+            "red",
+            "home"
+        )
 );
+
 
 $("awayRed").addEventListener(
     "click",
-    () => footballAction("red", "away")
+    () =>
+        footballAction(
+            "red",
+            "away"
+        )
 );
 
-$("undoFootball").addEventListener("click", () => {
 
-    const f = data.football;
+/* FOOTBALL UNDO */
 
-    if (!f || !f.undoStack || f.undoStack.length === 0) {
-        showToast("Nothing to undo.");
-        return;
+$("undoFootball").addEventListener(
+    "click",
+    () => {
+
+        const f =
+            data.football;
+
+
+        if (
+            !f ||
+            !f.undoStack ||
+            f.undoStack.length === 0
+        ) {
+
+            showToast(
+                "Nothing to undo."
+            );
+
+            return;
+
+        }
+
+
+        const previous =
+            f.undoStack.pop();
+
+
+        data.football =
+            previous;
+
+
+        saveData();
+
+        renderFootball();
+
+
+        showToast(
+            "Last football action undone."
+        );
+
     }
-
-    const previous = f.undoStack.pop();
-
-    data.football = previous;
-
-    saveData();
-    renderFootball();
-
-    showToast("Last football action undone.");
-});
+);
 
 
-$("finishFootball").addEventListener("click", () => {
+/* FINISH FOOTBALL */
 
-    if (!data.football || !data.football.started) {
-        showToast("Start a match first.");
-        return;
+$("finishFootball").addEventListener(
+    "click",
+    () => {
+
+        if (
+            !data.football ||
+            !data.football.started
+        ) {
+
+            showToast(
+                "Start a match first."
+            );
+
+            return;
+
+        }
+
+
+        if (data.football.finished) {
+
+            showToast(
+                "Match already finished."
+            );
+
+            return;
+
+        }
+
+
+        data.football.finished =
+            true;
+
+
+        data.history.unshift({
+
+            id:
+                Date.now().toString(),
+
+            sport:
+                "Football",
+
+            date:
+                new Date().toLocaleString(),
+
+            title:
+                `${data.football.home} ${data.football.homeGoals} - ${data.football.awayGoals} ${data.football.away}`,
+
+            details:
+                `${data.football.home} vs ${data.football.away}`
+
+        });
+
+
+        saveData();
+
+        renderFootball();
+
+        renderHistory();
+
+        updateDashboard();
+
+
+        showToast(
+            "Football match saved."
+        );
+
     }
+);
 
-    if (data.football.finished) {
-        showToast("Match already finished.");
-        return;
-    }
 
-    data.football.finished = true;
-
-    data.history.unshift({
-        id: Date.now().toString(),
-        sport: "Football",
-        date: new Date().toLocaleString(),
-        title: `${data.football.home} ${data.football.homeGoals} - ${data.football.awayGoals} ${data.football.away}`,
-        details:
-            `${data.football.home} vs ${data.football.away}`
-    });
-
-    saveData();
-    renderFootball();
-    updateDashboard();
-
-    showToast("Football match saved.");
-});
-
+/* RENDER FOOTBALL */
 
 function renderFootball() {
 
-    const f = data.football;
+    const f =
+        data.football;
+
 
     if (!f) {
 
-        $("footballStatus").textContent = "Not started";
-        $("footballHomeScore").textContent = "0";
-        $("footballAwayScore").textContent = "0";
-        $("footballHomeName").textContent = $("footballHome").value || "Home";
-        $("footballAwayName").textContent = $("footballAway").value || "Away";
+        $("footballStatus")
+            .textContent =
+            "Not started";
 
-        $("homeGoalStat").textContent = "0";
-        $("awayGoalStat").textContent = "0";
-        $("homeFoulStat").textContent = "0";
-        $("awayFoulStat").textContent = "0";
-        $("cardStat").textContent = "0";
 
-        renderFootballEvents([]);
+        $("footballHomeScore")
+            .textContent =
+            "0";
+
+
+        $("footballAwayScore")
+            .textContent =
+            "0";
+
+
+        $("footballHomeName")
+            .textContent =
+            $("footballHome")
+                .value ||
+            "Home";
+
+
+        $("footballAwayName")
+            .textContent =
+            $("footballAway")
+                .value ||
+            "Away";
+
+
+        $("homeGoalStat")
+            .textContent =
+            "0";
+
+
+        $("awayGoalStat")
+            .textContent =
+            "0";
+
+
+        $("homeFoulStat")
+            .textContent =
+            "0";
+
+
+        $("awayFoulStat")
+            .textContent =
+            "0";
+
+
+        $("cardStat")
+            .textContent =
+            "0";
+
+
+        $("footballTimer")
+            .textContent =
+            "00:00";
+
+
+        renderFootballEvents(
+            []
+        );
+
 
         return;
+
     }
 
-    $("footballHomeName").textContent = f.home;
-    $("footballAwayName").textContent = f.away;
 
-    $("footballHomeScore").textContent = f.homeGoals;
-    $("footballAwayScore").textContent = f.awayGoals;
+    $("footballHomeName")
+        .textContent =
+        f.home;
 
-    $("homeGoalStat").textContent = f.homeGoals;
-    $("awayGoalStat").textContent = f.awayGoals;
-    $("homeFoulStat").textContent = f.homeFouls;
-    $("awayFoulStat").textContent = f.awayFouls;
-    $("cardStat").textContent = f.yellow + f.red;
 
-    $("footballStatus").textContent =
-        f.finished ? "Finished" : "Live";
+    $("footballAwayName")
+        .textContent =
+        f.away;
 
-    const elapsed = f.startTime
-        ? Math.max(0, Math.floor((Date.now() - f.startTime) / 1000))
-        : 0;
 
-    $("footballTimer").textContent =
-        formatTime(elapsed);
+    $("footballHomeScore")
+        .textContent =
+        f.homeGoals;
 
-    renderFootballEvents(f.events || []);
+
+    $("footballAwayScore")
+        .textContent =
+        f.awayGoals;
+
+
+    $("homeGoalStat")
+        .textContent =
+        f.homeGoals;
+
+
+    $("awayGoalStat")
+        .textContent =
+        f.awayGoals;
+
+
+    $("homeFoulStat")
+        .textContent =
+        f.homeFouls;
+
+
+    $("awayFoulStat")
+        .textContent =
+        f.awayFouls;
+
+
+    $("cardStat")
+        .textContent =
+        f.yellow +
+        f.red;
+
+
+    $("footballStatus")
+        .textContent =
+        f.finished
+            ? "Finished"
+            : "Live";
+
+
+    const elapsed =
+        f.startTime
+            ? Math.max(
+                0,
+                Math.floor(
+                    (
+                        Date.now() -
+                        f.startTime
+                    ) / 1000
+                )
+            )
+            : 0;
+
+
+    $("footballTimer")
+        .textContent =
+        formatTime(
+            elapsed
+        );
+
+
+    renderFootballEvents(
+        f.events || []
+    );
+
 }
 
-function renderFootballEvents(events) {
 
-    const container = $("footballEvents");
+function renderFootballEvents(
+    events
+) {
 
-    if (!events || events.length === 0) {
+    const container =
+        $("footballEvents");
+
+
+    if (
+        !events ||
+        events.length === 0
+    ) {
 
         container.innerHTML = `
             <div class="empty">
@@ -1687,31 +2827,60 @@ function renderFootballEvents(events) {
         `;
 
         return;
+
     }
 
-    container.innerHTML = events.map(event => `
-        <div class="event">
-            <span>${escapeHTML(event.text)}</span>
-            <span class="event-time">
-                ${escapeHTML(event.time)}
-            </span>
-        </div>
-    `).join("");
+
+    container.innerHTML =
+        events
+            .map(
+                event => `
+                    <div class="event">
+
+                        <span>
+                            ${escapeHTML(event.text)}
+                        </span>
+
+                        <span class="event-time">
+                            ${escapeHTML(event.time)}
+                        </span>
+
+                    </div>
+                `
+            )
+            .join("");
+
 }
 
-function formatTime(totalSeconds) {
+
+function formatTime(
+    totalSeconds
+) {
 
     const minutes =
-        Math.floor(totalSeconds / 60)
-            .toString()
-            .padStart(2, "0");
+        Math.floor(
+            totalSeconds / 60
+        )
+        .toString()
+        .padStart(
+            2,
+            "0"
+        );
+
 
     const seconds =
-        (totalSeconds % 60)
-            .toString()
-            .padStart(2, "0");
+        (
+            totalSeconds % 60
+        )
+        .toString()
+        .padStart(
+            2,
+            "0"
+        );
+
 
     return `${minutes}:${seconds}`;
+
 }
 
 
@@ -1722,376 +2891,793 @@ function formatTime(totalSeconds) {
 function newCricketMatch() {
 
     const team =
-        $("cricketTeam").value.trim() || "Team A";
+        $("cricketTeam")
+            .value
+            .trim() ||
+        "Team A";
+
 
     let oversLimit =
-        Number($("cricketOversLimit").value);
+        Number(
+            $("cricketOversLimit")
+                .value
+        );
 
-    if (!Number.isFinite(oversLimit) || oversLimit < 1) {
+
+    if (
+        !Number.isFinite(
+            oversLimit
+        ) ||
+        oversLimit < 1
+    ) {
+
         oversLimit = 20;
-        $("cricketOversLimit").value = "20";
+
+        $("cricketOversLimit")
+            .value = "20";
+
     }
 
+
     data.cricket = {
+
         team,
+
         oversLimit,
+
         runs: 0,
+
         wickets: 0,
+
         balls: 0,
+
         fours: 0,
+
         sixes: 0,
+
         wides: 0,
+
         noBalls: 0,
+
         lbw: 0,
+
         started: true,
+
         finished: false,
+
         events: [],
+
         undoStack: []
+
     };
 
+
     saveData();
+
     renderCricket();
 
-    showToast("Cricket innings started.");
+
+    showToast(
+        "Cricket innings started."
+    );
+
 }
+
 
 $("startCricket").addEventListener(
     "click",
     newCricketMatch
 );
 
-$("resetCricket").addEventListener("click", () => {
 
-    if (!confirm("Reset the current cricket innings?")) {
-        return;
+$("resetCricket").addEventListener(
+    "click",
+    () => {
+
+        if (
+            !confirm(
+                "Reset the current cricket innings?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        data.cricket = null;
+
+
+        saveData();
+
+        renderCricket();
+
+
+        showToast(
+            "Cricket reset."
+        );
+
     }
+);
 
-    data.cricket = null;
 
-    saveData();
-    renderCricket();
-
-    showToast("Cricket reset.");
-});
-
+/* CRICKET SNAPSHOT */
 
 function cricketSnapshot() {
 
-    return deepCopy(data.cricket);
+    return deepCopy(
+        data.cricket
+    );
+
 }
+
 
 function pushCricketUndo() {
 
     if (!data.cricket.undoStack) {
-        data.cricket.undoStack = [];
+
+        data.cricket.undoStack =
+            [];
+
     }
+
 
     data.cricket.undoStack.push(
         cricketSnapshot()
     );
+
 }
+
 
 function cricketEvent(text) {
 
     data.cricket.events.unshift({
+
         text,
-        time: now()
+
+        time:
+            now()
+
     });
+
 }
 
 
 function legalBall() {
 
     data.cricket.balls++;
+
 }
 
 
 function checkCricketFinished() {
 
-    const c = data.cricket;
+    const c =
+        data.cricket;
 
-    const maxBalls = c.oversLimit * 6;
 
-    if (c.balls >= maxBalls) {
-        c.finished = true;
+    const maxBalls =
+        c.oversLimit * 6;
+
+
+    if (
+        c.balls >= maxBalls
+    ) {
+
+        c.finished =
+            true;
+
         return true;
+
     }
 
+
     return false;
+
 }
 
 
+/* ADD RUNS */
+
 function addRuns(runs) {
 
-    const c = data.cricket;
+    const c =
+        data.cricket;
 
-    if (!c || !c.started) {
-        showToast("Start a cricket innings first.");
+
+    if (
+        !c ||
+        !c.started
+    ) {
+
+        showToast(
+            "Start a cricket innings first."
+        );
+
         return;
+
     }
+
 
     if (c.finished) {
-        showToast("This innings is finished.");
+
+        showToast(
+            "This innings is finished."
+        );
+
         return;
+
     }
+
 
     pushCricketUndo();
 
+
     c.runs += runs;
+
 
     if (runs === 4) {
         c.fours++;
     }
 
+
     if (runs === 6) {
         c.sixes++;
     }
 
+
     legalBall();
 
+
     cricketEvent(
+
         runs === 0
             ? "Dot ball"
             : `${runs} run${runs === 1 ? "" : "s"}`
+
     );
+
 
     checkCricketFinished();
 
+
     saveData();
+
     renderCricket();
+
 }
 
 
-document.querySelectorAll("[data-run]").forEach(button => {
+document
+    .querySelectorAll("[data-run]")
+    .forEach(button => {
 
-    button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-        const runs =
-            Number(button.dataset.run);
+                const runs =
+                    Number(
+                        button.dataset.run
+                    );
 
-        addRuns(runs);
+
+                addRuns(
+                    runs
+                );
+
+            }
+        );
+
     });
 
-});
+
+/* WIDE */
+
+$("wideBtn").addEventListener(
+    "click",
+    () => {
+
+        const c =
+            data.cricket;
 
 
-$("wideBtn").addEventListener("click", () => {
+        if (
+            !c ||
+            !c.started
+        ) {
 
-    const c = data.cricket;
+            showToast(
+                "Start a cricket innings first."
+            );
 
-    if (!c || !c.started) {
-        showToast("Start a cricket innings first.");
-        return;
+            return;
+
+        }
+
+
+        if (c.finished) {
+
+            showToast(
+                "This innings is finished."
+            );
+
+            return;
+
+        }
+
+
+        pushCricketUndo();
+
+
+        c.runs++;
+
+        c.wides++;
+
+
+        cricketEvent(
+            "Wide +1"
+        );
+
+
+        saveData();
+
+        renderCricket();
+
     }
+);
 
-    if (c.finished) {
-        showToast("This innings is finished.");
-        return;
+
+/* NO BALL */
+
+$("noBallBtn").addEventListener(
+    "click",
+    () => {
+
+        const c =
+            data.cricket;
+
+
+        if (
+            !c ||
+            !c.started
+        ) {
+
+            showToast(
+                "Start a cricket innings first."
+            );
+
+            return;
+
+        }
+
+
+        if (c.finished) {
+
+            showToast(
+                "This innings is finished."
+            );
+
+            return;
+
+        }
+
+
+        pushCricketUndo();
+
+
+        c.runs++;
+
+        c.noBalls++;
+
+
+        cricketEvent(
+            "No ball +1"
+        );
+
+
+        saveData();
+
+        renderCricket();
+
     }
-
-    pushCricketUndo();
-
-    c.runs++;
-    c.wides++;
-
-    cricketEvent("Wide +1");
-
-    saveData();
-    renderCricket();
-});
+);
 
 
-$("noBallBtn").addEventListener("click", () => {
-
-    const c = data.cricket;
-
-    if (!c || !c.started) {
-        showToast("Start a cricket innings first.");
-        return;
-    }
-
-    if (c.finished) {
-        showToast("This innings is finished.");
-        return;
-    }
-
-    pushCricketUndo();
-
-    c.runs++;
-    c.noBalls++;
-
-    cricketEvent("No ball +1");
-
-    saveData();
-    renderCricket();
-});
-
+/* WICKET */
 
 function addWicket(type) {
 
-    const c = data.cricket;
+    const c =
+        data.cricket;
 
-    if (!c || !c.started) {
-        showToast("Start a cricket innings first.");
+
+    if (
+        !c ||
+        !c.started
+    ) {
+
+        showToast(
+            "Start a cricket innings first."
+        );
+
         return;
+
     }
+
 
     if (c.finished) {
-        showToast("This innings is finished.");
+
+        showToast(
+            "This innings is finished."
+        );
+
         return;
+
     }
+
 
     pushCricketUndo();
 
+
     c.wickets++;
+
 
     legalBall();
 
+
     if (type === "LBW") {
+
         c.lbw++;
+
     }
 
+
     cricketEvent(
+
         type === "LBW"
             ? "Wicket — LBW"
             : "Wicket"
+
     );
+
 
     checkCricketFinished();
 
+
     saveData();
+
     renderCricket();
+
 }
 
 
 $("wicketBtn").addEventListener(
     "click",
-    () => addWicket("Wicket")
+    () =>
+        addWicket(
+            "Wicket"
+        )
 );
+
 
 $("lbwBtn").addEventListener(
     "click",
-    () => addWicket("LBW")
+    () =>
+        addWicket(
+            "LBW"
+        )
 );
 
 
-$("undoCricket").addEventListener("click", () => {
+/* CRICKET UNDO */
 
-    const c = data.cricket;
+$("undoCricket").addEventListener(
+    "click",
+    () => {
 
-    if (!c || !c.undoStack || c.undoStack.length === 0) {
-        showToast("Nothing to undo.");
-        return;
+        const c =
+            data.cricket;
+
+
+        if (
+            !c ||
+            !c.undoStack ||
+            c.undoStack.length === 0
+        ) {
+
+            showToast(
+                "Nothing to undo."
+            );
+
+            return;
+
+        }
+
+
+        const previous =
+            c.undoStack.pop();
+
+
+        data.cricket =
+            previous;
+
+
+        saveData();
+
+        renderCricket();
+
+
+        showToast(
+            "Last cricket action undone."
+        );
+
     }
-
-    const previous = c.undoStack.pop();
-
-    data.cricket = previous;
-
-    saveData();
-    renderCricket();
-
-    showToast("Last cricket action undone.");
-});
+);
 
 
-$("finishCricket").addEventListener("click", () => {
+/* FINISH CRICKET */
 
-    if (!data.cricket || !data.cricket.started) {
-        showToast("Start an innings first.");
-        return;
+$("finishCricket").addEventListener(
+    "click",
+    () => {
+
+        if (
+            !data.cricket ||
+            !data.cricket.started
+        ) {
+
+            showToast(
+                "Start an innings first."
+            );
+
+            return;
+
+        }
+
+
+        if (data.cricket.finished) {
+
+            showToast(
+                "Innings already finished."
+            );
+
+            return;
+
+        }
+
+
+        data.cricket.finished =
+            true;
+
+
+        const c =
+            data.cricket;
+
+
+        data.history.unshift({
+
+            id:
+                Date.now().toString(),
+
+            sport:
+                "Cricket",
+
+            date:
+                new Date().toLocaleString(),
+
+            title:
+                `${c.team} ${c.runs}/${c.wickets}`,
+
+            details:
+                `${c.team} — ${oversText(c.balls)} overs`
+
+        });
+
+
+        saveData();
+
+        renderCricket();
+
+        renderHistory();
+
+        updateDashboard();
+
+
+        showToast(
+            "Cricket innings saved."
+        );
+
     }
+);
 
-    if (data.cricket.finished) {
-        showToast("Innings already finished.");
-        return;
-    }
 
-    data.cricket.finished = true;
-
-    const c = data.cricket;
-
-    data.history.unshift({
-        id: Date.now().toString(),
-        sport: "Cricket",
-        date: new Date().toLocaleString(),
-        title: `${c.team} ${c.runs}/${c.wickets}`,
-        details:
-            `${c.team} — ${oversText(c.balls)} overs`
-    });
-
-    saveData();
-    renderCricket();
-    updateDashboard();
-
-    showToast("Cricket innings saved.");
-});
-
+/* OVERS */
 
 function oversText(balls) {
 
     return `${Math.floor(balls / 6)}.${balls % 6}`;
+
 }
 
+
+/* RENDER CRICKET */
 
 function renderCricket() {
 
-    const c = data.cricket;
+    const c =
+        data.cricket;
+
 
     if (!c) {
 
-        $("cricketStatus").textContent = "Not started";
-        $("cricketTeamName").textContent =
-            $("cricketTeam").value || "Team A";
+        $("cricketStatus")
+            .textContent =
+            "Not started";
 
-        $("cricketScore").textContent = "0/0";
-        $("cricketOvers").textContent = "0.0";
 
-        $("runsStat").textContent = "0";
-        $("wicketStat").textContent = "0";
-        $("overStat").textContent = "0.0";
-        $("ballStat").textContent = "0";
-        $("fourStat").textContent = "0";
-        $("sixStat").textContent = "0";
-        $("wideStat").textContent = "0";
-        $("noBallStat").textContent = "0";
-        $("lbwStat").textContent = "0";
+        $("cricketTeamName")
+            .textContent =
+            $("cricketTeam")
+                .value ||
+            "Team A";
 
-        renderCricketEvents([]);
+
+        $("cricketScore")
+            .textContent =
+            "0/0";
+
+
+        $("cricketOvers")
+            .textContent =
+            "0.0";
+
+
+        $("runsStat")
+            .textContent =
+            "0";
+
+
+        $("wicketStat")
+            .textContent =
+            "0";
+
+
+        $("overStat")
+            .textContent =
+            "0.0";
+
+
+        $("ballStat")
+            .textContent =
+            "0";
+
+
+        $("fourStat")
+            .textContent =
+            "0";
+
+
+        $("sixStat")
+            .textContent =
+            "0";
+
+
+        $("wideStat")
+            .textContent =
+            "0";
+
+
+        $("noBallStat")
+            .textContent =
+            "0";
+
+
+        $("lbwStat")
+            .textContent =
+            "0";
+
+
+        renderCricketEvents(
+            []
+        );
+
 
         return;
+
     }
 
-    $("cricketTeamName").textContent = c.team;
 
-    $("cricketStatus").textContent =
-        c.finished ? "Finished" : "Live";
+    $("cricketTeamName")
+        .textContent =
+        c.team;
 
-    $("cricketScore").textContent =
+
+    $("cricketStatus")
+        .textContent =
+        c.finished
+            ? "Finished"
+            : "Live";
+
+
+    $("cricketScore")
+        .textContent =
         `${c.runs}/${c.wickets}`;
 
-    $("cricketOvers").textContent =
-        oversText(c.balls);
 
-    $("runsStat").textContent = c.runs;
-    $("wicketStat").textContent = c.wickets;
-    $("overStat").textContent = oversText(c.balls);
-    $("ballStat").textContent = c.balls;
-    $("fourStat").textContent = c.fours;
-    $("sixStat").textContent = c.sixes;
-    $("wideStat").textContent = c.wides;
-    $("noBallStat").textContent = c.noBalls;
-    $("lbwStat").textContent = c.lbw;
+    $("cricketOvers")
+        .textContent =
+        oversText(
+            c.balls
+        );
 
-    renderCricketEvents(c.events || []);
+
+    $("runsStat")
+        .textContent =
+        c.runs;
+
+
+    $("wicketStat")
+        .textContent =
+        c.wickets;
+
+
+    $("overStat")
+        .textContent =
+        oversText(
+            c.balls
+        );
+
+
+    $("ballStat")
+        .textContent =
+        c.balls;
+
+
+    $("fourStat")
+        .textContent =
+        c.fours;
+
+
+    $("sixStat")
+        .textContent =
+        c.sixes;
+
+
+    $("wideStat")
+        .textContent =
+        c.wides;
+
+
+    $("noBallStat")
+        .textContent =
+        c.noBalls;
+
+
+    $("lbwStat")
+        .textContent =
+        c.lbw;
+
+
+    renderCricketEvents(
+        c.events || []
+    );
+
 }
 
 
-function renderCricketEvents(events) {
+function renderCricketEvents(
+    events
+) {
 
-    const container = $("cricketEvents");
+    const container =
+        $("cricketEvents");
 
-    if (!events || events.length === 0) {
+
+    if (
+        !events ||
+        events.length === 0
+    ) {
 
         container.innerHTML = `
             <div class="empty">
@@ -2100,16 +3686,29 @@ function renderCricketEvents(events) {
         `;
 
         return;
+
     }
 
-    container.innerHTML = events.map(event => `
-        <div class="event">
-            <span>${escapeHTML(event.text)}</span>
-            <span class="event-time">
-                ${escapeHTML(event.time)}
-            </span>
-        </div>
-    `).join("");
+
+    container.innerHTML =
+        events
+            .map(
+                event => `
+                    <div class="event">
+
+                        <span>
+                            ${escapeHTML(event.text)}
+                        </span>
+
+                        <span class="event-time">
+                            ${escapeHTML(event.time)}
+                        </span>
+
+                    </div>
+                `
+            )
+            .join("");
+
 }
 
 
@@ -2119,7 +3718,9 @@ function renderCricketEvents(events) {
 
 function renderHistory() {
 
-    const container = $("historyList");
+    const container =
+        $("historyList");
+
 
     if (data.history.length === 0) {
 
@@ -2130,89 +3731,143 @@ function renderHistory() {
         `;
 
         return;
+
     }
 
-    container.innerHTML = data.history.map(match => `
-        <div class="history-item">
 
-            <div class="history-top">
+    container.innerHTML =
+        data.history
+            .map(
+                match => `
 
-                <strong>
-                    ${escapeHTML(match.title)}
-                </strong>
+                    <div class="history-item">
 
-                <span class="muted">
-                    ${escapeHTML(match.sport)}
-                </span>
+                        <div class="history-top">
 
-            </div>
+                            <strong>
+                                ${escapeHTML(match.title)}
+                            </strong>
 
-            <div class="muted">
-                ${escapeHTML(match.details)}
-            </div>
+                            <span class="muted">
+                                ${escapeHTML(match.sport)}
+                            </span>
 
-            <div
-                class="event-time"
-                style="margin-top:8px"
-            >
-                ${escapeHTML(match.date)}
-            </div>
+                        </div>
 
-            <button
-                class="btn danger"
-                style="margin-top:12px"
-                data-delete-history="${match.id}"
-            >
-                Delete
-            </button>
 
-        </div>
-    `).join("");
+                        <div class="muted">
+                            ${escapeHTML(match.details)}
+                        </div>
+
+
+                        <div
+                            class="event-time"
+                            style="margin-top:8px"
+                        >
+                            ${escapeHTML(match.date)}
+                        </div>
+
+
+                        <button
+                            class="btn danger"
+                            style="margin-top:12px"
+                            data-delete-history="${match.id}"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
 
     container
-        .querySelectorAll("[data-delete-history]")
+        .querySelectorAll(
+            "[data-delete-history]"
+        )
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                const id =
-                    button.dataset.deleteHistory;
+                    const id =
+                        button.dataset
+                            .deleteHistory;
 
-                data.history =
-                    data.history.filter(
-                        item => item.id !== id
+
+                    data.history =
+                        data.history.filter(
+                            item =>
+                                item.id !== id
+                        );
+
+
+                    saveData();
+
+                    renderHistory();
+
+                    updateDashboard();
+
+
+                    showToast(
+                        "History item deleted."
                     );
 
-                saveData();
-                renderHistory();
-                updateDashboard();
-
-                showToast("History item deleted.");
-            });
+                }
+            );
 
         });
+
 }
 
 
-$("clearHistory").addEventListener("click", () => {
+/* CLEAR HISTORY */
 
-    if (data.history.length === 0) {
-        showToast("History is already empty.");
-        return;
+$("clearHistory").addEventListener(
+    "click",
+    () => {
+
+        if (data.history.length === 0) {
+
+            showToast(
+                "History is already empty."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !confirm(
+                "Delete all match history?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        data.history = [];
+
+
+        saveData();
+
+        renderHistory();
+
+        updateDashboard();
+
+
+        showToast(
+            "History cleared."
+        );
+
     }
-
-    if (!confirm("Delete all match history?")) {
-        return;
-    }
-
-    data.history = [];
-
-    saveData();
-    renderHistory();
-    updateDashboard();
-
-    showToast("History cleared.");
-});
+);
 
 
 /* =========================================================
@@ -2223,22 +3878,34 @@ function updateDashboard() {
 
     const footballMatches =
         data.history.filter(
-            match => match.sport === "Football"
+            match =>
+                match.sport ===
+                "Football"
         ).length;
+
 
     const cricketMatches =
         data.history.filter(
-            match => match.sport === "Cricket"
+            match =>
+                match.sport ===
+                "Cricket"
         ).length;
 
-    $("footballCount").textContent =
+
+    $("footballCount")
+        .textContent =
         footballMatches;
 
-    $("cricketCount").textContent =
+
+    $("cricketCount")
+        .textContent =
         cricketMatches;
 
-    $("playerCount").textContent =
+
+    $("playerCount")
+        .textContent =
         data.players.length;
+
 }
 
 
@@ -2247,9 +3914,13 @@ function updateDashboard() {
 ========================================================= */
 
 renderPlayers();
+
 renderFootball();
+
 renderCricket();
+
 renderHistory();
+
 updateDashboard();
 
 
@@ -2257,31 +3928,64 @@ updateDashboard();
    LIVE FOOTBALL TIMER
 ========================================================= */
 
-setInterval(() => {
+setInterval(
+    () => {
 
-    if (
-        data.football &&
-        data.football.started &&
-        !data.football.finished
-    ) {
-        renderFootball();
-    }
+        if (
+            data.football &&
+            data.football.started &&
+            !data.football.finished
+        ) {
 
-}, 1000);
+            renderFootball();
+
+        }
+
+    },
+    1000
+);
 
 
 /* =========================================================
    SAVE BEFORE LEAVING
 ========================================================= */
 
-window.addEventListener("beforeunload", () => {
-    saveData();
-});
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(data)
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Final save error:",
+                error
+            );
+
+        }
+
+    }
+);
 
 </script>
-    <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
 
 import {
     getAuth,
@@ -2291,6 +3995,7 @@ import {
     setPersistence,
     browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
 
 import {
     getFirestore,
@@ -2305,22 +4010,652 @@ import {
 ========================================================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBsIvXpxvAUW5I5N4GXcAr0X9GQF4TKS80",
-    authDomain: "grvsportinfo.firebaseapp.com",
-    projectId: "grvsportinfo",
-    storageBucket: "grvsportinfo.firebasestorage.app",
-    messagingSenderId: "247996649575",
-    appId: "1:247996649575:web:069ec944f071f49ca9c4c2",
-    measurementId: "G-7H98LHYN8V"
-};
-<script type="module">
 
- if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js")
-            .catch(error => console.error("Service Worker Error:", error));
-    });
+    apiKey:
+        "AIzaSyBsIVxAUW5I5N4GXcAr0X9GQF4TKS80",
+
+    authDomain:
+        "grvsportinfo.firebaseapp.com",
+
+    projectId:
+        "grvsportinfo",
+
+    storageBucket:
+        "grvsportinfo.firebasestorage.app",
+
+    messagingSenderId:
+        "247996649575",
+
+    appId:
+        "1:247996649575:web:069ec944f071f49ca9c4c2",
+
+    measurementId:
+        "G-7H98LHYN8V"
+
+};
+
+
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+const provider =
+    new GoogleAuthProvider();
+
+
+let signingIn = false;
+
+
+/* =========================================================
+   AUTH PERSISTENCE
+========================================================= */
+
+const persistenceReady =
+    setPersistence(
+        auth,
+        browserLocalPersistence
+    );
+
+
+/* =========================================================
+   LOAD CLOUD DATA
+========================================================= */
+
+window.grvCloudLoad =
+    async function () {
+
+        const user =
+            auth.currentUser;
+
+
+        if (!user) {
+            return false;
+        }
+
+
+        try {
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const snapshot =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (!snapshot.exists()) {
+
+                window.grvUsername =
+                    user.displayName ||
+                    "";
+
+                return false;
+
+            }
+
+
+            const cloudData =
+                snapshot.data();
+
+
+            /* USERNAME */
+
+            if (cloudData.username) {
+
+                window.grvUsername =
+                    cloudData.username;
+
+
+                const button =
+                    document.getElementById(
+                        "googleSignInBtn"
+                    );
+
+
+                if (button) {
+
+                    button.textContent =
+                        cloudData.username;
+
+                }
+
+            }
+
+
+            /* PLAYERS */
+
+            if (
+                Array.isArray(
+                    cloudData.players
+                )
+            ) {
+
+                window.grvData.players =
+                    cloudData.players;
+
+            }
+
+
+            /* HISTORY */
+
+            if (
+                Array.isArray(
+                    cloudData.history
+                )
+            ) {
+
+                window.grvData.history =
+                    cloudData.history;
+
+            }
+
+
+            /* FOOTBALL */
+
+            if (
+                cloudData.football !==
+                undefined
+            ) {
+
+                window.grvData.football =
+                    cloudData.football;
+
+            }
+
+
+            /* CRICKET */
+
+            if (
+                cloudData.cricket !==
+                undefined
+            ) {
+
+                window.grvData.cricket =
+                    cloudData.cricket;
+
+            }
+
+
+            /* SAVE CLOUD DATA LOCALLY */
+
+            localStorage.setItem(
+                "grvsportinfo_v2",
+                JSON.stringify(
+                    window.grvData
+                )
+            );
+
+
+            console.log(
+                "☁️ GRVSPORTINFO cloud data loaded"
+            );
+
+
+            return true;
+
+
+        } catch (error) {
+
+            console.error(
+                "Cloud load error:",
+                error
+            );
+
+
+            return false;
+
+        }
+
+    };
+
+
+/* =========================================================
+   SAVE DATA TO CLOUD
+========================================================= */
+
+window.grvCloudSave =
+    async function () {
+
+        const user =
+            auth.currentUser;
+
+
+        if (
+            !user ||
+            !window.grvData
+        ) {
+
+            return;
+
+        }
+
+
+        try {
+
+            await setDoc(
+
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                ),
+
+                {
+
+                    uid:
+                        user.uid,
+
+                    email:
+                        user.email ||
+                        "",
+
+                    username:
+                        window.grvUsername ||
+                        user.displayName ||
+                        "",
+
+                    players:
+                        window.grvData.players,
+
+                    history:
+                        window.grvData.history,
+
+                    football:
+                        window.grvData.football,
+
+                    cricket:
+                        window.grvData.cricket,
+
+                    updatedAt:
+                        new Date().toISOString()
+
+                },
+
+                {
+                    merge: true
+                }
+
+            );
+
+
+            console.log(
+                "☁️ GRVSPORTINFO data saved"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Cloud save error:",
+                error
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   GOOGLE SIGN IN
+========================================================= */
+
+window.signInWithGoogle =
+    async function () {
+
+        if (signingIn) {
+            return;
+        }
+
+
+        signingIn = true;
+
+
+        const button =
+            document.getElementById(
+                "googleSignInBtn"
+            );
+
+
+        if (button) {
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "Signing in...";
+
+        }
+
+
+        try {
+
+            await persistenceReady;
+
+
+            const result =
+                await signInWithPopup(
+                    auth,
+                    provider
+                );
+
+
+            window.googleUser =
+                result.user;
+
+
+            console.log(
+                "Google account:",
+                result.user.email
+            );
+
+
+            await window.grvCloudLoad();
+
+
+            if (
+                typeof window.grvRefresh ===
+                "function"
+            ) {
+
+                window.grvRefresh();
+
+            }
+
+
+            let username =
+                window.grvUsername;
+
+
+            /* NEW USER */
+
+            if (!username) {
+
+                username =
+                    prompt(
+                        "Welcome to GRVSPORTINFO!\n\nEnter your GRVSPORTINFO name / username:"
+                    );
+
+
+                if (
+                    username &&
+                    username.trim()
+                ) {
+
+                    username =
+                        username.trim();
+
+
+                    window.grvUsername =
+                        username;
+
+
+                    if (button) {
+
+                        button.textContent =
+                            username;
+
+                    }
+
+
+                    await window.grvCloudSave();
+
+
+                } else {
+
+                    if (button) {
+
+                        button.textContent =
+                            "Choose username";
+
+                    }
+
+                }
+
+
+            } else {
+
+                /* EXISTING USER */
+
+                if (button) {
+
+                    button.textContent =
+                        username;
+
+                }
+
+            }
+
+
+            if (
+                typeof window.grvRefresh ===
+                "function"
+            ) {
+
+                window.grvRefresh();
+
+            }
+
+
+            console.log(
+                "✅ GRVSPORTINFO Google login successful"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Google Sign-In Error:",
+                error
+            );
+
+
+            if (
+                error.code !==
+                "auth/popup-closed-by-user"
+            ) {
+
+                alert(
+                    "Sign-in failed:\n\n" +
+                    error.message
+                );
+
+            }
+
+        } finally {
+
+            signingIn =
+                false;
+
+
+            if (button) {
+
+                button.disabled =
+                    false;
+
+
+                if (
+                    button.textContent ===
+                    "Signing in..."
+                ) {
+
+                    button.textContent =
+                        "Sign in with Google";
+
+                }
+
+            }
+
+        }
+
+    };
+
+
+/* =========================================================
+   AUTOMATIC LOGIN RESTORATION
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        const button =
+            document.getElementById(
+                "googleSignInBtn"
+            );
+
+
+        if (user) {
+
+            console.log(
+                "🔐 Google account restored:",
+                user.email
+            );
+
+
+            window.googleUser =
+                user;
+
+
+            await window.grvCloudLoad();
+
+
+            if (button) {
+
+                if (
+                    window.grvUsername
+                ) {
+
+                    button.textContent =
+                        window.grvUsername;
+
+
+                } else if (
+                    user.displayName
+                ) {
+
+                    button.textContent =
+                        user.displayName;
+
+
+                } else {
+
+                    button.textContent =
+                        "Signed in";
+
+                }
+
+            }
+
+
+            if (
+                typeof window.grvRefresh ===
+                "function"
+            ) {
+
+                window.grvRefresh();
+
+            }
+
+
+        } else {
+
+            console.log(
+                "👤 No Google account signed in."
+            );
+
+
+            if (button) {
+
+                button.textContent =
+                    "Sign in with Google";
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GOOGLE BUTTON
+========================================================= */
+
+const googleSignInBtn =
+    document.getElementById(
+        "googleSignInBtn"
+    );
+
+
+if (googleSignInBtn) {
+
+    googleSignInBtn.addEventListener(
+        "click",
+        window.signInWithGoogle
+    );
+
 }
-</script>  
+
+</script>
+
+
+<!-- =========================================================
+     SERVICE WORKER
+========================================================= -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(() => {
+
+                    console.log(
+                        "✅ Service Worker registered"
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "Service Worker Error:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
+
+</script>
+
+
 </body>
 </html>
