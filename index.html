@@ -1698,7 +1698,10 @@ let data = loadData();
 
 window.grvData = data;
 
-
+window.grvSetData = function(newData) {
+    data = newData;
+    window.grvData = newData;
+};
 /* =========================================================
    GLOBAL REFRESH
 ========================================================= */
@@ -3950,28 +3953,7 @@ setInterval(
    SAVE BEFORE LEAVING
 ========================================================= */
 
-window.addEventListener(
-    "beforeunload",
-    () => {
 
-        try {
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(data)
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Final save error:",
-                error
-            );
-
-        }
-
-    }
-);
 
 </script>
 
@@ -4055,7 +4037,7 @@ const db =
 
 const provider =
     new GoogleAuthProvider();
-
+window.grvCloudHydrating = false;
 
 let signingIn = false;
 
@@ -4076,16 +4058,13 @@ const persistenceReady =
 ========================================================= */
 
 window.grvCloudLoad =
-    async function () {
+ async function () {
 
-        const user =
-            auth.currentUser;
-
+        const user = auth.currentUser;
 
         if (!user) {
             return false;
         }
-
 
         try {
 
@@ -4096,12 +4075,10 @@ window.grvCloudLoad =
                     user.uid
                 );
 
-
             const snapshot =
                 await getDoc(
                     userRef
                 );
-
 
             if (!snapshot.exists()) {
 
@@ -4110,10 +4087,58 @@ window.grvCloudLoad =
                     "";
 
                 return false;
-
             }
 
+            const cloudData =
+                snapshot.data();
 
+            const restoredData = {
+
+                players:
+                    Array.isArray(cloudData.players)
+                        ? cloudData.players
+                        : [],
+
+                history:
+                    Array.isArray(cloudData.history)
+                        ? cloudData.history
+                        : [],
+
+                football:
+                    cloudData.football || null,
+
+                cricket:
+                    cloudData.cricket || null
+            };
+
+            // Replace the actual app data
+            window.grvSetData(
+                restoredData
+            );
+
+            // Update local cache
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(restoredData)
+            );
+
+            window.grvUsername =
+                cloudData.username ||
+                user.displayName ||
+                "";
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+                "Cloud load error:",
+                error
+            );
+
+            return false;
+        }
+    };
             const cloudData =
                 snapshot.data();
 
@@ -4232,23 +4257,19 @@ window.grvCloudLoad =
 /* =========================================================
    SAVE DATA TO CLOUD
 ========================================================= */
-
 window.grvCloudSave =
     async function () {
 
-        const user =
-            auth.currentUser;
+        const user = auth.currentUser;
 
-
+        // Don't save while cloud data is being loaded
         if (
             !user ||
-            !window.grvData
+            !window.grvData ||
+            window.grvCloudHydrating
         ) {
-
-            return;
-
+            return false;
         }
-
 
         try {
 
@@ -4297,11 +4318,11 @@ window.grvCloudSave =
 
             );
 
-
             console.log(
                 "☁️ GRVSPORTINFO data saved"
             );
 
+            return true;
 
         } catch (error) {
 
@@ -4310,11 +4331,9 @@ window.grvCloudSave =
                 error
             );
 
+            return false;
         }
-
     };
-
-
 /* =========================================================
    GOOGLE SIGN IN
 ========================================================= */
@@ -4326,15 +4345,12 @@ window.signInWithGoogle =
             return;
         }
 
-
         signingIn = true;
-
 
         const button =
             document.getElementById(
                 "googleSignInBtn"
             );
-
 
         if (button) {
 
@@ -4346,167 +4362,48 @@ window.signInWithGoogle =
 
         }
 
-
         try {
 
             await persistenceReady;
 
-
-            const result =
-                await signInWithPopup(
-                    auth,
-                    provider
-                );
-
-
-            window.googleUser =
-                result.user;
-
-
-            console.log(
-                "Google account:",
-                result.user.email
+            await signInWithPopup(
+                auth,
+                provider
             );
 
-
-            await window.grvCloudLoad();
-
-
-            if (
-                typeof window.grvRefresh ===
-                "function"
-            ) {
-
-                window.grvRefresh();
-
-            }
-
-
-            let username =
-                window.grvUsername;
-
-
-            /* NEW USER */
-
-            if (!username) {
-
-                username =
-                    prompt(
-                        "Welcome to GRVSPORTINFO!\n\nEnter your GRVSPORTINFO name / username:"
-                    );
-
-
-                if (
-                    username &&
-                    username.trim()
-                ) {
-
-                    username =
-                        username.trim();
-
-
-                    window.grvUsername =
-                        username;
-
-
-                    if (button) {
-
-                        button.textContent =
-                            username;
-
-                    }
-
-
-                    await window.grvCloudSave();
-
-
-                } else {
-
-                    if (button) {
-
-                        button.textContent =
-                            "Choose username";
-
-                    }
-
-                }
-
-
-            } else {
-
-                /* EXISTING USER */
-
-                if (button) {
-
-                    button.textContent =
-                        username;
-
-                }
-
-            }
-
-
-            if (
-                typeof window.grvRefresh ===
-                "function"
-            ) {
-
-                window.grvRefresh();
-
-            }
-
-
-            console.log(
-                "✅ GRVSPORTINFO Google login successful"
-            );
-
+            /*
+             * Do NOT load cloud data here.
+             *
+             * onAuthStateChanged() handles:
+             * Google login → cloud load → refresh
+             *
+             * This prevents two cloud-load operations
+             * from running at the same time.
+             */
 
         } catch (error) {
 
             console.error(
-                "Google Sign-In Error:",
+                "Google sign-in error:",
                 error
             );
 
+            if (button) {
 
-            if (
-                error.code !==
-                "auth/popup-closed-by-user"
-            ) {
-
-                alert(
-                    "Sign-in failed:\n\n" +
-                    error.message
-                );
+                button.textContent =
+                    "Sign in with Google";
 
             }
 
         } finally {
 
-            signingIn =
-                false;
-
+            signingIn = false;
 
             if (button) {
-
-                button.disabled =
-                    false;
-
-
-                if (
-                    button.textContent ===
-                    "Signing in..."
-                ) {
-
-                    button.textContent =
-                        "Sign in with Google";
-
-                }
-
+                button.disabled = false;
             }
 
         }
-
     };
 
 
@@ -4531,12 +4428,27 @@ onAuthStateChanged(
                 user.email
             );
 
-
             window.googleUser =
                 user;
 
+            // Prevent old local data from being
+            // uploaded while cloud data is loading
+            window.grvCloudHydrating = true;
 
-            await window.grvCloudLoad();
+            const cloudLoaded =
+                await window.grvCloudLoad();
+
+            window.grvCloudHydrating = false;
+
+
+            // If this Google account has no cloud
+            // document yet, save the current data
+            // as its first cloud backup.
+            if (!cloudLoaded) {
+
+                await window.grvCloudSave();
+
+            }
 
 
             if (button) {
@@ -4548,14 +4460,12 @@ onAuthStateChanged(
                     button.textContent =
                         window.grvUsername;
 
-
                 } else if (
                     user.displayName
                 ) {
 
                     button.textContent =
                         user.displayName;
-
 
                 } else {
 
@@ -4582,6 +4492,12 @@ onAuthStateChanged(
             console.log(
                 "👤 No Google account signed in."
             );
+
+            window.googleUser =
+                null;
+
+            window.grvCloudHydrating =
+                false;
 
 
             if (button) {
